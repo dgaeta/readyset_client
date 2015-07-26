@@ -1,0 +1,18 @@
+<h1>Registration</h1>
+<p ng-show="err">
+{{err}}
+{{errObject}}
+</p>
+<p ng-show="succes">
+{{succes}}
+</p>
+
+<form class="form-inline" ng-submit="register()">
+  Email: <input type="email" ng-model="email" placeholder="Email"><br />
+  Password: <input type="password" ng-model="password" placeholder="Password"><br />
+  Company name: <input type="text" ng-model="name" placeholder="Company name"><br />
+  Branch: <input type="text" ng-model="branch" placeholder="Branch"><br />
+  <button class="btn" type="submit">
+    <i class="icon-reply"> Register</i>
+  </button>
+</form>

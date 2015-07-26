@@ -1,7 +1,7 @@
 // app.js
 
 
-var routerApp = angular.module('routerApp', ['ui.router', 'ui.bootstrap']);
+var routerApp = angular.module('routerApp', ['ui.router', 'ui.bootstrap', 'so.auth.registration.brand']);
 
 routerApp.config(function($stateProvider, $urlRouterProvider) {
     
