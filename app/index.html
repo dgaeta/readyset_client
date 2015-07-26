@@ -38,8 +38,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse" ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav">
-        <li><a  ui-sref="soauthregistrationuser">Home</a></li>
-        <li><a  ui-sref="about">About</a></li>
+        <li><a  ui-sref="soHome">Home</a></li>
       </ul>
     </div>
   </div>
@@ -68,17 +67,20 @@
   <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
 
   <script src="app.js"></script>
-  <script src="components/version/version.js"></script>
-  <script src="components/version/version-directive.js"></script>
-  <script src="components/version/interpolate-filter.js"></script>
 
-  <script src="components/auth/registration/brand/brand.module.js"></script>
-  <script src="components/auth/registration/brand/brandController.js"></script>
-  <script src="components/auth/registration/user/user.module.js"></script>
-  <script src="components/auth/registration/user/userController.js"></script>
+  <!-- Auth -->
+  <script src="components/home/home.module.js"></script>
 
-  <script src="components/auth/login/brand/brand.module.js"></script>
-  <script src="components/auth/login/brand/brandController.js"></script>
+  <!-- Auth -->
+  <script src="components/auth/auth.module.js"></script>
+  <script src="components/auth/login/login.module.js"></script>
+  <script src="components/auth/login/login.controller.js"></script>
+  <script src="components/auth/registration/registration.module.js"></script>
+  <script src="components/auth/registration/registration.controller.js"></script>
+  <script src="components/auth/social/social.module.js"></script>
+  <script src="components/auth/social/social.controller.js"></script>
+
+  <!-- services -->
   <script src="services/Auth.js"></script>
   <script src="services/CompanyService.js"></script>
   <script src="services/UserService.js"></script>

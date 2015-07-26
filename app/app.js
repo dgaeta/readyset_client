@@ -1,25 +1,12 @@
 // app.js
 
-var so = angular.module('so', ['ui.router', 'ui.bootstrap', 'so.auth.registration.user', 'so.auth.registration.brand',
-    'so.auth.login.brand']);
+var so = angular.module('so', [
+    'ui.router',
+    'ui.bootstrap',
+    'so.home',
+    'so.auth',
+]);
 
 so.config(function($stateProvider, $urlRouterProvider) {
-
-    
-    $urlRouterProvider.otherwise('/home');
-    
-    $stateProvider
-        
-        // HOME STATES AND NESTED VIEWS ========================================
-        .state('home', {
-            url: '/home',
-            templateUrl: 'partial-home.html'
-        })
-
-
-      
-
-        
-}); // closes $routerApp.config()
-
-
+    $urlRouterProvider.otherwise('/');
+});

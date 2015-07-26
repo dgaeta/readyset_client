@@ -1,8 +1,8 @@
 angular
-    .module('so.auth.registration.brand')
-    .controller('BrandController', BrandController);
+    .module('so.auth.registration')
+    .controller('SoAuthRegistrationController', SoAuthRegistrationController);
 
-function BrandController($scope, Auth, CompanyService) {
+function SoAuthRegistrationController($scope, Auth, CompanyService) {
 
     $scope.email = '';
     $scope.password = '';

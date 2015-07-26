@@ -1,9 +1,9 @@
 angular
-    .module('so.auth.login.brand')
-    .controller('LoginBrandController', LoginBrandController);
+    .module('so.auth.login')
+    .controller('SoAuthLoginController', SoAuthLoginController);
 
 
-function LoginBrandController($scope, Auth) {
+function SoAuthLoginController($scope, Auth) {
 
     $scope.email = '';
     $scope.password = '';

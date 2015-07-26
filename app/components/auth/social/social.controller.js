@@ -1,8 +1,8 @@
 angular
-    .module('so.auth.registration.user')
-    .controller('UserController', UserController);
+    .module('so.auth.social')
+    .controller('SoAuthSocialController', SoAuthSocialController);
 
-function UserController($scope, $firebaseArray, $firebaseObject, Auth) {
+function SoAuthSocialController($scope, $firebaseArray, $firebaseObject, Auth) {
 
 	$scope.ref = new Firebase("https://socialocean.firebaseio.com/");
 
