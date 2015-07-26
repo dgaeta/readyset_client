@@ -1,2 +1,5 @@
 node_modules/
+bower_components/
+temp/
+app/bower_components/
 **/.DS_Store
