@@ -1,4 +1,4 @@
-<h1>Registration</h1>
+<h1>Login for brand</h1>
 <p ng-show="err">
 {{err}}
 {{errObject}}
@@ -7,12 +7,10 @@
 {{succes}}
 </p>
 
-<form class="form-inline" ng-submit="register()">
+<form class="form-inline" ng-submit="login()">
   Email: <input type="email" ng-model="email" placeholder="Email"><br />
   Password: <input type="password" ng-model="password" placeholder="Password"><br />
-  Company name: <input type="text" ng-model="name" placeholder="Company name"><br />
-  Branch: <input type="text" ng-model="branch" placeholder="Branch"><br />
   <button class="btn" type="submit">
-    <i class="icon-reply"> Register</i>
+    <i class="icon-reply"> Login</i>
   </button>
 </form>
