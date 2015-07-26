@@ -1,9 +1,9 @@
 // app.js
 
 
-var routerApp = angular.module('routerApp', ['ui.router', 'ui.bootstrap']);
+var app = angular.module('so', ['ui.router', 'ui.bootstrap', "firebase"]);
 
-routerApp.config(function($stateProvider, $urlRouterProvider) {
+app.config(function($stateProvider, $urlRouterProvider) {
     
     $urlRouterProvider.otherwise('/home');
     
@@ -16,18 +16,21 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
         })
 
         // nested list with custom controller
-        .state('home.list', {
-        	url: 'list',
-        	templateUrl: 'partial-home-list.html',
+        .state('home.brand-register', {
+        	url: '/brand-register',
+        	templateUrl: 'partial-home-brand.html',
         	controller: function($scope) {
         		$scope.dogs = [ 'Benji', 'Phoebe', 'Jack'];
         	}
         })
 
         // nested list with just some random string data
-        .state('home.paragraph', {
-        	url: '/paragraph',
-        	template: 'I could sure use a drink right now.'
+        .state('home.user-register', {
+            templateUrl: 'partial-home-user.html',
+        	url: '/user-register',
+        	controller: function($scope) {
+                $scope.cats = [ 'Charlie', 'Toby', 'Fluffy'];
+            }
         })
         
         // ABOUT PAGE AND MULTIPLE NAMED VIEWS =================================
@@ -53,7 +56,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 
 
 // let's define the scote controller that we call up in the about state 
-routerApp.controller('scotchController', function($scope) {
+app.controller('so', function($scope) {
 
 	$scope.message = 'test';
 

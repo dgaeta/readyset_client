@@ -18,11 +18,10 @@
     <!-- JS (load angular, ui-router, and our custom js file) -->
     <!--<script src="http://code.angularjs.org/1.2.13/angular.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.8/angular-ui-router.min.js"></script>-->
-    <script src="app.js"></script>
 </head>
 
 <!-- apply our angular app to our site -->
-<body ng-app="routerApp">
+<body ng-app="so">
 
 <!-- NAVIGATION -->
 <nav class="navbar navbar-inverse" role="navigation">
@@ -35,7 +34,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="home">AngularUI Router</a>
+        <a class="navbar-brand" ui-sref="home">Social Ocean</a>
     </div>
 
 
@@ -69,5 +68,12 @@
   <script src="components/version/version.js"></script>
   <script src="components/version/version-directive.js"></script>
   <script src="components/version/interpolate-filter.js"></script>
+
+
+  <!-- Firebase -->
+  <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+  <!-- AngularFire -->
+  <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+
 </body>
 </html>
