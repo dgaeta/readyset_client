@@ -1,9 +1,9 @@
 // app.js
 
 
-var routerApp = angular.module('routerApp', ['ui.router', 'ui.bootstrap', 'so.auth.registration.brand']);
+var so = angular.module('so', ['ui.router', 'ui.bootstrap', 'so.auth.registration.user']);
 
-routerApp.config(function($stateProvider, $urlRouterProvider) {
+so.config(function($stateProvider, $urlRouterProvider) {
     
     $urlRouterProvider.otherwise('/home');
     
@@ -53,7 +53,7 @@ routerApp.config(function($stateProvider, $urlRouterProvider) {
 
 
 // let's define the scote controller that we call up in the about state 
-routerApp.controller('scotchController', function($scope) {
+so.controller('scotchController', function($scope) {
 
 	$scope.message = 'test';
 

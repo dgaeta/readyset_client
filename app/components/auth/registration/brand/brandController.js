@@ -4,6 +4,6 @@ angular
 
 function BrandController($scope) {
 
-    $scope.
+
 
 }
