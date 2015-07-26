@@ -43,6 +43,7 @@
         <li><a  ui-sref="soAuthLogin" ng-hide="authData">Brand Login</a></li>
         <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>
         <!-- <li><a  ui-sref="home" ng-hide="!authData" ng-click="">Logout</a></li> -->
+        <li><a  ui-sref="soPrivate" ng-show="authData">Private</a></li>
       </ul>
     </div>
   </div>
@@ -72,8 +73,9 @@
 
   <script src="app.js"></script>
 
-  <!-- Auth -->
+  <!-- Misc -->
   <script src="components/home/home.module.js"></script>
+  <script src="components/private/private.module.js"></script>
 
   <!-- Auth -->
   <script src="components/auth/auth.module.js"></script>
