@@ -1,7 +1,11 @@
 // app.js
 
 
+<<<<<<< HEAD
 var app = angular.module('so', ['ui.router', 'ui.bootstrap', "firebase"]);
+=======
+var routerApp = angular.module('routerApp', ['ui.router', 'ui.bootstrap', 'so.auth.registration.brand']);
+>>>>>>> 0263eecbd58f1e3205dd2d53f7bc1b6a37f9c546
 
 app.config(function($stateProvider, $urlRouterProvider) {
     
