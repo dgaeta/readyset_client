@@ -5,6 +5,8 @@ angular
 
 function SoAuthLoginController($scope, AuthService) {
 
+    console.log(AuthService.$getAuth());
+
     $scope.email = '';
     $scope.password = '';
     

@@ -39,6 +39,7 @@
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse" ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav">
         <li><a  ui-sref="soHome">Home</a></li>
+        <li><a  ui-sref="soPrivate">Private</a></li>
       </ul>
     </div>
   </div>
@@ -68,8 +69,9 @@
 
   <script src="app.js"></script>
 
-  <!-- Auth -->
+  <!-- Misc -->
   <script src="components/home/home.module.js"></script>
+  <script src="components/private/private.module.js"></script>
 
   <!-- Auth -->
   <script src="components/auth/auth.module.js"></script>
