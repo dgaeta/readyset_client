@@ -22,7 +22,7 @@
 
 <!-- NAVIGATION -->
 <nav class="navbar navbar-inverse" role="navigation">
-  <div class="container-fluid">
+  <div class="container-fluid" ng-controller="soCtrl">
     <!-- Brand and toggle get grouped for better mobile display -->
     <div class="navbar-header">
         <button type="button" ng-init="navCollapsed = true" ng-click="navCollapsed = !navCollapsed" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
@@ -39,6 +39,10 @@
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse" ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav">
         <li><a  ui-sref="soHome">Home</a></li>
+        <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li>
+        <li><a  ui-sref="soAuthLogin" ng-hide="authData">Brand Login</a></li>
+        <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>
+        <!-- <li><a  ui-sref="home" ng-hide="!authData" ng-click="">Logout</a></li> -->
       </ul>
     </div>
   </div>
