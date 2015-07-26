@@ -302,3 +302,4 @@ For more information on AngularJS please check out http://angularjs.org/
 # my-angular-starter
 # my-angular-starter
 # my-angular-starter
+# socialocean
