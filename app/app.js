@@ -5,7 +5,7 @@ var so = angular.module('so', [
     'ui.bootstrap',
     'so.home',
     'so.auth',
-    'AuthService'
+    'AuthService',
     'so.private'
 ]);
 
