@@ -3,7 +3,7 @@ angular
     .controller('BrandController', BrandController);
 
 
-function BrandController($scope, Auth, $firebaseObject) {
+function BrandController($scope, Auth, CompanyService) {
 
     $scope.email = '';
     $scope.password = '';
@@ -16,13 +16,19 @@ function BrandController($scope, Auth, $firebaseObject) {
     $scope.succes = '';
 
     $scope.register = function() {
+
+        console.log("Registering");
+
         Auth.$createUser({
             email: $scope.email,
             password: $scope.password
         }).then(function(userData) {
 
-            var ref = new Firebase('https://socialocean.firebaseio.com/companies/' + userData.uid);
-            var company = $firebaseObject(ref);
+            console.log('creation successfull');
+
+            var company = CompanyService(userData.uid);
+
+            console.log(company);
 
             company.name = $scope.name;
             company.branch = $scope.branch;

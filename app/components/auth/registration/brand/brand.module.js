@@ -1,5 +1,5 @@
 angular
-    .module('so.auth.registration.brand', ['ui.router', 'firebase', 'Auth'])
+    .module('so.auth.registration.brand', ['ui.router', 'CompanyService', 'Auth'])
     .config(function($stateProvider) {
         $stateProvider
             .state('soBrand', {
