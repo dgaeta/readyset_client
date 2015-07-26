@@ -1,5 +1,5 @@
 angular
-    .module('so.auth.social', ['ui.router', "firebase", "Auth"])
+    .module('so.auth.social', ['ui.router', 'firebase'])
     .config(function($stateProvider) {
         $stateProvider
             .state('soAuthSocial', {

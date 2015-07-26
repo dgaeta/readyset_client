@@ -1,6 +1,6 @@
 angular
-    .module('Auth', ['firebase'])
-    .factory('Auth', ['$firebaseAuth', function($firebaseAuth) {
+    .module('AuthService', ['firebase'])
+    .factory('AuthService', ['$firebaseAuth', function($firebaseAuth) {
         var ref = new Firebase("https://socialocean.firebaseio.com");
         return $firebaseAuth(ref);
     }]);

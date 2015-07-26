@@ -1,5 +1,5 @@
 angular
-    .module('so.auth.login', ['ui.router', 'Auth'])
+    .module('so.auth.login', ['ui.router', 'AuthService'])
     .config(function($stateProvider) {
         $stateProvider
             .state('soAuthLogin', {

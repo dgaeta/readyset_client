@@ -3,7 +3,7 @@ angular
     .controller('SoAuthLoginController', SoAuthLoginController);
 
 
-function SoAuthLoginController($scope, Auth) {
+function SoAuthLoginController($scope, AuthSevice) {
 
     $scope.email = '';
     $scope.password = '';
@@ -14,7 +14,7 @@ function SoAuthLoginController($scope, Auth) {
     $scope.succes = '';
 
     $scope.login = function() {
-        Auth.$authWithPassword({
+        AuthService.$authWithPassword({
             email: $scope.email,
             password: $scope.password
         }).then(function(authData) {

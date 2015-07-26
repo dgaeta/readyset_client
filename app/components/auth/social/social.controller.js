@@ -2,7 +2,7 @@ angular
     .module('so.auth.social')
     .controller('SoAuthSocialController', SoAuthSocialController);
 
-function SoAuthSocialController($scope, $firebaseArray, $firebaseObject, Auth) {
+function SoAuthSocialController($scope, $firebaseArray, $firebaseObject) {
 
 	$scope.ref = new Firebase("https://socialocean.firebaseio.com/");
 

@@ -2,7 +2,7 @@ angular
     .module('so.auth.registration')
     .controller('SoAuthRegistrationController', SoAuthRegistrationController);
 
-function SoAuthRegistrationController($scope, Auth, CompanyService) {
+function SoAuthRegistrationController($scope, AuthService, CompanyService) {
 
     $scope.email = '';
     $scope.password = '';
@@ -18,7 +18,7 @@ function SoAuthRegistrationController($scope, Auth, CompanyService) {
 
         console.log("Registering");
 
-        Auth.$createUser({
+        AuthService.$createUser({
             email: $scope.email,
             password: $scope.password
         }).then(function(userData) {
