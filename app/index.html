@@ -41,7 +41,7 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse" ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav">
-        <li><a  ui-sref="home">Home</a></li>
+        <li><a  ui-sref="soauthregistrationuser">Home</a></li>
         <li><a  ui-sref="about">About</a></li>
       </ul>
     </div>
@@ -78,11 +78,15 @@
 
   <script src="components/auth/registration/brand/brand.module.js"></script>
   <script src="components/auth/registration/brand/brandController.js"></script>
+  <script src="components/auth/registration/user/user.module.js"></script>
+  <script src="components/auth/registration/user/userController.js"></script>
+
   <script src="components/auth/login/brand/brand.module.js"></script>
   <script src="components/auth/login/brand/brandController.js"></script>
   <script src="services/Auth.js"></script>
   <script src="services/CompanyService.js"></script>
   <script src="services/UserService.js"></script>
   
+
 </body>
 </html>
