@@ -16,7 +16,9 @@
     "angular-loader": "1.2.x",
     "angular-mocks": "~1.2.x",
     "html5-boilerplate": "~4.3.0",
-    "angular-bootstrap": "~0.13.0"
+    "angular-bootstrap": "~0.13.0",
+    "angularfire": "~1.1.2",
+    "firebase": "~2.2.7"
   },
   "devDependencies": {}
 }
