@@ -17,6 +17,22 @@ so.controller("soCtrl", ["$scope", "AuthService",
 	function($scope, AuthService) {
 		$scope.authData = AuthService.$getAuth();
 
+        AuthService.$onAuth(function(authData) {
+          $scope.authData = authData;
+          console.log("Hellooooo out there");
+          console.log(authData);
+        });
+
+        $scope.logout = function() {
+
+            console.log("in here");
+
+            AuthService.$unauth(function(authData) {
+                if (!authData) {
+                    console.log("logged out");
+                };
+            })
+        }
 
 		if ($scope.authData) {
 		  console.log("Logged in as:", $scope.authData.uid);
