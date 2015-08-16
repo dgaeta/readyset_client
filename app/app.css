@@ -1,5 +1,95 @@
 /* app css stylesheet */
 
+
+h1{
+  font-family: 'Cabin', sans-serif;
+  font-size: 56px;
+}
+
+p {
+  font-family: 'Cabin', sans-serif;
+}
+
+.info-container {
+  float: left;
+  clear: left;
+  display: block;
+  height: 400px;
+}
+
+#top-shadow {
+position: fixed;
+top: 0;
+left: 20px;
+width: 100%;
+height: 42px;
+z-index: 999;
+-webkit-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+-moz-box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+box-shadow: 0 8px 8px rgba(0, 0, 0, 0.5);
+display: none;
+}
+
+
+.navbar {
+  height: 65px;
+  background-color: white;
+  -webkit-box-shadow: 0 8px 6px -6px #999;
+  -moz-box-shadow: 0 8px 6px -6px #999;
+  box-shadow: 0 8px 6px -6px #999;
+  z-index:1000;
+}
+
+.slide-container {
+  display: block;
+  left: -20px;
+  right: -20px;
+  padding: 0 20px;
+  margin-left: -100px;
+  margin-right: -100px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: block;
+  float: left;
+  clear: left;
+  width: 100%;
+  z-index: 0;
+}
+
+.byetext {
+  background-color: #5F64D6;
+  height: 300px;
+  display: block;
+}
+
+.evan-info {
+  display: block;
+}
+
+.text-center {
+  height: 300px;
+  padding-top: 75px;
+
+}
+
+.first-divider {
+  height: 400px;
+  background-color: #5D5CDC;
+  left: -20px;
+  right: -20px;
+  padding: 0 20px;
+  position: absolute;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-bar {
+   background-color:#FF0000 !important;
+}
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
