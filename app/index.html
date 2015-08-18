@@ -32,20 +32,25 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" ui-sref="soHome">Adwolla</a>
+        <a class="navbar-brand" ui-sref="soHome">Escape</a>
     </div>
 
 
     <!-- Collect the nav links, forms, and other content for toggling -->
-    <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse" ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
-      <ul class="nav navbar-nav">
-        <li><a  ui-sref="soHome">Home</a></li>
-        <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li>
-        <li><a  ui-sref="soAuthLogin" ng-hide="authData">Brand Login</a></li>
-        <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>
+    <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse " ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
+      <ul class="nav navbar-nav pull-right">
+        <li><a  ui-sref="soStay">Stay</a></li>
+        <li><a  ui-sref="soInvest">Invest</a></li>
+        <li><a  ui-sref="soAbout">About</a></li>
+        <li><a  ui-sref="soWorks">How it works</a></li>
+        <li><a  ui-sref="soHome">Follow us</a></li>
+        <!-- <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li> -->
+        <!-- <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>-->       
         <!-- <li><a  ui-sref="home" ng-hide="!authData" ng-click="">Logout</a></li> -->
-        <li><a  ui-sref="soPrivate" ng-show="authData">Private</a></li>
+        <!-- <li><a  ui-sref="soPrivate" ng-show="authData">Private</a></li> -->
         <li><a  ui-sref="soHome" ng-show="authData" ng-click="logout()">Log Out</a></li>
+        <li><a  ui-sref="soAuthLogin" ng-hide="authData">Login</a></li>
+        <li><a  ui-sref="soSignup" ng-hide="authData">Sign up</a></li>
       </ul>
     </div>
   </div>
@@ -59,6 +64,28 @@
 
 </div>
 
+<div class="botton-nav">
+  <div class="navbar">
+    <ul class="nav navbar-nav pull-left">
+      <li><a  ui-sref="soStay">How it Works</a></li>
+      <li><a  ui-sref="soInvest">About</a></li>
+      <li><a  ui-sref="soAbout">Team</a></li>
+      <li><a  ui-sref="soWorks">Careers</a></li>
+      <li><a  ui-sref="soHome">Press</a></li>
+    </ul>
+
+    <ul class="nav navbar-nav pull-right">
+      <li><a  ui-sref="soStay">Contact</a></li>
+      <li><a  ui-sref="soInvest">Privacy Policy</a></li>
+      <li><a  ui-sref="soAbout">Terms of use</a></li>
+    </ul>
+
+    <p class="pull-right">Escape Inc. 2015 NYC</p>
+
+      
+    <img src="/images/footer-key.png" class="img-responsive" alt="Responsive image">
+  </div>
+</div>
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
@@ -77,7 +104,12 @@
 
   <!-- Misc -->
   <script src="components/home/home.module.js"></script>
+  <script src="components/about/about.module.js"></script>
+  <script src="components/invest/invest.module.js"></script>
+  <script src="components/stay/stay.module.js"></script>
+  <script src="components/works/works.module.js"></script>
   <script src="components/private/private.module.js"></script>
+  <script src="components/signup/signup.module.js"></script>
 
   <!-- Auth -->
   <script src="components/auth/auth.module.js"></script>
@@ -90,7 +122,7 @@
 
   <!-- services -->
   <script src="services/auth.service.js"></script>
-  <script src="services/company.service.js"></script>
+  <script src="services/investor.service.js"></script>
   <script src="services/user.service.js"></script>
   
 
