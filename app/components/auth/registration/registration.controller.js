@@ -2,12 +2,15 @@ angular
     .module('so.auth.registration')
     .controller('SoAuthRegistrationController', SoAuthRegistrationController);
 
-function SoAuthRegistrationController($scope, AuthService, InvestorService, UserService) {
+function SoAuthRegistrationController($scope, $state, AuthService, InvestorService, UserService) {
 
+    $scope.firstname = '';
+    $scope.lastname = '';
     $scope.email = '';
     $scope.password = '';
-    $scope.name = '';
-    $scope.branch = '';
+    $scope.city = '';
+    $scope.state = '';
+
 
     $scope.err = null;
     $scope.errObject = null;
@@ -16,22 +19,43 @@ function SoAuthRegistrationController($scope, AuthService, InvestorService, User
 
     AuthService.$onAuth(function(authData) {
       $scope.authData = authData;
-      console.log("Hellooooo out there");
       console.log(authData);
     });
+
+    $scope.login = function() {
+        // Log the user in 
+        console.log("im here now");
+        AuthService.$authWithPassword({
+            email: $scope.email,
+            password: $scope.password
+        }).then(function(authData) {
+            console.log("Logged in as:", authData.uid);
+            $scope.success = 'logged in as ' + authData.uid;
+            $state.go('soProfile');
+        }).catch(function(error) {
+            $scope.err = "Error creating user";
+            $scope.errObject = error;
+        })
+    }
 
     $scope.register = function() {
 
         console.log("Registering");
-        var ref = new Firebase("https://<YOUR-FIREBASE-APP>.firebaseio.com");
+        var ref = new Firebase("https://escape-app.firebaseio.com/");
 
 
         var userType = localStorage.getItem('userType');
         console.log(userType);
 
         AuthService.$createUser({
+            first: $scope.firstname,
+            last: $scope.lastname,
+            city: $scope.city,
+            state: $scope.state,
             email: $scope.email,
-            password: $scope.password
+            password: $scope.password,
+            stays: [],
+            invests: []
         }).then(function(userData) {
 
             console.log('creation successfull');
@@ -39,16 +63,16 @@ function SoAuthRegistrationController($scope, AuthService, InvestorService, User
             if (userType == "Investor") {
                 var investor = InvestorService(userData.uid);
 
-                console.log(investor);
-
-                investor.name = $scope.name;
-                investor.branch = $scope.branch;
+                investor.first = $scope.firstname;
+                investor.last = $scope.lastname;
                 investor.email = $scope.email;
+                investor.city = $scope.city;
+                investor.state = $scope.state;
 
                 investor.$save().then(function(ref) {
-                    console.log(ref);
                     $scope.succes = "User created with id " + userData.uid;
                     var authData = ref.getAuth();
+                    $scope.login();
                 }).catch(function(error) {
                     $scope.err = "Error creating user details";
                     $scope.errObject = error;
@@ -58,12 +82,15 @@ function SoAuthRegistrationController($scope, AuthService, InvestorService, User
 
                 console.log(user);
 
-                user.name = $scope.name;
-                user.branch = $scope.branch;
+                user.first = $scope.firstname;
+                user.last = $scope.lastname;
+                user.email = $scope.email;
+                user.city = $scope.city;
+                user.state = $scope.state;
 
                 user.$save().then(function(ref) {
-                    console.log(ref);
                     $scope.succes = "User created with id " + userData.uid;
+                    $scope.login();
                 }).catch(function(error) {
                     $scope.err = "Error creating user details";
                     $scope.errObject = error;

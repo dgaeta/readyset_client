@@ -10,7 +10,10 @@ var so = angular.module('so', [
     'so.about',
     'so.works',
     'so.signup',
+    'so.profile',
     'AuthService',
+    'FireRefService',
+    'UserService',
     'so.private'
 ]);
 
@@ -18,26 +21,28 @@ so.config(function($stateProvider, $urlRouterProvider) {
     $urlRouterProvider.otherwise('/');
 });
 
-so.controller("soCtrl", ["$scope", "AuthService",
-	function($scope, AuthService) {
+so.controller("soCtrl", ["$scope", "AuthService", "FireRefService", "UserService",
+	function($scope, AuthService, FireRefService, UserService) {
 		$scope.authData = AuthService.$getAuth();
 
-        AuthService.$onAuth(function(authData) {
-          $scope.authData = authData;
-          console.log("Hellooooo out there");
-          console.log(authData);
-        });
-
         $scope.logout = function() {
-
-            console.log("in here");
 
             AuthService.$unauth(function(authData) {
                 if (!authData) {
                     console.log("logged out");
+                    $scope.authData = null;
                 };
             })
         }
+
+        FireRefService.onAuth( function(authData) {
+            $scope.authData = authData;
+
+            if (FireRefService.getAuth()) {
+                $scope.uid = FireRefService.getAuth().uid;
+                $scope.user = UserService($scope.uid);
+            };
+        })
 
 		if ($scope.authData) {
 		  console.log("Logged in as:", $scope.authData.uid);

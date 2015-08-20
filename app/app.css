@@ -1,18 +1,121 @@
 /* app css stylesheet */
 
 
+html {
+  height: 100%;
+}
+
 h1{
   font-family: 'Cabin', sans-serif;
   font-size: 56px;
+  border-color: 
+}
+
+h5 {
+  font-family: 'Garamond Pro Italic';
 }
 
 p {
-  font-family: 'Cabin', sans-serif;
+  font-family: 'gotham_lightregular';
 }
 
 body { 
   padding-top: 48px; 
+  min-height: 100%;
+  font-family: 'gotham_bookregular';
 }
+
+body p {
+  font-family: 'gotham_lightregular'
+}
+
+#escape-blue {
+  color: #248FA2;
+}
+
+@font-face {
+    font-family: 'gotham_lightregular';
+    src: url('/fonts/gotham-light/gotham-light-webfont.eot');
+    src: url('/fonts/gotham-light/gotham-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/gotham-light/gotham-light-webfont.woff2') format('woff2'),
+         url('/fonts/gotham-light/gotham-light-webfont.woff') format('woff'),
+         url('/fonts/gotham-light/gotham-light-webfont.ttf') format('truetype'),
+         url('/fonts/gotham-light/gotham-light-webfont.svg#gotham_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'gotham_bookregular';
+    src: url('/fonts/gotham-book/gotham-book-webfont.eot');
+    src: url('/fonts/gotham-book/gotham-book-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/gotham-book/gotham-book-webfont.woff2') format('woff2'),
+         url('/fonts/gotham-book/gotham-book-webfont.woff') format('woff'),
+         url('/fonts/gotham-book/gotham-book-webfont.ttf') format('truetype'),
+         url('/fonts/gotham-book/gotham-book-webfont.svg#gotham_bookregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+font-family: 'Garamond Pro Italic';
+src:
+     url('/fonts/Garamond-Pro/ITCGaramondStd-BdIta.otf') format('opentype') /* Legacy iOS */
+font-weight: none;
+}
+
+.btn {
+  background-color: black;
+  background-image: url('/images/button-arrow.png'); 
+  background-size: 18px 18px;
+  background-repeat: no-repeat;
+  background-position: right 12px top 7px;
+  padding-top: 10px;
+  padding-bottom:10px;
+  width: 150px;
+  height: 80px
+  border: 0 none;
+  color: white;
+  font-family: 'gotham_bookregular';
+  font-size: 10px;
+  text-align: left;
+}
+
+.redirect-btn {
+  background-position: right 12px top 14px;
+}
+
+.button-text {
+  padding-left: 15px; 
+  margin-top: 7px;
+  margin-bottom: 7px;
+}
+
+.home-splash {
+  background-image: url('/images/button-arrow.png');
+}
+
+
+.escape-button {
+  height: 70px;
+  width: 32px;
+}
+
+.child-element { 
+  position: relative; 
+  width: 100%; 
+}
+
+
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
 
 .left { float:left }
 
@@ -23,8 +126,15 @@ body {
   height: 400px;
 }
 
-.bottom-nav {
+.footer {
   background-color: black;
+  font-family: 'Gotham Book';
+  font-size: 10px;
+  padding-top: 60px;
+}
+
+.bottom-nav ul li a {
+  color: #248FA2;
 }
 
 #top-shadow {
@@ -42,8 +152,9 @@ display: none;
 
 
 .enjoy-footer {
-  height: 100px;
   background-color: #29A0B5;
+  padding-top: 20px;
+  padding-bottom: 20px;
 }
 
 .key-deals {
@@ -53,6 +164,15 @@ display: none;
 .navbar {
   height: 45px;
   background-color: black;
+  border-top-width: 0px;
+  border-left-width: 0px;
+  border-right-width: 0px;
+  font-family: 'Gotham Book';
+}
+
+.navbar a {
+  color: white;
+  font-size: 10px;
 }
 
 .slide-container {
@@ -75,23 +195,19 @@ display: none;
 }
 
 .headline-section {
-  padding-top: 200px;
-  padding-bottom: 200px;
+  padding-top: 250px;
+  padding-bottom: 60px;
 }
 
 
 .grid-images {
-  padding-bottom: 100px;
+
 }
 
 
 .success-text {
   padding-top: 100px;
   padding-bottom: 100px;
-}
-
-.membership-heading {
-  padding-top: 200px;
 }
 
 

@@ -1,16 +1,31 @@
-<h1>Login for brand</h1>
-<p ng-show="err">
-{{err}}
-{{errObject}}
-</p>
-<p ng-show="succes">
-{{succes}}
-</p>
+<div style="min-height: 500px;">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-3"></div>
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<h2 id="escape-blue">Login</h2>
+		<p ng-show="err">
+		{{err}}
+		{{errObject}}
+		</p>
+		<p ng-show="succes">
+		{{succes}}
+		</p>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></div>
+</div>
 
-<form class="form-inline" ng-submit="login()">
-  Email: <input type="email" ng-model="email" placeholder="Email"><br />
-  Password: <input type="password" ng-model="password" placeholder="Password"><br />
-  <button class="btn" type="submit">
-    <i class="icon-reply"> Login</i>
-  </button>
-</form>
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="col-lg-5 col-md-5 col-sm-5 col-xs-3"></div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+		<form class="form-inline" ng-submit="login()" >
+		  	Email: <input type="email" ng-model="email" placeholder="Email"><br />
+		  	Password: <input type="password" ng-model="password" placeholder="Password"><br />
+		  	<button class="btn" type="submit" style="margin-top:40px;">
+		        <i class="icon-reply" style="padding-left: 4px;
+        		">LOGIN</i>
+		    </button>
+		</form>
+	</div>
+	<div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></div>
+</div>
+</div>

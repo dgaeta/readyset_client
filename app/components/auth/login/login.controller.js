@@ -3,7 +3,7 @@ angular
     .controller('SoAuthLoginController', SoAuthLoginController);
 
 
-function SoAuthLoginController($scope, AuthService) {
+function SoAuthLoginController($scope, $state, AuthService) {
 
     console.log(AuthService.$getAuth());
 
@@ -22,6 +22,7 @@ function SoAuthLoginController($scope, AuthService) {
         }).then(function(authData) {
             console.log("Logged in as:", authData.uid);
             $scope.succes = 'logged in as ' + authData.uid;
+            $state.go('soProfile');
         }).catch(function(error) {
             $scope.err = "Error creating user";
             $scope.errObject = error;
