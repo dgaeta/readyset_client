@@ -1,8 +1,8 @@
 <div style="min-height: 600px;">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-top:80px;">
   <div class="col-lg-5 col-md-5 col-sm-5 col-xs-3"></div>
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <h2 id="escape-blue">Registration</h2>
+    <h4 id="cursive-font">Registration</h4>
     <p ng-show="err">
     {{err}}
     {{errObject}}
@@ -15,17 +15,16 @@
 </div>
 
 
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-3"></div>
+<div class="col-lg-8 col-md-8 col-sm-8 col-xs-12" style="padding-top:80px;">
+  <div class="col-lg-1 col-md-1 col-sm-1"></div>
   <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
     <form class="form-inline" ng-submit="register()">
-      First Name: <input type="text" ng-model="firstname" placeholder="First Name"><br />
-      Last Name: <input type="text" ng-model="lastname" placeholder="Last Name"><br />
-      City: <input type="text" ng-model="city" placeholder="city"><br />
-      State: <input type="text" ng-model="state" placeholder="state"><br />
-      Email: <input type="email" ng-model="email" placeholder="Email"><br />
-      Password: <input type="password" ng-model="password" placeholder="Password"><br />
+      <span id="cursive-font">First Name: </span><input type="text" ng-model="firstname" style="margin-bottom:20px;"><br />
+      <span id="cursive-font">Last Name: </span><input type="text" ng-model="lastname"  style="margin-bottom:20px;"><br />
+      <span id="cursive-font">City: </span><input type="text" ng-model="city" style="margin-bottom:20px;"><br />
+      <span id="cursive-font">State: </span><input type="text" ng-model="state" style="margin-bottom:20px;"><br />
+      <span id="cursive-font">Email: </span><input type="email" ng-model="email" style="margin-bottom:20px;"><br />
+      <span id="cursive-font">Password: </span><input type="password" ng-model="password"><br />
       <!-- Company name: <input type="text" ng-model="name" placeholder="Company name"><br /> -->
       <!-- Branch: <input type="text" ng-model="branch" placeholder="Branch"><br /> -->
       <button class="btn" type="submit" style="margin-top:40px;">
