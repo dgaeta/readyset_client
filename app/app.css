@@ -34,6 +34,12 @@ body p {
   color: #248FA2;
 }
 
+#mobile-banner {
+  padding-bottom:30px; 
+  padding-top:30px;
+  font-family: 'garamond_pro';
+  color: white;
+}
 
 #cursive-font {
   font-family: 'garamond_pro';
@@ -43,6 +49,10 @@ body p {
 #blue-cursive {
   color: #248FA2;
   font-family: 'garamond_pro';
+}
+
+#gotham-font {
+  font-family: 'gotham_bookregular';
 }
 
 
@@ -119,6 +129,16 @@ li a:hover, li.active a{
 
 .splash-mobile {
   background: url('/images/splash-mobile.png') no-repeat center center fixed;
+  font-family: 'gotham_bookregular';
+}
+
+.splash-mobile-about {
+  background: url('/images/about-mobile.png') no-repeat center center fixed;
+  font-family: 'gotham_bookregular';
+}
+
+.splash-mobile-how {
+  background: url('/images/how-mobile.png') no-repeat center center fixed;
   font-family: 'gotham_bookregular';
 }
 
