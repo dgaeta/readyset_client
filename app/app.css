@@ -5,55 +5,9 @@ html {
   height: 100%;
 }
 
-h1{
-  font-family: 'Cabin', sans-serif;
-  font-size: 56px;
-  margin-bottom: 0px;
-  margin-top: 0px;
-}
-
-h5 {
-  font-family: 'Garamond Pro Italic';
-}
-
-p {
-  font-family: 'gotham_lightregular';
-}
-
-body { 
-  padding-top: 48px; 
-  min-height: 100%;
-  font-family: 'gotham_bookregular';
-}
-
-body p {
-  font-family: 'gotham_lightregular';
-}
-
-#escape-blue {
-  color: #248FA2;
-}
-
-#mobile-banner {
-  padding-bottom:30px; 
-  padding-top:30px;
-  font-family: 'garamond_pro';
-  color: white;
-}
-
-#cursive-font {
-  font-family: 'garamond_pro';
-}
 
 
-#blue-cursive {
-  color: #248FA2;
-  font-family: 'garamond_pro';
-}
 
-#gotham-font {
-  font-family: 'gotham_bookregular';
-}
 
 
 @font-face {
@@ -96,31 +50,8 @@ font-weight: none;
 }
 
 
-li a:hover, li.active a{
- color: black;
-}
-
-#bs-example-navbar-collapse-1 {
-  background-color: black;
-}
 
 
-.btn {
-  background-color: black;
-  background-image: url('/images/button-arrow.png'); 
-  background-size: 18px 18px;
-  background-repeat: no-repeat;
-  background-position: right 12px top 7px;
-  padding-top: 10px;
-  padding-bottom:10px;
-  width: 150px;
-  height: 80px
-  border: 0 none;
-  color: white;
-  font-family: 'gotham_bookregular';
-  font-size: 10px;
-  text-align: left;
-}
 
 .redirect-btn {
   background-position: right 12px top 14px;

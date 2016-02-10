@@ -17,13 +17,15 @@ var so = angular.module('so', [
     'so.private'
 ]);
 
-so.config(function($stateProvider, $urlRouterProvider) {
+so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
+    //Enable cross domain calls
+    $httpProvider.defaults.useXDomain = true;
 });
 
 so.controller("soCtrl", ["$scope", "AuthService", "FireRefService", "UserService",
 	function($scope, AuthService, FireRefService, UserService) {
-		$scope.authData = AuthService.$getAuth();
+		$scope.authData = AuthService.getAuth();
 
         $scope.logout = function() {
 

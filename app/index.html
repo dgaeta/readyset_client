@@ -34,7 +34,7 @@
           <span class="icon-bar"></span>
         </button>
         <a class="navbar-brand" ui-sref="soHome">
-          <img style="max-width:100px;" alt="Brand" src="/images/logo.png">
+          <p>PARACHUTE</p>
         </a>
     </div>
 
@@ -42,11 +42,11 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse " ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav pull-right">
-        <li><a  ui-sref="soStay">STAY</a></li>
+        <!-- <li><a  ui-sref="soStay">STAY</a></li>
         <li><a  ui-sref="soInvest">INVEST</a></li>
         <li><a  ui-sref="soAbout">ABOUT</a></li>
         <li><a  ui-sref="soWorks">HOW IT WORKS</a></li>
-        <li><a  ui-sref="soHome">FOLLOW US</a></li>
+        <li><a  ui-sref="soHome">FOLLOW US</a></li> -->
         <!-- <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li> -->
         <!-- <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>-->       
         <!-- <li><a  ui-sref="home" ng-hide="!authData" ng-click="">Logout</a></li> -->
@@ -56,7 +56,7 @@
 
         <li><a  ui-sref="soHome" ng-show="authData" ng-click="logout()">LOGOUT</a></li>
         <li><a  ui-sref="soAuthLogin" ng-hide="authData" style="color: #248FA2;">LOGIN</a></li>
-        <li><a  ui-sref="soSignup" ng-hide="authData" style="color: #248FA2;">SIGN UP</a></li>
+        <li><a  ui-sref="soAuthRegistration" ng-hide="authData" style="color: #248FA2;">SIGN UP</a></li>
       </ul>
     </div>
   </div>
@@ -70,63 +70,10 @@
 
 
 
-<div class="footer col-md-12 col-sm-12 col-xs-12">
+<!-- <div class="footer col-md-12 col-sm-12 col-xs-12">
 
-  <!-- only for xs size screens -->
-  <ul class="hidden-lg hidden-md hidden-sm col-xs-6">
-    <li><a  ui-sref="soWorks" style="color: #248FA2; padding-left: 60px;">HOW IT WORKS</a></li>
-    <li> <a  ui-sref="soAbout" style="color: #248FA2; padding-left: 60px;">ABOUT</a></li>
-    <li><a  ui-sref="soAbout" style="color: #248FA2; padding-left: 60px;">TEAM</a></li>
-    <li><a  ui-sref="soAbout" style="color: #248FA2; padding-left: 60px;">CAREERS</a></li>
-    <li><a  ui-sref="soAbout" style="color: #248FA2; padding-left: 60px;">PRESS</a></li>
-  </ul>
-  <ul class="hidden-lg hidden-md hidden-sm col-xs-6">
-    <li><a  ui-sref="soAbout" style="color: #248FA2; margin-left: 20px;">CONTACT</a></li>
-    <li><a  ui-sref="soAbout" style="color: #248FA2; margin-left: 20px;">PRIVACY POLICY</a></li>
-    <li><a  ui-sref="soAbout" style="color: #248FA2; margin-left: 20px;">TERMS OF USE</a></li>
-  </ul>
-
-
-  <!-- only for sm and larger size screens -->
-  <div class="pull-left hidden-xs">
-    <a  ui-sref="soStay" style="color: #248FA2; padding-left: 60px;">HOW IT WORKS</a>
-    <a  ui-sref="soInvest" style="color: #248FA2; margin-left: 20px;">ABOUT</a>
-    <a  ui-sref="soAbout" style="color: #248FA2; margin-left: 20px;">TEAM</a>
-    <a  ui-sref="soWorks" style="color: #248FA2; margin-left: 20px;">CAREERS</a>
-    <a  ui-sref="soHome" style="color: #248FA2; margin-left: 20px;">PRESS</a>
-  </div>
-
-  <div class="pull-right hidden-xs">
-    <a  ui-sref="soStay" style="color: #248FA2; margin-left: 20px;">CONTACT</a>
-    <a  ui-sref="soInvest" style="color: #248FA2; margin-left: 20px;">PRIVACY POLICY</a>
-    <a  ui-sref="soAbout" style="color: #248FA2; margin-left: 20px;">TERMS OF USE</a>
-  </div>
-
-  <div class="col-md-12 col-sm-12 col-xs-12" style="background-color: black; color: white; padding-top: 15px; padding-bottom: 10px;">
-    <div style="padding-left: 45px;">
-       <a class="pull-left" ui-sref="soHome">
-        <img style="max-width:20px;" alt="Brand" src="/images/fb-icon.png">
-        </a>
-        <a class="pull-left" ui-sref="soHome">
-          <img style="max-width:20px; margin-left: 20px;" alt="Brand" src="/images/insta-icon.png">
-        </a>
-        <a class="pull-left" ui-sref="soHome">
-          <img style="max-width:20px; margin-left: 20px;" alt="Brand" src="/images/twitter-icon.png">
-        </a>
-        <a class="pull-left" ui-sref="soHome">
-          <img style="max-width:20px; margin-left: 20px;" alt="Brand" src="/images/pinterest-icon.png">
-        </a>
-    </div>
-   
-
-    <p class="pull-right vcenter" style="font-family: 'gotham_bookregular'; font-size:10px;">ESCAPE INC. 2015 NYC</p>
-  </div>
-
-
-  
-  <img src="/images/footer-key.png" class="img-responsive" alt="Responsive image" style="border-color: black; border-width: 1px; ">
-
-</div>
+ 
+</div> -->
 
   <!-- In production use:
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>

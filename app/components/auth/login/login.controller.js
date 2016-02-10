@@ -3,9 +3,8 @@ angular
     .controller('SoAuthLoginController', SoAuthLoginController);
 
 
-function SoAuthLoginController($scope, $state, AuthService) {
+function SoAuthLoginController($scope, $state, $http, AuthService)  {
 
-    console.log(AuthService.$getAuth());
 
     $scope.email = '';
     $scope.password = '';
@@ -14,19 +13,36 @@ function SoAuthLoginController($scope, $state, AuthService) {
     $scope.errObject = null;
 
     $scope.succes = '';
+    $scope.api_domain =  "http://127.0.0.1:8040"
 
     $scope.login = function() {
-        AuthService.$authWithPassword({
-            email: $scope.email,
-            password: $scope.password
-        }).then(function(authData) {
-            console.log("Logged in as:", authData.uid);
-            $scope.succes = 'logged in as ' + authData.uid;
-            $state.go('soProfile');
-        }).catch(function(error) {
-            $scope.err = "Error creating user";
-            $scope.errObject = error;
-        })
+        console.log($scope.email);
+        console.log($scope.password);
+
+        var url = $scope.api_domain + "/users/signin";
+        var auth_string = String($scope.email) + ':' + String($scope.password)
+        console.log(auth_string)
+        var auth_cred = btoa(auth_string)
+        console.log(auth_cred)
+
+        $http.get(url, {
+            headers: {'Authorization': 'Basic ' + auth_cred }
+        }).then(
+            function(value) {
+                console.log(value);
+
+                if(value['data']['status'] == "success"){
+                    AuthService.setToken(value['data']['token']);
+                    console.log("logged in with token " + String(AuthService.getToken()));
+                    $state.go('soProfile');
+                }
+            }, 
+            function(value) {
+                console.log(value);
+            }
+        );
+
+
     }
 
 
