@@ -8,6 +8,10 @@
 <html>
 <head>
 
+    <pre>{{usingCookies|json}}</pre>
+    <pre>{{usingCookieStore|json}}</pre>
+
+    
     <!-- CSS (load bootstrap) -->
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="app.css">
@@ -42,9 +46,9 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse " ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav pull-right">
-        <!-- <li><a  ui-sref="soStay">STAY</a></li>
-        <li><a  ui-sref="soInvest">INVEST</a></li>
-        <li><a  ui-sref="soAbout">ABOUT</a></li>
+        <li><a  ui-sref="soAuthLogin">LOGIN</a></li>
+        <li><a  ui-sref="soAuthRegistration">SIGN UP</a></li>
+        <!-- <li><a  ui-sref="soAbout">ABOUT</a></li>
         <li><a  ui-sref="soWorks">HOW IT WORKS</a></li>
         <li><a  ui-sref="soHome">FOLLOW US</a></li> -->
         <!-- <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li> -->
@@ -52,11 +56,11 @@
         <!-- <li><a  ui-sref="home" ng-hide="!authData" ng-click="">Logout</a></li> -->
         <!-- <li><a  ui-sref="soPrivate" ng-show="authData">Private</a></li> -->
 
-        <li><a  id="escape-blue" ui-sref="soHome" ng-show="authData" ng-click="logout()">HELLO, MR. {{user.last | uppercase}}</a></li>
+        <!-- <li><a  id="escape-blue" ui-sref="soHome" ng-show="authData" ng-click="logout()">HELLO, MR. {{user.last | uppercase}}</a></li>
 
         <li><a  ui-sref="soHome" ng-show="authData" ng-click="logout()">LOGOUT</a></li>
         <li><a  ui-sref="soAuthLogin" ng-hide="authData" style="color: #248FA2;">LOGIN</a></li>
-        <li><a  ui-sref="soAuthRegistration" ng-hide="authData" style="color: #248FA2;">SIGN UP</a></li>
+        <li><a  ui-sref="soAuthRegistration" ng-hide="authData" style="color: #248FA2;">SIGN UP</a></li> -->
       </ul>
     </div>
   </div>
@@ -81,6 +85,7 @@
   <script src="lib/angular/angular.js"></script>
   <script src="lib/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
   <script src="lib/angular-ui-router/release/angular-ui-router.min.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular-cookies.js"></script>
 
   <!-- Firebase + AngularFire -->
   <!-- Firebase -->

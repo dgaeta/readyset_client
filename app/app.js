@@ -14,13 +14,15 @@ var so = angular.module('so', [
     'AuthService',
     'FireRefService',
     'UserService',
-    'so.private'
+    'so.private',
+    'ngCookies'
 ]);
 
 so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     $urlRouterProvider.otherwise('/');
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
+    
 });
 
 so.controller("soCtrl", ["$scope", "AuthService", "FireRefService", "UserService",
@@ -29,33 +31,35 @@ so.controller("soCtrl", ["$scope", "AuthService", "FireRefService", "UserService
 
         $scope.logout = function() {
 
-            AuthService.$unauth(function(authData) {
-                if (!authData) {
-                    console.log("logged out");
-                    $scope.authData = null;
-                };
-            })
+            // AuthService.$unauth(function(authData) {
+            //     if (!authData) {
+            //         console.log("logged out");
+            //         $scope.authData = null;
+            //     };
+            // })
         }
 
-        FireRefService.onAuth( function(authData) {
-            $scope.authData = authData;
+  //       FireRefService.onAuth( function(authData) {
+  //           $scope.authData = authData;
 
-            if (FireRefService.getAuth()) {
-                $scope.uid = FireRefService.getAuth().uid;
-                $scope.user = UserService($scope.uid);
-            };
-        })
+  //           if (FireRefService.getAuth()) {
+  //               $scope.uid = FireRefService.getAuth().uid;
+  //               $scope.user = UserService($scope.uid);
+  //           };
+  //       })
 
-		if ($scope.authData) {
-		  console.log("Logged in as:", $scope.authData.uid);
-		} else {
-		  console.log("Logged out");
-		}
+		// if ($scope.authData) {
+		//   console.log("Logged in as:", $scope.authData.uid);
+		// } else {
+		//   console.log("Logged out");
+		// }
 
 	}
 ]);
 
 so.run(function($rootScope, $state) {
+
+    // $state.go('soHome');
 
     $rootScope.$on('$routeChange', function(event, next, previous) {
         console.log('Route Change');

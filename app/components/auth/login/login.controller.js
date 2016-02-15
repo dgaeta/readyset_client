@@ -1,12 +1,11 @@
 angular
     .module('so.auth.login')
-    .controller('SoAuthLoginController', SoAuthLoginController);
+    .controller('SoAuthLoginController', ['$scope', '$http', '$cookies', '$state',SoAuthLoginController]);
 
 
-function SoAuthLoginController($scope, $state, $http, AuthService)  {
+function SoAuthLoginController($scope, $http, $cookies, $state, AuthService, $cookieStore)  {
 
 
-    $scope.email = '';
     $scope.password = '';
     
     $scope.err = null;
@@ -32,8 +31,43 @@ function SoAuthLoginController($scope, $state, $http, AuthService)  {
                 console.log(value);
 
                 if(value['data']['status'] == "success"){
-                    AuthService.setToken(value['data']['token']);
-                    console.log("logged in with token " + String(AuthService.getToken()));
+                    console.log(value);
+
+                    // Assign user values.
+                    // AuthService.setToken(value['data']['token']);
+                    // UserService.setToken(value['data']['token']);
+                    // UserService.setDevices(value['data']['devices']);
+                    // UserService.setDeviceCount(value['data']['device_count']);
+                    // UserService.setEmail(value['data']['email'])
+
+                    var token = $cookies.get(value['data']['token']);
+                    var devices = $cookies.get(value['data']['devices']);
+                    var deviceCount = $cookies.get(value['data']['device_count']);
+                    var email = $cookies.get(value['data']['email']);
+
+                    if (token) {
+                        console.log("logged in");
+                    } 
+                    else {
+                        console.log("no user data in cookies.");
+                        console.log("attepting to create user data cookies.");
+
+                        $cookies.put('token', value['data']['token']);
+                        console.log("token cookie set.");
+
+                        $cookies.put('devices',value['data']['devices']);
+                        console.log("devices cookie set.");
+
+                        $cookies.put('device_count', value['data']['device_count']);
+                        console.log("device count set.");
+
+                        $cookies.put('email', value['data']['email']);
+                        console.log("email set.");
+
+                        console.log("user data cookies created successfully.");
+                    };
+
+                    
                     $state.go('soProfile');
                 }
             }, 
@@ -44,6 +78,7 @@ function SoAuthLoginController($scope, $state, $http, AuthService)  {
 
 
     }
+
 
 
 }
