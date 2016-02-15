@@ -11,7 +11,7 @@ function SoAuthLoginController($scope, $http, $cookies, $state, AuthService, $co
     $scope.err = null;
     $scope.errObject = null;
 
-    $scope.succes = '';
+    $scope.success = '';
     $scope.api_domain =  "http://127.0.0.1:8040"
 
     $scope.login = function() {
@@ -41,6 +41,7 @@ function SoAuthLoginController($scope, $http, $cookies, $state, AuthService, $co
                     // UserService.setEmail(value['data']['email'])
 
                     var token = $cookies.get(value['data']['token']);
+                    console.log(value['data']['devices'])
                     var devices = $cookies.get(value['data']['devices']);
                     var deviceCount = $cookies.get(value['data']['device_count']);
                     var email = $cookies.get(value['data']['email']);
@@ -55,7 +56,7 @@ function SoAuthLoginController($scope, $http, $cookies, $state, AuthService, $co
                         $cookies.put('token', value['data']['token']);
                         console.log("token cookie set.");
 
-                        $cookies.put('devices',value['data']['devices']);
+                        $cookies.put('devices', JSON.stringify(value['data']['devices']));
                         console.log("devices cookie set.");
 
                         $cookies.put('device_count', value['data']['device_count']);
@@ -68,7 +69,7 @@ function SoAuthLoginController($scope, $http, $cookies, $state, AuthService, $co
                     };
 
                     
-                    $state.go('soProfile');
+                    $state.go('profile.devices');
                 }
             }, 
             function(value) {

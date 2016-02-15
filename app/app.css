@@ -8,7 +8,11 @@ html {
 
 
 
-
+.center-block {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
 
 @font-face {
     font-family: 'gotham_lightregular';
