@@ -1,17 +1,126 @@
 /* app css stylesheet */
+p {
+    font-family: "gotham_bookregular", Times, serif;
+}
 
+h2 {
+  color: #6B6B6B;
+}
+
+.no-padding {
+  padding-left:0px; 
+  padding-right:0px;
+}
+
+.row.no-gutter {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.row.no-gutter [class*='col-']:not(:first-child),
+.row.no-gutter [class*='col-']:not(:last-child) {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+.gotham-font {
+    font-family: "gotham_bookregular", Times, serif;
+}
+
+.gray-text {
+  color: #6B6B6B;
+}
+
+.navbar-gradient {
+  background: linear-gradient(direction, color-stop1, color-stop2, ...);
+}
+
+th {
+    font-family: "gotham_bookregular", Times, serif;
+}
+
+td {
+    font-family: "gotham_bookregular", Times, serif;
+}
 
 html {
   height: 100%;
 }
 
+table {
+    border-collapse: collapse;
+}
 
+th {
+  color: #9C9C9C;
+}
 
+th, td {
+    border: 1px solid #E6E6E6;
+    color: #9C9C9C;
+}
 
-.center-block {
-  display: block;
-  margin-left: auto;
-  margin-right: auto;
+th, td {
+    padding: 5px;
+    text-align: left;
+}
+
+img {
+    vertical-align: middle;
+}
+
+.col-condensed {
+  margin-left: 0px;
+  margin-right: 0px;
+  div[class^="col-"]{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+}
+
+.card {
+  background-color: white;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+.cropArea {
+  background: #E4E4E4;
+  overflow: hidden;
+  width:500px;
+  height:350px;
+}
+
+.right {
+   border-right: 1px solid #D6D6D6;
+   line-height: 4px;
+}
+
+.white-text {
+  color: #FBFEFF;
+}
+
+.vcenter {
+    display: inline-block;
+    vertical-align: middle;
+    float: none;
+}
+
+.gotham-font {
+  font-family: 'gotham_bookregular';
+}
+
+@font-face {
+    font-family: 'gotham_lightregular';
+    src: url('/fonts/gotham-light/gotham-light-webfont.eot');
+    src: url('/fonts/gotham-light/gotham-light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('/fonts/gotham-light/gotham-light-webfont.woff2') format('woff2'),
+         url('/fonts/gotham-light/gotham-light-webfont.woff') format('woff'),
+         url('/fonts/gotham-light/gotham-light-webfont.ttf') format('truetype'),
+         url('/fonts/gotham-light/gotham-light-webfont.svg#gotham_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
 }
 
 @font-face {
@@ -117,10 +226,10 @@ font-weight: none;
 }
 
 .footer {
-  background-color: black;
+  background-color: #14242C;
   font-family: 'Gotham Book';
   font-size: 10px;
-  padding-top: 60px;
+  padding-top: 30px;
 }
 
 .bottom-nav ul li a {
@@ -153,7 +262,7 @@ display: none;
 
 .navbar {
   height: 45px;
-  background-color: black;
+  background-color: #14242C;
   border-top-width: 0px;
   border-left-width: 0px;
   border-right-width: 0px;
@@ -193,6 +302,7 @@ display: none;
 .grid-images {
 
 }
+
 
 
 .success-text {

@@ -4,7 +4,7 @@ angular
     ])
     .config(function($stateProvider) {
         $stateProvider
-            .state('soHome', {
+            .state('home', {
                 url: '/',
                 templateUrl: 'components/home/home.html'
             });

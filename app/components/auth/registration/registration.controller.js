@@ -1,108 +1,167 @@
 angular
     .module('so.auth.registration')
-    .controller('SoAuthRegistrationController', SoAuthRegistrationController);
+    .controller('SoAuthRegistrationController', ['$scope', '$rootScope','$http', '$cookies', '$state', 'UserService',  SoAuthRegistrationController]);
 
-function SoAuthRegistrationController($scope, $state, AuthService, InvestorService, UserService) {
+function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state, UserService,  AuthService, InvestorService) {
 
-    // $scope.firstname = '';
-    // $scope.lastname = '';
-    // $scope.email = '';
-    // $scope.password = '';
-    // $scope.city = '';
-    // $scope.state = '';
+    //console.log(UserService);
+    console.log($rootScope);
+    $scope.company = false;
+    $scope.investor = false;
+
+    // For investor
+    $scope.firstname = '';
+    $scope.lastname = '';
+    $scope.primary_role = '';
+    $scope.headline = '';
+
+    // For Company 
+    $scope.company_name = '';
+    $scope.founders = '';
+    $scope.industry = '';
+
+    // Shared
+    $scope.city = '';
+    $scope.state = '';
+    $scope.website = '';
+    $scope.email = '';
+    $scope.password = '';
 
 
-    // $scope.err = null;
-    // $scope.errObject = null;
 
-    // $scope.succes = '';
 
-    // AuthService.$onAuth(function(authData) {
-    //   $scope.authData = authData;
-    //   console.log(authData);
-    // });
-
-    $scope.login = function() {
-        // // Log the user in 
-        // console.log("im here now");
-        // AuthService.$authWithPassword({
-        //     email: $scope.email,
-        //     password: $scope.password
-        // }).then(function(authData) {
-        //     console.log("Logged in as:", authData.uid);
-        //     $scope.success = 'logged in as ' + authData.uid;
-        //     $state.go('soProfile');
-        // }).catch(function(error) {
-        //     $scope.err = "Error creating user";
-        //     $scope.errObject = error;
-        // })
+    $scope.investorClicked = function() {
+        $scope.investor = true;
+        $scope.company = false;
     }
 
-    $scope.register = function() {
+    $scope.companyClicked = function() {
+        console.log($scope.company);
+        $scope.investor = false;
+        console.log($scope.company);
+        $scope.company = true;
 
-        // console.log("Registering");
-        // var ref = new Firebase("https://escape-app.firebaseio.com/");
+    }
 
 
-        // var userType = localStorage.getItem('userType');
-        // console.log(userType);
+    $scope.register_investor = function() {
 
-        // AuthService.$createUser({
-        //     first: $scope.firstname,
-        //     last: $scope.lastname,
-        //     city: $scope.city,
-        //     state: $scope.state,
-        //     email: $scope.email,
-        //     password: $scope.password,
-        //     stays: [],
-        //     invests: []
-        // }).then(function(userData) {
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/users/add";
+        //var auth_string = String($scope.token) + ':' + String('unused');
+        //var auth_cred = btoa(auth_string);
 
-        //     console.log('creation successfull');
+        $http({
+            url: url,
+            method: "POST",
+            //headers: {'Authorization': 'Basic ' + auth_cred },
+            data: { 
+                'user_type': 'investor',
+                'firstname' : $scope.firstname,
+                'lastname' : $scope.lastname,
+                'city': $scope.city,
+                'state': $scope.state,
+                'primary_role': $scope.primary_role,
+                'website': $scope.website,
+                'headline': $scope.headline,
+                'email': $scope.email,
+                'password': $scope.password,
+                'num_jobs': 0,
+                'num_investments': 0,
+                'num_boards':0,
+                'profile_pic': '',
+                'additional_photos': '[]'
+             }
+        })
+        .then(function(response) {
+            console.log(response);
 
-        //     if (userType == "Investor") {
-        //         var investor = InvestorService(userData.uid);
+            if(response['data']['status'] == "success" || response['data']['status'] == 200){
+                $cookies.put('user_type', 'investor');
+                $cookies.put('email', $scope.email);
+                $cookies.put('firstname', $scope.firstname);
+                $cookies.put('lastname', $scope.lastname);
+                $cookies.put('token', response['data']['token']);
+                $cookies.put('city', $scope.city);
+                $cookies.put('state', $scope.state);
+                $cookies.put('primary_role', $scope.primary_role);
+                $cookies.put('website', $scope.website);
+                $cookies.put('headline', $scope.headline);
+                $cookies.put('num_jobs', 0);
+                $cookies.put('num_boards', 0);
+                $cookies.put('num_investments', 0);
 
-        //         investor.first = $scope.firstname;
-        //         investor.last = $scope.lastname;
-        //         investor.email = $scope.email;
-        //         investor.city = $scope.city;
-        //         investor.state = $scope.state;
-
-        //         investor.$save().then(function(ref) {
-        //             $scope.succes = "User created with id " + userData.uid;
-        //             var authData = ref.getAuth();
-        //             $scope.login();
-        //         }).catch(function(error) {
-        //             $scope.err = "Error creating user details";
-        //             $scope.errObject = error;
-        //         });
-        //     } else{
-        //         var user = UserService(userData.uid);
-
-        //         console.log(user);
-
-        //         user.first = $scope.firstname;
-        //         user.last = $scope.lastname;
-        //         user.email = $scope.email;
-        //         user.city = $scope.city;
-        //         user.state = $scope.state;
-
-        //         user.$save().then(function(ref) {
-        //             $scope.succes = "User created with id " + userData.uid;
-        //             $scope.login();
-        //         }).catch(function(error) {
-        //             $scope.err = "Error creating user details";
-        //             $scope.errObject = error;
-        //         });
-        //     };
-
+                $state.go('profile.investor');
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
             
+        });
+    }
 
-        // }).catch(function(error) {
-        //     $scope.err = "Error creating user";
-        //     $scope.errObject = error;
-        // })
+
+    $scope.register_company = function() {
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/users/add";
+        //var auth_string = String($scope.token) + ':' + String('unused');
+        //var auth_cred = btoa(auth_string);
+
+        $http({
+            url: url,
+            method: "POST",
+            //headers: {'Authorization': 'Basic ' + auth_cred },
+            data: { 
+                'user_type': 'company',
+                'city': $scope.city,
+                'state': $scope.state,
+                'website': $scope.website,
+                'headline': $scope.headline,
+                'email': $scope.email,
+                'password': $scope.password,
+                'company_name': $scope.company_name,
+                'founders': $scope.founders,
+                'industry': $scope.industry,
+                'board_members': '[]',
+                'investors': '[]',
+                'employees': '[]',
+                'documents': '[]',
+                'funding_rounds': '[]',
+                'profile_pic': '',
+                'additional_photos': '[]'
+             }
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success" || response['data']['status'] == 200){
+                $cookies.put('user_type', 'company');
+                $cookies.put('email', $scope.email);
+                $cookies.put('headline', $scope.headline);
+                $cookies.put('token', response['data']['token']);
+                $cookies.put('city', $scope.city);
+                $cookies.put('state', $scope.state);
+                $cookies.put('website', $scope.website);
+                
+                $cookies.put('company_name', $scope.company_name);
+                $cookies.put('industry', $scope.industry);
+                $cookies.put('founders', $scope.founders);
+                $cookies.put('employess', []);
+                $cookies.put('investors', []);
+                $cookies.put('funding_rounds', []);
+
+
+                $rootScope.token = response['data']['token'];
+                $rootScope.user = response['data']['user'];
+                $state.go('profile.company');
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
     }
 
 

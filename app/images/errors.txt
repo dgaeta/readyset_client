@@ -1,0 +1,16 @@
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "sign up for READY.SET": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "Creativecons.com copy": Expected end of input but "c" found.
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "Creativecons.com copy 3": Expected end of input but "c" found.
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "ImgTestimonial.jpg": Duplicate path: ImgTestimonial.jpg
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "     Website:  www.tesla.com": Unsupported extension: com
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "     Website: jawbone.com": Unsupported extension: com
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "OVER 395 PEOPLE BOOSTED  THEIR BUSINESS ON READY.SET": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "Creativecons.com": Unsupported extension: com
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set
+[Mon Jan 11 2016 21:21:54 GMT+0100 (Romance Standard Time)] layer "© 2015 Ready.Set,  All Rights Reserved": Unsupported extension: set

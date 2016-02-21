@@ -1,12 +1,14 @@
 angular
-  .module('UserService', ['firebase'])
-  .factory('UserService', ['$firebaseObject', function($firebaseObject) {
+	.module('UserService', ['firebase'])
+  	.factory('UserService', ['$firebaseObject', '$rootScope', function($firebaseObject, $rootScope) {
 
-    return function(userId) {
-      var ref = new Firebase("https://escape-app.firebaseio.com/users/").child(userId);
-      // create an instance of User (the new operator is required)
-      return new $firebaseObject(ref);
-    }
+    	var token = ""; 
 
-  }
+		return {
+			token: token,
+			setToken: function(value) {token = value; console.log("token has been set"); }
+		
+		}
+
+  	}
 ]);

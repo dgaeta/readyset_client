@@ -12,20 +12,20 @@ angular
             controller: 'ProfileController',
         }
 
-        var devices = {
-            name: 'profile.devices',
-            url: '/devices',
+        var investor = {
+            name: 'profile.investor',
+            url: '/investor',
             parent: profile,  //mandatory
-            templateUrl: 'components/profile/devices.html'
-            // controller: 'DevicesController'
+            templateUrl: 'components/profile/investor.html',
+            controller: 'InvestorController'
         }
 
-        var device = { 
-            name: 'profile.device', //mandatory. This counter-intuitive requirement addressed in issue #368
-            url: '/device',
+        var company = { 
+            name: 'profile.company', //mandatory. This counter-intuitive requirement addressed in issue #368
+            url: '/company',
             parent: profile,  //mandatory
-            templateUrl: 'components/profile/device.html',
-            controller: 'DeviceController'
+            templateUrl: 'components/profile/company.html',
+            controller: 'CompanyController'
         }
 
         // var item = { 
@@ -38,8 +38,8 @@ angular
 
         $stateProvider
             .state(profile)
-            .state(devices)
-            .state(device)  
+            .state(investor)
+            .state(company)  
 
         // $stateProvider
         //     .state('soProfile', {

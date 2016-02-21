@@ -10,17 +10,38 @@ function ProfileController($scope, $cookies, AuthService, UserService, $state, $
 	// 	console.log("current user is:")
 	// 	console.log($scope.user);
 	// };
+    $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
-    $scope.devices = JSON.parse($cookies.get('devices'));
-    $scope.deviceCount = $cookies.get('device_count');
     $scope.email = $cookies.get('email');
+    $scope.firstname = $cookies.get('firstname');
+    $scope.lastname = $cookies.get('lastname');
+    $scope.city = $cookies.get('city');
+    $scope.state = $cookies.get('state');
+    $scope.website = $cookies.get('website');
+    $scope.primary_role = $cookies.get('primary_role');
+    $scope.headline = $cookies.get('primary_role');
+    $scope.num_jobs = $cookies.get('num_jobs');
+    $scope.num_investments = $cookies.get('num_investments');
+    $scope.num_boards = $cookies.get('num_boards');
 
-    //getDevices();
+    $scope.editing = false;
+    $scope.jobs = [{'company_name': 'Tesla', 'role': "CEO"}];
+    $scope.boards = [{'company_name': 'Medialets', 'role': "Investor"}];
+    $scope.investments = [{'date': 'Jan. 2016', 'invested_in': "Memebox Corportation", 'round': '$100M/Series D', 
+        'details': 'Personal Investment'}];
+    // $scope.prof_pic_url = $cookies.get('prof_pic_url');
 
-    console.log($scope.token);
-    console.log($scope.devices);
-    console.log($scope.deviceCount);
-    console.log($scope.email);
+    
+    setProfile();
+
+    function setProfile() {
+        if ($scope.user_type == "investor" || $scope.user_type == "Investor") {
+            $state.go('profile.investor');
+        }
+        else {
+            $state.go('profile.company');
+        }
+    }
 
     $scope.ClickedDevice = function(device_id) {
     	$scope.clicked_id = device_id;
@@ -31,6 +52,37 @@ function ProfileController($scope, $cookies, AuthService, UserService, $state, $
         // getDevice(device_id)
      	
     }
+
+
+    $scope.setChanges = function() {
+        $scope.editing = false;
+
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/users/edit";
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred },
+            data: { 'firstname': $scope.firstname, 'lastname': $scope.lastname, 'headline' : $scope.headline} 
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success"){
+                console.log(response);
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
+    }
+
+
 
     function getDevices() {
     	$scope.api_domain =  "http://127.0.0.1:8040"

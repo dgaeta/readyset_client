@@ -15,7 +15,11 @@ var so = angular.module('so', [
     'FireRefService',
     'UserService',
     'so.private',
-    'ngCookies'
+    'ngCookies',
+    'ngFileUpload',
+    'ngImgCrop',
+    'ngAnimate',
+    'ui.bootstrap'
 ]);
 
 so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -25,18 +29,27 @@ so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     
 });
 
-so.controller("soCtrl", ["$scope", "AuthService", "FireRefService", "UserService",
-	function($scope, AuthService, FireRefService, UserService) {
-		$scope.authData = AuthService.getAuth();
+so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state", "UserService",
+	function($scope, $rootScope, $cookies, $state, UserService) {
+
+        // $cookies.put('token', '');
+        $scope.token = UserService.token;
+
+        $scope.tokenExists = function() {
+            if ($rootScope.token != ""){
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
 
         $scope.logout = function() {
+            $rootScope.token = "";
+            $cookies.put('token', '');
+            $scope.token = "";
+            $state.go('home');
 
-            // AuthService.$unauth(function(authData) {
-            //     if (!authData) {
-            //         console.log("logged out");
-            //         $scope.authData = null;
-            //     };
-            // })
         }
 
   //       FireRefService.onAuth( function(authData) {
@@ -62,8 +75,14 @@ so.run(function($rootScope, $state) {
     // $state.go('soHome');
 
     $rootScope.$on('$routeChange', function(event, next, previous) {
-        console.log('Route Change');
+        $scope.token = $cookies.get('token');
+        
     });
+
+    // $rootScope.$on('$stateChangeStart', 
+    // function(event, toState, toParams, fromState, fromParams){ 
+    //     console.log("in here");
+    // })
 
     $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
         if (error === 'AUTH_REQUIRED') {
