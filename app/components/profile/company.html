@@ -6,10 +6,10 @@
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 		</div>
 		<div ng-click="editing = true" ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-default btn-md gotham-font" >Edit</button>
+			<button type="button" class="btn btn-info gotham-font" >Edit</button>
 		</div>
 		<div ng-click="setChanges()" ng-show="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-default btn-md gotham-font">Submit</button>
+			<button type="button" class="btn btn-info gotham-font">Submit</button>
 		</div>
 	</div>
 	
@@ -21,13 +21,13 @@
 		<img ng-hide="user.profile_pic" src="images/polygons.png" class="img-responsive" alt="Responsive image"> 
 	</div>
 
-	<div>Select an image file: <input type="file" id="fileInput" /></div>
-	<div class="cropArea">
+	<div ng-click="editing_prof_pic()"><p>Select an image file: </p><input type="file" id="fileInput" /></div>
+	<div ng-show="editing_photo" class="cropArea">
 	    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
 	</div>
-	<div>Cropped Image:</div>
-	<div><img ng-src="{{myCroppedImage}}" /></div>
-	<button ng-click="uploadProfilePic(myCroppedImage)">Submit</button> 
+	<div ng-show="editing_photo">Cropped Image:</div>
+	<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
+	<button ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
 
 
 
@@ -216,19 +216,33 @@
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 
-		<div ng-repeat="deal in deals" class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top: 25px;">
-				<p>{{deal.deal_name}} -  {{deal.date}}</p>
-			</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 25px;">
-				<p>{{deal.description}}</p>
-			</div>
-			<div ng-repeat="doc in deal.documents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-				<p>{{doc.name}}</p>
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">
+			<div class="row" ng-repeat="(key, deal) in deals track by $index">
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top: 25px;">
+					<p>{{deal.deal_name}} -  {{deal.date}}</p>
+				</div>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 25px;">
+					<p>{{deal.description}}</p>
+				</div>
+				<div ng-repeat="(file_name, file) in deal.documents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+					<a ng-click="getDocument(deal.deal_name, file.file_name)"><p>{{file.file_name}}</p></a>
+				</div>
+
+				<div>
+					<input type="file" file-upload multiple/>
+				    <ul>
+				        <li ng-repeat="file in files">{{file.name}}</li>
+				    </ul>
+				</div>
+				<button ng-click="save(deal)" type="button" class="btn btn-primary" >Upload Files</button>
 			</div>
 
-			<div>
-				<button ng-click="" class="btn btn-primary" style="margin-top:30px; margin-bottom: 20px;">Call To Action</button>
+			<div class="row">
+				<h4>Add New Deal</h4>
+				<p>Deal name:</p><input type="text" class="form-control" ng-model="new_deal_name">
+			    <p>Deal date:</p><input type="text" class="form-control" ng-model="new_deal_date">
+			    <p>Deal description:</p><input type="text" class="form-control" ng-model="new_deal_description">
+				<button ng-click="addDeal()" type="button" class="btn btn-primary" >Add Deal</button>
 			</div>
 		</div>
 

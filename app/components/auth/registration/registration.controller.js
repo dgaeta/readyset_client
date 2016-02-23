@@ -2,7 +2,7 @@ angular
     .module('so.auth.registration')
     .controller('SoAuthRegistrationController', ['$scope', '$rootScope','$http', '$cookies', '$state', 'UserService',  SoAuthRegistrationController]);
 
-function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state, UserService,  AuthService, InvestorService) {
+function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state, UserService, InvestorService) {
 
     //console.log(UserService);
     console.log($rootScope);
@@ -123,6 +123,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 'company_name': $scope.company_name,
                 'founders': $scope.founders,
                 'industry': $scope.industry,
+                'deals': '{}',
                 'board_members': '[]',
                 'investors': '[]',
                 'employees': '[]',
@@ -147,13 +148,15 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 $cookies.put('company_name', $scope.company_name);
                 $cookies.put('industry', $scope.industry);
                 $cookies.put('founders', $scope.founders);
-                $cookies.put('employess', []);
-                $cookies.put('investors', []);
-                $cookies.put('funding_rounds', []);
+                $cookies.put('employess', '[]');
+                $cookies.put('investors', '[]');
+                $cookies.put('funding_rounds', '[]');
 
 
                 $rootScope.token = response['data']['token'];
                 $rootScope.user = response['data']['user'];
+                console.log(response['data']['user'])
+                $cookies.put('deals', '{}');
                 $state.go('profile.company');
             }
         }, 

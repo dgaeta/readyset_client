@@ -5,7 +5,7 @@ angular
 
 
 
-function CompanyController($scope, $rootScope, $cookies, AuthService, UserService, $http, Upload, $timeout) {
+function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $http,  $timeout) {
 
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
@@ -32,15 +32,23 @@ function CompanyController($scope, $rootScope, $cookies, AuthService, UserServic
         'lead_investor': 'OrbiMed Advisors', 'investors_count': 8}];
 
 
-    $scope.deals = [{'deal_name': 'Seed Round Funding', 'date': '12 Nov. 2015', 'description': 'Lorem blah', 
-        'documents': [
-            {'name': 'Employment Agreement - CEO'}, 
-            {'name': 'Employment Agreement - President'}, 
-            {'name': 'Operating Agreement'},
-            {'name': 'Disclosures'},
-            {'name': 'PPM'}
-        ]
-    }];
+    // $scope.deals = [{'deal_name': 'Seed Round Funding', 'date': '12 Nov. 2015', 'description': 'Lorem blah', 
+    //     'documents': [
+    //         {'name': 'Employment Agreement - CEO'}, 
+    //         {'name': 'Employment Agreement - President'}, 
+    //         {'name': 'Operating Agreement'},
+    //         {'name': 'Disclosures'},
+    //         {'name': 'PPM'}
+    //     ]
+    // }];
+    console.log($rootScope);
+    $scope.deals = $cookies.get('deals');
+    console.log($cookies.get('deals'));
+    if ($scope.deals == ""){
+        $scope.deals = {};
+    } else {
+        $scope.deals = JSON.parse($scope.deals);
+    }
 
     $scope.company_photo = $cookies.get('company_photo');
     $scope.additional_photos = $cookies.get('additional_photos');
@@ -73,6 +81,148 @@ function CompanyController($scope, $rootScope, $cookies, AuthService, UserServic
             'id': currIndex++
             }
         ];
+
+    //a simple model to bind to and send to the server
+    $scope.model = {
+        name: "",
+        comments: ""
+    };
+    //an array of files selected
+    $scope.files = [];
+
+    //listen for the file selected event
+    $scope.$on("fileSelected", function (event, args) {
+        $scope.$apply(function () {            
+            //add the file object to the scope's files collection
+            $scope.files.push(args.file);
+        });
+    });
+    
+
+    $scope.new_deal_name = '';
+    $scope.new_deal_date = '';
+    $scope.new_deal_description = '';
+
+    $scope.editing_photo = false;
+
+    $scope.editing_prof_pic = function() {
+        $scope.editing_photo = true;
+    }
+
+    $scope.addDeal = function(){
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/deals/initialize";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        console.log($scope.new_deal_name);
+        console.log($scope.new_deal_date);
+        console.log($scope.new_deal_description);
+
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred},
+            data: {'deal_name': $scope.new_deal_name, 'date': $scope.new_deal_date, 
+                'description': $scope.new_deal_description, 'documents': {}
+            } 
+
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success"){
+                console.log(response['data']['status']);
+                $scope.deals[$scope.new_deal_name] = {'deal_name': $scope.new_deal_name, 'date': $scope.new_deal_date, 
+                'description': $scope.new_deal_description, 'documents': []};
+                $scope.new_deal_name = '';
+                $scope.new_deal_date = '';
+                $scope.new_deal_description = '';
+                $cookies.put('deals', JSON.stringify($scope.deals));
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
+
+    }
+
+    //the save method
+    $scope.save = function(deal) {
+        console.log(deal);
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/deals/upload_file";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        console.log(deal['deal_name']);
+        console.log("just before the $http");
+        Upload.upload({
+                url: url,
+                headers: {'Authorization': 'Basic ' + auth_cred },
+                data: {file: $scope.files[0], 'deal_name': deal['deal_name'], 
+                    'file_type': $scope.files[0].type
+                }
+            }).success(function(data, status, headers, config){
+                console.log(data);
+                $scope.deals[deal['deal_name']]['documents'] = data['documents'];
+                $scope.user = data['user'];
+                $cookies.put('deals', JSON.stringify($scope.deals));
+                $cookies.put('user', JSON.stringify($scope.user));
+                $scope.files = [];
+            });
+    };
+
+    $scope.getDocument = function(deal_name, file_name){
+        $scope.api_domain =  "http://127.0.0.1:8040";
+        var url = $scope.api_domain + "/deals/get_document";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        console.log(deal_name);
+        console.log(file_name);
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred},
+            data: {'deal_name': deal_name, 'file_name': file_name},
+            config: {'responseType':'arraybuffer'} 
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['status'] == 200){
+                console.log("hello");
+
+                // Convert the Base64 string back to text.
+                var byteString = atob(response['data']['doc_base64']);
+
+                // Convert that text into a byte array.
+                var ab = new ArrayBuffer(byteString.length);
+                var ia = new Uint8Array(ab);
+                for (var i = 0; i < byteString.length; i++) {
+                    ia[i] = byteString.charCodeAt(i);
+                }
+
+                // Blob for saving.
+                var blob = new Blob([ia], { type: response['data']['file_type'] });
+
+                // Tell the browser to save as report.txt.
+                saveAs(blob, file_name);
+            
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
+    }
 
 
 
@@ -162,6 +312,7 @@ function CompanyController($scope, $rootScope, $cookies, AuthService, UserServic
                     console.log(response);
 
                     if(response['data']['status'] == "success"){
+
                         $rootScope.user = response['data']['user'];
                         $scope.user = response['data']['user'];
                     }

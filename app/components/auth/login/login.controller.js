@@ -30,6 +30,7 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                    
                     $cookies.put('token', value['data']['token']);
                     $cookies.put('user', value['data']['user']);
+                    $rootScope.user = value['data']['user'];
                                         
                     
                 }

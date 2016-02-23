@@ -2,7 +2,7 @@ angular
     .module('so.profile')
     .controller('ProfileController', ProfileController);
 
-function ProfileController($scope, $cookies, AuthService, UserService, $state, $http) {
+function ProfileController($scope, $cookies, UserService, $state, $http) {
 
 	// if (FireRefService.getAuth()) {
 	// 	$scope.uid = FireRefService.getAuth().uid;

@@ -1,8 +1,6 @@
 angular
     .module('so.profile', [
-        'ui.router',
-        'AuthService',
-        'FireRefService'
+        'ui.router'
     ])
     .config(function($stateProvider) {
         var profile = {
