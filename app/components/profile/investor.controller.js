@@ -20,7 +20,7 @@ function InvestorController($scope, $cookies, UserService, $http) {
 
 
     $scope.editing = false;
-    $scope.jobs = [{'company_name': 'Tesla', 'role': "CEO"}];
+    $scope.jobs = [{'company_name': 'Tesla', 'role': "CEO"}, {'company_name': 'SpaceX', 'role': "CEO & CTO"}];
     $scope.boards = [{'company_name': 'Medialets', 'role': "Investor"}];
     $scope.investments = [{'date': 'Jan. 2016', 'invested_in': "Memebox Corportation", 'round': '$100M/Series D', 
         'details': 'Personal Investment'}];

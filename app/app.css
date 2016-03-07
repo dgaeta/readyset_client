@@ -1,10 +1,41 @@
 /* app css stylesheet */
+
+.btn.outline {
+    background: none;
+    padding: 9px 9px;
+    padding-top: 1px;
+    padding-bottom: 1px;
+}
+.btn-primary.outline {
+    border: 1px solid #FFFFFF;
+    color: #FFFFFF;
+}
+.btn-primary.outline:hover, .btn-primary.outline:focus, .btn-primary.outline:active, .btn-primary.outline.active, .open > .dropdown-toggle.btn-primary {
+    color: #FFFFFF;
+    border-color: #FFFFFF;
+}
+.btn-primary.outline:active, .btn-primary.outline.active {
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    box-shadow: none;
+}
+
+
+.btn.sharp {
+  border-radius:0;
+}
+
+
 p {
-    font-family: "gotham_bookregular", Times, serif;
+    font-family: "gotham_lightregular", Times, serif;
 }
 
 h2 {
   color: #6B6B6B;
+}
+
+h3 {
+  font-family: "gotham_lightregular", Times, serif;
 }
 
 .no-padding {
@@ -225,12 +256,11 @@ font-weight: none;
   height: 400px;
 }
 
-.footer {
-  background-color: #14242C;
-  font-family: 'Gotham Book';
-  font-size: 10px;
-  padding-top: 30px;
-}
+footer {
+    width: 100%;
+    bottom: 0;
+  }
+
 
 .bottom-nav ul li a {
   color: #248FA2;

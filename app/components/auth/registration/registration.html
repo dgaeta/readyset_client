@@ -1,20 +1,3 @@
-<!-- <div style="min-height: 600px;">
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-top:80px;">
-  <div class="col-lg-5 col-md-5 col-sm-5 col-xs-3">
-    <h4 id="cursive-font">Book your stay at a luxury Escape Property now by filling out the following information.</h4>
-  </div>
-  <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
-    <p ng-show="err">
-    {{err}}
-    {{errObject}}
-    </p>
-    <p ng-show="succes">
-    {{succes}}
-    </p>
-  </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></div>
-</div> -->
-
 <div id="mycarousel" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">
         <div class="item active">
@@ -28,7 +11,7 @@
 </div> 
 
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:50px;">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top:75px;">
   <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3"></div>
   <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
     <button ng-click="investor=false; company=true;" type="button" class="btn btn-primary btn-lg btn-block">Company Signup</button>
@@ -38,51 +21,118 @@
 </div>
 
 
-<div ng-show="investor" class="col-lg-8 col-md-8 col-sm-8 col-xs-12" style="padding-top:80px;">
-  <div class="col-lg-1 col-md-1 col-sm-1"></div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    
-      <span >First Name: </span><input type="text" ng-model="firstname" class="form-control"style="margin-bottom:20px;"><br />
-      <span >Last Name: </span><input type="text" ng-model="lastname"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >City:  </span> <input type="text" ng-model="city" class="form-control" style="margin-bottom:20px;"><br />
 
-      <span >State: </span><input type="text" ng-model="state"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Primary role: </span><input type="text" ng-model="primary_role"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Website: </span><input type="text" ng-model="website"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Email: </span><input type="email" ng-model="email" class="form-control" style="margin-bottom:20px;"><br />
-      <span >About You: </span><input type="text" ng-model="headline" class="form-control" style="margin-bottom:20px;"><br />
-      <span >Password: </span><input type="password" class="form-control" ng-model="password"><br />
-      <!-- Company name: <input type="text" ng-model="name" placeholder="Company name"><br /> -->
-      <!-- Branch: <input type="text" ng-model="branch" placeholder="Branch"><br /> -->
-      <button ng-click="register_investor()" class="btn" type="submit" style="margin-top:40px; margin-bottom:40px;">
-        <i class="icon-reply" style="padding-left: 4px;">REGISTER</i>
-      </button>
-    </form>
+<!-- START SECTION FOR COMPANY SIGNUP -->
+<div class="row" ng-show="company">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="padding-top:80px;">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="text" placeholder="Company name" ng-model="company_name" class="form-control"style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="text" placeholder="Headline about company" ng-model="headline" class="form-control"style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="email" placeholder="Your email" ng-model="email" class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="City" ng-model="city" class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="State" ng-model="state"  class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+         
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="password" placeholder="Password" class="form-control" ng-model="password"><br />
+        </div>
+      </div>
+    </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></div>
-</div>
+  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4"></div>  
+ 
 
-
-<div ng-show="company" class="col-lg-8 col-md-8 col-sm-8 col-xs-12" style="padding-top:80px;">
-  <div class="col-lg-1 col-md-1 col-sm-1"></div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-    
-      <span >Company name: </span><input type="text" ng-model="company_name" class="form-control"style="margin-bottom:20px;"><br />
-      <span >Headline about company: </span><input type="text" ng-model="headline" class="form-control"style="margin-bottom:20px;"><br />
-      <span >City:  </span> <input type="text" ng-model="city" class="form-control" style="margin-bottom:20px;"><br />
-      <span >State: </span><input type="text" ng-model="state"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Founders: </span><input type="text" ng-model="founders"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Industry: </span><input type="text" ng-model="industry"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Website: </span><input type="text" ng-model="website"  class="form-control" style="margin-bottom:20px;"><br />
-      <span >Email: </span><input type="email" ng-model="email" class="form-control" style="margin-bottom:20px;"><br />
-      <span >Password: </span><input type="password" class="form-control" ng-model="password"><br />
-      <!-- Company name: <input type="text" ng-model="name" placeholder="Company name"><br /> -->
-      <!-- Branch: <input type="text" ng-model="branch" placeholder="Branch"><br /> -->
-      <button ng-click="register_company()" class="btn" type="submit" style="margin-top:40px; margin-bottom:40px;">
-        <i class="icon-reply" style="padding-left: 4px;">REGISTER</i>
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+      <button ng-click="register_company()" class="btn btn-primary" type="submit">
+        <p style="margin-bottom:0px;">SIGN UP NOW</p>
       </button>
-    </form>
+    </div>
   </div>
-  <div class="col-lg-4 col-md-4 col-sm-4 col-xs-6"></div>
+
 </div>
+<!-- END SECTION FOR COMPANY SIGN UP -->
+
+
+<!-- SECTION FOR INVESTOR SIGN UP -->
+<div ng-show="investor">
+  <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"  style="padding-top:80px;">
+    <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+    <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+      
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="First name" ng-model="firstname" class="form-control"style="margin-bottom:20px;"><br />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="Last name" ng-model="lastname"class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="email" placeholder="Your email" ng-model="email" class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="City" ng-model="city" class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+        <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+          <input type="text" placeholder="State" ng-model="state"  class="form-control" style="margin-bottom:20px;"><br />
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+          <input type="password" placeholder="Password" class="form-control" ng-model="password"><br />
+        </div>
+      </div>
+    </div>  
+    <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+    </div>  
+  </div>  
+
+  <div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+      <div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+
+      <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+            <button ng-click="register_investor()" class="btn btn-primary" type="submit">
+        <p style="margin-bottom:0px;">SIGN UP NOW</p>
+      </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  END INVESTOR SIGNUP-->
 

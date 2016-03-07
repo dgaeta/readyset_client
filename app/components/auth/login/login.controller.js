@@ -25,12 +25,24 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
             function(value) {
                 console.log(value);
 
-                if(value['data']['status'] == "success"){
-                    
-                   
+                data = value['data'];
+
+                if(data['status'] == "success"){
                     $cookies.put('token', value['data']['token']);
-                    $cookies.put('user', value['data']['user']);
+                    $cookies.put('user', JSON.stringify(value['data']['user']));
                     $rootScope.user = value['data']['user'];
+                    
+                    if (data['user']['user_type'] == "company") {
+                        $state.go('profile.company')
+                    };
+
+                    if (data['user']['user_type'] == "investor") {
+                        $state.go('profile.investor')
+                    };
+
+                    console.log("no user_type param received from server");
+                   
+                    
                                         
                     
                 }

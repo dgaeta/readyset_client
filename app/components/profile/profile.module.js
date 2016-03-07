@@ -26,6 +26,14 @@ angular
             controller: 'CompanyController'
         }
 
+        var signPage = { 
+            name: 'profile.sign', //mandatory. This counter-intuitive requirement addressed in issue #368
+            url: '/:deal_id',
+            parent: profile,  //mandatory
+            templateUrl: 'components/profile/sign.html',
+            controller: 'SignController'
+        }
+
         // var item = { 
         //     name: 'profile.device', //mandatory. This counter-intuitive requirement addressed in issue #368
         //     url: '/device',

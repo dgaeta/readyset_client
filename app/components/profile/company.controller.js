@@ -9,11 +9,14 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
 
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
-    $scope.email = $cookies.get('email');
-    $scope.city = $cookies.get('city');
-    $scope.state = $cookies.get('state');
-    $scope.website = $cookies.get('website');
-    $scope.headline = $cookies.get('headline');
+    $scope.user = JSON.parse($cookies.get('user'));
+
+
+    // $scope.email = $cookies.get('email');
+    // $scope.city = $cookies.get('city');
+    // $scope.state = $cookies.get('state');
+    // $scope.website = $cookies.get('website');
+    // $scope.headline = $cookies.get('headline');
 
     $scope.company_name = $cookies.get('company_name');
     $scope.founders = $cookies.get('founders');
@@ -31,16 +34,6 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
         {'date': 'Jan. 2016', 'amount': '$100M / Series D', 'Valuation': '', 
         'lead_investor': 'OrbiMed Advisors', 'investors_count': 8}];
 
-
-    // $scope.deals = [{'deal_name': 'Seed Round Funding', 'date': '12 Nov. 2015', 'description': 'Lorem blah', 
-    //     'documents': [
-    //         {'name': 'Employment Agreement - CEO'}, 
-    //         {'name': 'Employment Agreement - President'}, 
-    //         {'name': 'Operating Agreement'},
-    //         {'name': 'Disclosures'},
-    //         {'name': 'PPM'}
-    //     ]
-    // }];
     console.log($rootScope);
     $scope.deals = $cookies.get('deals');
     console.log($cookies.get('deals'));
@@ -53,7 +46,6 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
     $scope.company_photo = $cookies.get('company_photo');
     $scope.additional_photos = $cookies.get('additional_photos');
 
-    $scope.user = $rootScope.user;
 
     $scope.editing = false;
 
@@ -150,32 +142,32 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
 
     }
 
-    //the save method
-    $scope.save = function(deal) {
-        console.log(deal);
-        $scope.api_domain =  "http://127.0.0.1:8040"
-        var url = $scope.api_domain + "/deals/upload_file";
+    // //the save method
+    // $scope.save = function(deal) {
+    //     console.log(deal);
+    //     $scope.api_domain =  "http://127.0.0.1:8040"
+    //     var url = $scope.api_domain + "/deals/upload_file";
 
-        var auth_string = String($scope.token) + ':' + String('unused');
-        var auth_cred = btoa(auth_string);
+    //     var auth_string = String($scope.token) + ':' + String('unused');
+    //     var auth_cred = btoa(auth_string);
 
-        console.log(deal['deal_name']);
-        console.log("just before the $http");
-        Upload.upload({
-                url: url,
-                headers: {'Authorization': 'Basic ' + auth_cred },
-                data: {file: $scope.files[0], 'deal_name': deal['deal_name'], 
-                    'file_type': $scope.files[0].type
-                }
-            }).success(function(data, status, headers, config){
-                console.log(data);
-                $scope.deals[deal['deal_name']]['documents'] = data['documents'];
-                $scope.user = data['user'];
-                $cookies.put('deals', JSON.stringify($scope.deals));
-                $cookies.put('user', JSON.stringify($scope.user));
-                $scope.files = [];
-            });
-    };
+    //     console.log(deal['deal_name']);
+    //     console.log("just before the $http");
+    //     Upload.upload({
+    //             url: url,
+    //             headers: {'Authorization': 'Basic ' + auth_cred },
+    //             data: {file: $scope.files[0], 'deal_name': deal['deal_name'], 
+    //                 'file_type': $scope.files[0].type
+    //             }
+    //         }).success(function(data, status, headers, config){
+    //             console.log(data);
+    //             $scope.deals[deal['deal_name']]['documents'] = data['documents'];
+    //             $scope.user = data['user'];
+    //             $cookies.put('deals', JSON.stringify($scope.deals));
+    //             $cookies.put('user', JSON.stringify($scope.user));
+    //             $scope.files = [];
+    //         });
+    // };
 
     $scope.getDocument = function(deal_name, file_name){
         $scope.api_domain =  "http://127.0.0.1:8040";
@@ -249,9 +241,6 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
 
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
 
-    
-    // $scope.prof_pic_url = $cookies.get('prof_pic_url');
-
     $scope.upload = function (dataUrl) {
         Upload.upload({
             url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
@@ -270,60 +259,126 @@ function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $h
         });
     }
 
+
+
+    //the save method
+    $scope.save = function(deal) {
+        console.log(deal);
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/deals/upload_file";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        console.log(deal['deal_name']);
+        console.log("just before the $http");
+        Upload.upload({
+                url: url,
+                headers: {'Authorization': 'Basic ' + auth_cred },
+                data: {file: $scope.files[0], 'deal_name': deal['deal_name'], 
+                    'file_type': $scope.files[0].type
+                }
+            }).success(function(data, status, headers, config){
+                console.log(data);
+                $scope.deals[deal['deal_name']]['documents'] = data['documents'];
+                $scope.user = data['user'];
+                $cookies.put('deals', JSON.stringify($scope.deals));
+                $cookies.put('user', JSON.stringify($scope.user));
+                $scope.files = [];
+            });
+    };
+
+    $scope.getProfilePic = function() {
+        $scope.api_domain =  "http://127.0.0.1:8040"
+        var url = $scope.api_domain + "/users/get_profile_pic";
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        $http({
+            url: url,
+            method: "GET",
+            headers: {'Authorization': 'Basic ' + auth_cred }
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success"){
+                blob_string = atob(response['data']['data']);
+                console.log(typeof(blob_string));
+                // objectURL = URL.createObjectURL(blob_string);
+                // $scope.user.prof_pic_data = ;
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        }); 
+
+
+    }
+    $scope.getProfilePic();
+    if ($scope.user['profile_pic']) {
+        $scope.getProfilePic();
+    };
+
     $scope.uploadProfilePic = function(dataUrl) {
+        // URL Construction with auth token
         $scope.api_domain =  "http://127.0.0.1:8040"
         var url = $scope.api_domain + "/users/set_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
+        
+        // Debug prints
+        console.log(dataUrl);
+        var file_type_prefix = dataUrl.substring(0, dataUrl.indexOf(','))
         console.log(typeof(dataUrl));
-        //console.log(dataUrl);
         console.log("here");
 
-        convertDataURLToImageData(dataUrl, 
-            function(imageData){
-                console.log(typeof(imageData));
-                console.log(imageData);
-            
-                // var fd = new FormData();
-                // fd.append('image', imageData);
-                // $http.post(url, fd, {
-                //     transformRequest: angular.identity,
-                //     headers: {'Authorization': 'Basic ' + auth_cred }
-                // })
-                // .success(function(response){
-                //     console.log(response);
+        Upload.upload({
+                url: url,
+                headers: {'Authorization': 'Basic ' + auth_cred },
+                data: {file: Upload.dataUrltoBlob(dataUrl)
+                }
+            }).success(function(data, status, headers, config){
+                $scope.user.prof_pic_data = dataUrl;
+                $cookies.put('prof_pic_data', btoa(dataUrl));
+                
+            });
 
-                //     if(response['data']['status'] == "success"){
-                //         $rootScope.user = response['data']['user'];
-                //         $scope.user = response['data']['user'];
-                //     }
-                // })
-                // .error(function(response){
-                //     console.log(response);
-                // });
-                $http({
-                    url: url,
-                    method: "POST",
-                    headers: {'Authorization': 'Basic ' + auth_cred, 'Content-Type': 'multipart/form-data' },
-                    data: {'image': imageData} 
 
-                })
-                .then(function(response) {
-                    console.log(response);
+        // convertDataURLToImageData(dataUrl, 
+        //     function(imageData){
+        //         console.log(typeof(imageData));
+        //         console.log(imageData);
+        //         var b64data = btoa(imageData);
+        //         $http({
+        //             url: url,
+        //             method: "POST",
+        //             headers: {'Authorization': 'Basic ' + auth_cred},
+        //             data: {'file_data': b64data, 'prefix': file_type_prefix} 
+        //         })
+        //         .then(function(response) {
+        //             console.log(response);
 
-                    if(response['data']['status'] == "success"){
+        //             if(response['data']['status'] == "success"){
 
-                        $rootScope.user = response['data']['user'];
-                        $scope.user = response['data']['user'];
-                    }
-                }, 
-                function(response) {
-                    // failure
-                    console.log(response);
+        //                 $scope.profile_pic = dataUrl;
+        //                 $scope.user = response['data']['user'];
+        //                 $scope.user.prof_pic_prefix = file_type_prefix;
+        //                 $scope.user.prof_pic_data = dataUrl;
+        //                 $cookies.put('prof_pic_data', dataUrl);
+        //                 // $rootScope.user = response['data']['user'];
+        //                 // $scope.user = response['data']['user'];
+        //             }
+        //         }, 
+        //         function(response) {
+        //             // failure
+        //             console.log(response);
                     
-                });
-            }
-        )
+        //         });
+        //     }
+        // )
 
         
     }

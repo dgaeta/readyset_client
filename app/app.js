@@ -34,7 +34,7 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state", "UserServ
         $scope.token = UserService.token;
 
         $scope.tokenExists = function() {
-            if ($rootScope.token != ""){
+            if ($cookies.get('token')){
                 return true;
             }
             else {
@@ -43,7 +43,9 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state", "UserServ
         }
 
         $scope.logout = function() {
+            console.log($rootScope.token);
             $rootScope.token = "";
+            console.log($rootScope.token);
             $cookies.put('token', '');
             $scope.token = "";
             $state.go('home');

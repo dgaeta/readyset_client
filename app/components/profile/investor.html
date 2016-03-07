@@ -1,85 +1,133 @@
-<!-- <div style="padding-top:30px;"> -->
-
-<!-- <div ui-view></div> -->
-
-<div style="min-height:350px; background-color: #437592;">
+<div style="min-height:350px; background-color: #437592;" >
 
 	<div style="padding-top: 50px;">
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
 		</div>
 		<div ng-click="editing = true" ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-default btn-md ">Edit</button>
+			<div style="margin-top:20px;">
+				<button type="button" class="btn btn-info gotham-font">Edit</button>
+			</div>
 		</div>
 		<div ng-click="setChanges()" ng-show="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-default btn-md ">Submit</button>
+			<button type="button" class="btn btn-info gotham-font">Submit</button>
 		</div>
 	</div>
 	
 
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 	</div>
-	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-		<div ng-hide="editing" class="white-text">
-			{{firstname}} {{lastname}}
+
+	<div ng-hide="user.profile_pic" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<img ng-hide="user.profile_pic" src="images/polygons.png" class="img-responsive img-circle" alt="Responsive image"> 
+	</div>
+
+	<div ng-click="editing_prof_pic()"><p>Select an image file: </p><input type="file" id="fileInput" /></div>
+	<div ng-show="editing_photo" class="cropArea">
+	    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+	</div>
+	<div ng-show="editing_photo">Cropped Image:</div>
+	<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
+	<button ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
+
+
+
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 gotham-font">
+		<div class="row">
+			<div ng-hide="editing" class="white-text">
+			<h3>{{firstname}} {{lastname}}</h3>
 		</div>
-		<input ng-show="editing" type="text" ng-model="firstname" placeholder="{{firstname}}" ng-required/>
-		<input ng-show="editing" type="text" ng-model="lastname" placeholder="{{lastname}}" ng-required/>
-	</div>
-		
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-	</div>
-	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-		<div ng-hide="editing" class="white-text">
-			{{headline}} 
+		<div class="row">
+			<div ng-hide="editing" class="white-text" style="padding-left:15px;">
+				{{headline}} 
+			</div>
 		</div>
 		<input ng-show="editing" type="text" ng-model="headline" placeholder="{{headline}}" ng-required/>
 	</div>
 
+		</div>
+		
+		<input ng-show="editing" type="text" ng-model="company_name" placeholder="{{company_name}}" ng-required/>
+	</div>
+		
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+	</div>
+	
 	
 </div>
 
-<div style="min-height:200px; background-color: #EDEDED;">
+<div style="min-height:150px; padding-top:35px; background-color: #EDEDED;">
 	
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center-block">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<img src="images/pin.png" alt=""> Location:
+	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3" style="text-left">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<img src="images/pin.png" alt="">  
 		</div>
-		<div ng-hide="editing" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			{{city}}, {{state}}
+		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<h5 style="color: #2F3437">Location:</h5>
+		</div>
+		<div ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">  
+		</div>
+		<div ng-hide="editing" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<p class="gray-text">{{city}}, {{state}}</p>
 		</div>
 		<input ng-show="editing" type="text" ng-model="city" placeholder="{{city}}" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-required/>
 		<input ng-show="editing" type="text" ng-model="city" placeholder="{{state}}" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-required/>
 		
 	</div>
 
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center-block">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<img src="images/role.png" alt=""> Primary role:
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="min-height:125px;">
+		<img src="images/vert-div-sm.png" alt="" style="max-height:80px;"> 
+	</div>
+
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
+		
+			<img src="images/role.png" alt=""> 
+		
+			<h5 style="color: #2F3437">Primary Role:</h5>
+		
+		<div ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">  
 		</div>
-		<div ng-hide="editing" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			{{primary_role}}
+		<div ng-hide="editing" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<p class="gray-text">{{primary_role}}</p>
 		</div>
-		<input ng-show="editing" type="text" ng-model="primary_role" placeholder="{{primary_role}}" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-required/>
+		<input ng-show="editing" type="text" ng-model="founders" placeholder="{{founders}}" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-required/>
 		
 	</div>
 
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center-block">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<img src="images/Socialmedia.png" alt=""> Social media:
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+		<img src="images/vert-div-sm.png" alt="" style="max-height:80px;"> 
+	</div>
+
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<img src="images/industry.png" alt=""> 
 		</div>
-		<div ng-hide="editing" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			Social media links here
+		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+			<h5 style="color: #2F3437">Social Media:</h5>
+		</div>
+		<div ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">  
+		</div>
+		<div ng-hide="editing" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<p class="gray-text">{{industry}}</p>
 		</div>
 		<input ng-show="editing" type="text" ng-model="link" placeholder="{{}}" class="col-lg-4 col-md-4 col-sm-4 col-xs-4" ng-required/>
 		
 	</div>
 
-	<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 center-block">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			<img src="images/site.png" alt=""> Website:
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+		<img src="images/vert-div-sm.png" alt="" style="max-height:80px;"> 
+	</div>
+
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<img src="images/site.png" alt=""> 
 		</div>
-		<div ng-hide="editing" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-			{{website}}
+		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+			<h5 style="color: #2F3437">Website:</h5>
+		</div>
+		<div ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">  
+		</div>
+		<div ng-hide="editing" class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<p class="gray-text">{{website}}</p>
 		</div>
 		<input ng-show="editing" type="text" ng-model="website" placeholder="{{website}}" class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-required/>
 	</div>
@@ -90,68 +138,142 @@
 
 <!-- BEGIN WHITE SECTION -->
 
+
 <!-- BEGIN JOBS SECTION -->
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px;">
-	<p class="vcenter">JOBS - {{num_jobs}}</p>
+	<h3 class="vcenter gotham-font grey-text">JOBS - {{jobs_count}}</h3>
 </div>
 
-<div ng-repeat="job in jobs">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom:50px;">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{job.company_name}}</div>
-			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">{{job.role}}</div>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:10px; padding-bottom:10px;">
+				<img src="images/tesla.png" class="img-responsive"> 
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="padding-top:10px; padding-bottom:10px;">
+				<div class="row"><p>Tesla Motors</p></div>
+				<div class="row"><p>CEO & Product Architect</p></div>
+			</div>
 		</div>
-	</div>
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" tyle="padding-top:10px; padding-bottom:10px;">
+				<img src="images/spacex.png" class="img-responsive" alt=""> 
+			</div>
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+				<div class="row"><p>SpaceX</p></div>
+				<div class="row"><p>CEO & CTO</p></div>
+			</div>
+		</div>
+	
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+		  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
 </div>
 <!-- END JOBS SECTION -->
 
 
 <!-- BEGIN BOARDS SECTION -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	BOARDS - {{num_boards}}
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px;">
+	<h3 class="vcenter gotham-font grey-text">BOARDS - {{boards_count}}</h3>
 </div>
 
-<div ng-repeat="board in boards">
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom:50px;">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">
-		
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{board.company_name}}</div>
-		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">{{board.role}}</div>
-
-	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-</div>
-<!-- END BOARDS SECTION -->
-
-<!-- BEGIN INVESTMENTS SECTION -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	INVESTMENTS - {{num_investments}}
-</div>
-
-<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
-		<table style="width:100%">
-		  <tr>
-		    <th>DATE</th>
-		    <th>INVESTED IN</th>
-		    <th>ROUND</th>
-		    <th>DETAILS</th>
-		  </tr>
-		  <tr ng-repeat="investment in investments">
-		    <td>{{investment.date}}</td>
-		    <td>{{investment.invested_in}}</td>
-		    <td>{{investment.round}}</td>
-		    <td>{{investment.details}}</td>
-		  </tr>
-		</table>
-	</div>
+		<div class="row" style="margin-top:20px;">
+			<table style="width:100%" frame="void" >
+			  <tr ng-repeat="funding in funding_rounds track by $index">
+				    <td>{{funding.date}}</td>
+				    <td>{{funding.amount}}</td>
+			  </tr>
+			  <tr>
+			    <td><p>Medialets</p></td>
+			    <td><p>Investor</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>InDinero</p></td>
+			    <td><p>Investor</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>Dropbox</p></td>
+			    <td><p>Investor</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>Bina Technologies</p></td>
+			    <td><p>Investor</p></td>
+			  </tr>
+			  <tr>
+			    <td><input type="text" class="form-control" ng-model="new_date"></td>
+			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+			  </tr>
+			</table>
+		</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+		  	new_investors_count)" class="btn btn-primary">Add Board</button>
+</div>
+<!-- END JOBS SECTION -->
 
-<!-- END INVESTMENTS SECTION -->
 
+<!-- BEGIN INVESTMENT SECTION -->
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px;">
+	<h3 class="vcenter gotham-font grey-text">INVESTMENTS - {{investments_count}}</h3>
+</div>
 
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom:50px;">
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
+		<div class="row" style="margin-top:20px;">
+			<table style="width:100%" frame="void" >
+				<tr>
+				    <th>DATE</th>
+				    <th>INVESTED IN</th>
+				    <th>ROUND</th>
+				    <th>DETAILS</th>
+		  		</tr>
+			  <tr ng-repeat="funding in funding_rounds track by $index">
+				    <td>{{funding.date}}</td>
+				    <td>{{funding.amount}}</td>
+				    <td>{{funding.date}}</td>
+				    <td>{{funding.amount}}</td>
+			  </tr>
+			  <tr>
+			    <td><p>Jan. 2016</p></td>
+			    <td><p>Memebox Corportation</p></td>
+			    <td><p>$100M / Series D</p></td>
+			    <td><p>Personal Investment</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>Jan. 2016</p></td>
+			    <td><p>Memebox Corportation</p></td>
+			    <td><p>$100M / Series D</p></td>
+			    <td><p>Personal Investment</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>Jan. 2016</p></td>
+			    <td><p>Memebox Corportation</p></td>
+			    <td><p>$100M / Series D</p></td>
+			    <td><p>Personal Investment</p></td>
+			  </tr>
+			  <tr>
+			    <td><p>Jan. 2016</p></td>
+			    <td><p>Memebox Corportation</p></td>
+			    <td><p>$100M / Series D</p></td>
+			    <td><p>Personal Investment</p></td>
+			  </tr>
+			  <tr>
+			    <td><input type="text" class="form-control" ng-model="new_date"></td>
+			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+			    <td><input type="text" class="form-control" ng-model="new_date"></td>
+			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+			  </tr>
+			</table>
+		</div>
+	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+		  	new_investors_count)" class="btn btn-primary">Add Investment</button>
+</div>
+<!-- END JOBS SECTION -->
 
-<!-- END WHITE SECTION -->
+<!-- END WHITE SECTION

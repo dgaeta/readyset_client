@@ -52,12 +52,14 @@
       <ul class="nav navbar-nav pull-right">
         <li><a  ui-sref="soAbout">About Us</a></li>
         <li><a  ui-sref="soWorks">How it works</a></li>
-        <li><a  ng-hide="tokenExists()" ui-sref="soAuthLogin">LOGIN</a></li>
-        <li><a  ng-hide="tokenExists()" ui-sref="soAuthRegistration">SIGN UP</a></li>
+        <li><a  ng-hide="tokenExists()" ui-sref="soAuthLogin">Log In</a></li>
+        <!-- <li><a  ng-hide="tokenExists()" ui-sref="soAuthRegistration">SIGN UP</a></li> -->
+        <button type="button" class="btn btn-primary btn-sm outline" ng-hide="tokenExists()" style="margin-top:13px;" ui-sref="soAuthRegistration"><p style="margin-bottom:0px;">Sign Up</p></button>
         <!-- <li><a  ui-sref="soHome">FOLLOW US</a></li>  -->
         <!-- <li><a  ui-sref="soAuthRegistration" ng-hide="authData">Brand Register</a></li> -->
         <!-- <li><a  ui-sref="soAuthSocial" ng-hide="authData">User Signin</a></li>-->       
-        <li><a  ng-show="tokenExists()" ng-click="logout()">LOGOUT</a></li>
+        <!-- <li><a  class="button" ng-show="tokenExists()" ng-click="logout()">LOGOUT</a></li> -->
+        <li><button type="button" class="btn btn-primary btn-sm outline" ng-show="tokenExists()" ng-click="logout()" style="margin-top:13px;"><p style="margin-bottom:0px;">Log Out</p></button></li>
         <!-- <li><a  ui-sref="soPrivate" ng-show="authData">Private</a></li> -->
 
         <!-- <li><a  id="escape-blue" ui-sref="soHome" ng-show="authData" ng-click="logout()">HELLO, MR. {{user.last | uppercase}}</a></li>
@@ -76,6 +78,8 @@
 <div ui-view>  
 </div>
 
+
+<div ng-include src="'footer.html'" style="min-height:50px; background-color:#14242C; margin-top:50px;"></div>
 
 
 <!-- <div class="footer row">

@@ -1,53 +1,79 @@
 <!-- <div ui-view></div> -->
+<div class="row">
+	<div style="min-height:350px; background-color: #437592;" >
 
-<div style="min-height:350px; background-color: #437592;" >
-
-	<div style="padding-top: 50px;">
-		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+		<div class="row" style="padding-top: 50px;">
+			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			</div>
+			<div ng-click="editing = true" ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				<div style="margin-top:20px;">
+					<button type="button" class="btn btn-info gotham-font" >Edit</button>
+				</div>
+			</div>
+			<div ng-click="setChanges()" ng-show="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
+				<button type="button" class="btn btn-info gotham-font" style="margin-top:20px;">Submit</button>
+			</div>
 		</div>
-		<div ng-click="editing = true" ng-hide="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-info gotham-font" >Edit</button>
-		</div>
-		<div ng-click="setChanges()" ng-show="editing" class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<button type="button" class="btn btn-info gotham-font">Submit</button>
-		</div>
-	</div>
-	
-
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-	</div>
-
-	<div ng-hide="user.profile_pic" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-		<img ng-hide="user.profile_pic" src="images/polygons.png" class="img-responsive" alt="Responsive image"> 
-	</div>
-
-	<div ng-click="editing_prof_pic()"><p>Select an image file: </p><input type="file" id="fileInput" /></div>
-	<div ng-show="editing_photo" class="cropArea">
-	    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-	</div>
-	<div ng-show="editing_photo">Cropped Image:</div>
-	<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
-	<button ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
-
-
-
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 gotham-font">
-		<div ng-hide="editing" class="white-text">
-			{{company_name}}
-		</div>
-		<input ng-show="editing" type="text" ng-model="company_name" placeholder="{{company_name}}" ng-required/>
-	</div>
 		
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-	</div>
-	<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10 gotham-font">
-		<div ng-hide="editing" class="white-text">
-			<p>{{headline}} </p>
-		</div>
-		<input ng-show="editing" type="text" ng-model="headline" placeholder="{{headline}}" ng-required/>
-	</div>
 
-	
+		<div class="row">
+			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+			</div>
+
+			<!-- DEFAULT PROFILE PICTURE OR USER PHOTO -->
+			<div ng-hide="user.prof_pic_data" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
+				<img ng-hide="user.prof_pic_data" src="images/polygons.png" class="img-responsive" alt="Responsive image"> 
+			</div>
+			<div ng-show="user.prof_pic_data" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<img ng-show="user.prof_pic_data" ng-src="{{user.prof_pic_data}}" class="img-responsive" alt="Responsive image"> 
+				{{user.prof_pic_data}}
+			</div>
+			<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
+			<!-- END PROFILE PICTURE -->
+
+			
+			<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+				<div class="row">
+					<div ng-hide="editing" class="white-text">
+						<h3>{{company_name}}</h3>
+					</div>
+					<input ng-show="editing" type="text" ng-model="company_name" placeholder="{{company_name}}" ng-required/>
+				</div>
+				<div class="row">
+					<div ng-hide="editing" class="white-text">
+						<p>{{headline}} </p>
+					</div>
+					<input ng-show="editing" type="text" ng-model="headline" placeholder="{{headline}}" ng-required/>
+				</div>
+			</div>
+		</div>
+
+		<!-- START PROFILE PIC EDIT SECTION -->
+		<div class="row">
+			<div class="row">	
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+					<div ng-click="editing_prof_pic()"><input type="file" id="fileInput" /></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div ng-show="editing_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+				<div ng-show="editing_photo"><p>Cropped Image:</p></div>
+				<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
+			</div>
+			<div class="row" style="padding-top:20px;">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<button class="btn btn-default" ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
+			</div>
+		</div>
+		<!-- END PROFILE PIC EDIT SECTION -->
+	</div>
 </div>
 
 <div style="min-height:150px; padding-top:35px; background-color: #EDEDED;">
@@ -75,7 +101,7 @@
 
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<img src="images/role.png" alt=""> 
+			<img src="images/founders.png" alt=""> 
 		</div>
 		<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
 			<h5 style="color: #2F3437">Founders:</h5>
