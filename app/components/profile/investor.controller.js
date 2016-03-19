@@ -2,7 +2,7 @@ angular
     .module('so.profile')
     .controller('InvestorController', InvestorController);
 
-function InvestorController($scope, $cookies, UserService, $http) {
+function InvestorController($scope, $cookies, $http) {
 
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');

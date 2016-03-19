@@ -2,14 +2,8 @@ angular
     .module('so.profile')
     .controller('ProfileController', ProfileController);
 
-function ProfileController($scope, $cookies, UserService, $state, $http) {
+function ProfileController($scope, $cookies, $state, $http) {
 
-	// if (FireRefService.getAuth()) {
-	// 	$scope.uid = FireRefService.getAuth().uid;
-	// 	$scope.user = UserService($scope.uid);
-	// 	console.log("current user is:")
-	// 	console.log($scope.user);
-	// };
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
     $scope.email = $cookies.get('email');

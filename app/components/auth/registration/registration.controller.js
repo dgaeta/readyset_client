@@ -1,10 +1,9 @@
 angular
     .module('so.auth.registration')
-    .controller('SoAuthRegistrationController', ['$scope', '$rootScope','$http', '$cookies', '$state', 'UserService',  SoAuthRegistrationController]);
+    .controller('SoAuthRegistrationController', ['$scope', '$rootScope','$http', '$cookies', '$state',  SoAuthRegistrationController]);
 
-function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state, UserService, InvestorService) {
+function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state) {
 
-    //console.log(UserService);
     console.log($rootScope);
     $scope.company = false;
     $scope.investor = false;

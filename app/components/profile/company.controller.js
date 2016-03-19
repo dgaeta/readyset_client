@@ -5,7 +5,7 @@ angular
 
 
 
-function CompanyController($scope, Upload, $rootScope, $cookies, UserService, $http,  $timeout) {
+function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout) {
 
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');

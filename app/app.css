@@ -25,16 +25,71 @@
   border-radius:0;
 }
 
+.footer {
+  color: white;
+}
+
+.about-card {
+  margin-bottom: 50px;
+}
+
+.about-card p{
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-bottom: 20px;
+}
+
+.signup-variable-section {
+  background-color: white;
+}
+
+.profile-company-deals-table {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
+
+.profile-company-jobs {
+  padding-top: 100px;
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+  
+}
+
+.profile-company-deals-area {
+  padding-bottom: 15px;
+}
+
+.profile-company-jobs-card {
+  margin-left: 25px;
+  margin-right: 25px;
+  margin-top: 25px;
+  margin-bottom: 25px;
+}
 
 p {
     font-family: "gotham_lightregular", Times, serif;
+}
+
+
+h1 {
+  font-family: "gotham_lightregular", Times, serif;
 }
 
 h2 {
   color: #6B6B6B;
 }
 
+
 h3 {
+  font-family: "gotham_lightregular", Times, serif;
+}
+
+
+h4 {
   font-family: "gotham_lightregular", Times, serif;
 }
 

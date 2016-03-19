@@ -11,7 +11,6 @@ var so = angular.module('so', [
     'so.works',
     'so.signup',
     'so.profile',
-    'UserService',
     'ngCookies',
     'ngFileUpload',
     'ngImgCrop',
@@ -27,11 +26,9 @@ so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     
 });
 
-so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state", "UserService",
-	function($scope, $rootScope, $cookies, $state, UserService) {
-
-        // $cookies.put('token', '');
-        $scope.token = UserService.token;
+so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
+	function($scope, $rootScope, $cookies, $state) {
+        $state.go('home');
 
         $scope.tokenExists = function() {
             if ($cookies.get('token')){
@@ -51,21 +48,6 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state", "UserServ
             $state.go('home');
 
         }
-
-  //       FireRefService.onAuth( function(authData) {
-  //           $scope.authData = authData;
-
-  //           if (FireRefService.getAuth()) {
-  //               $scope.uid = FireRefService.getAuth().uid;
-  //               $scope.user = UserService($scope.uid);
-  //           };
-  //       })
-
-		// if ($scope.authData) {
-		//   console.log("Logged in as:", $scope.authData.uid);
-		// } else {
-		//   console.log("Logged out");
-		// }
 
 	}
 ]);
@@ -89,7 +71,6 @@ so.directive('fileUpload', function () {
 
 so.run(function($rootScope, $state) {
 
-    // $state.go('soHome');
 
     $rootScope.$on('$routeChange', function(event, next, previous) {
         $scope.token = $cookies.get('token');

@@ -195,137 +195,158 @@
 
 
 <!-- BEGIN JOBS SECTION -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px;">
-	<h3 class="vcenter gotham-font grey-text">FUNDING ROUNDS - {{funding_roundes.length}}</h3>
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom:50px;">
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
-		<table style="width:100%" frame="void">
-		  <tr>
-			    <th>DATE</th>
-			    <th>AMOUNT / ROUND</th>
-			    <th>VALUATION</th>
-			    <th>LEAD INVESTOR</th>
-			    <th>INVESTORS</th>
-		  </tr>
-		  <tr ng-repeat="funding in funding_rounds track by $index">
-			    <td>{{funding.date}}</td>
-			    <td>{{funding.amount}}</td>
-			    <td>{{funding.valuation}}</td>
-			    <td>{{funding.lead_investor}}</td>
-			    <td>{{funding.investors_count}}</td>
-		  </tr>
-		  <tr>
-		    <td><input type="text" class="form-control" ng-model="new_date"></td>
-		    <td><input type="text" class="form-control" ng-model="new_amount"></td>
-		    <td><input type="text" class="form-control" ng-model="new_valuation"></td>
-		    <td><input type="text" class="form-control" ng-model="new_lead_investor"></td>
-		    <td><input type="text" class="form-control" ng-model="new_investors_count"></td>
-		  </tr>
-		</table>
-		<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-		  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
+<div class="row profile-company-jobs">
+	<div class="row text-center vcenter" style="min-height:100px;">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+			<h3 class="vcenter text-center gotham-font grey-text">FUNDING ROUNDS - {{funding_roundes.length}}</h3>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+
+	<div class="row" style="padding-bottom:50px;">
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+		<div class="profile-company-deals-area  col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
+			<div class="profile-company-jobs-card">
+				<table style="width:100%" frame="void">
+				  <tr>
+					    <th>DATE</th>
+					    <th>AMOUNT / ROUND</th>
+					    <th>VALUATION</th>
+					    <th>LEAD INVESTOR</th>
+					    <th>INVESTORS</th>
+				  </tr>
+				  <tr ng-repeat="funding in funding_rounds track by $index">
+					    <td>{{funding.date}}</td>
+					    <td>{{funding.amount}}</td>
+					    <td>{{funding.valuation}}</td>
+					    <td>{{funding.lead_investor}}</td>
+					    <td>{{funding.investors_count}}</td>
+				  </tr>
+				  <tr>
+				    <td><input type="text" class="form-control" ng-model="new_date"></td>
+				    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+				    <td><input type="text" class="form-control" ng-model="new_valuation"></td>
+				    <td><input type="text" class="form-control" ng-model="new_lead_investor"></td>
+				    <td><input type="text" class="form-control" ng-model="new_investors_count"></td>
+				  </tr>
+				</table>
+			</div>
+			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+			  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
+		</div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+	</div>
 </div>
 <!-- END JOBS SECTION -->
 
 
 <!-- BEGIN DEALS SECTION -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 50px;">
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-		<h3 class="vcenter gotham-font grey-text">DEAL FLOW MANAGEMENT</h3>
+<div class="row">
+	<div class="row" style="padding-bottom: 50px;">
+		<div class="row text-center pagination-centered">
+			<h3 class="vcenter gotham-font grey-text">DEAL FLOW MANAGEMENT</h3>
+		</div>
 	</div>
 
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	<div class="row">
 		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">
-			<div class="row" ng-repeat="(key, deal) in deals track by $index">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-top: 25px;">
-					<p>{{deal.deal_name}} -  {{deal.date}}</p>
-				</div>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 25px;">
-					<p>{{deal.description}}</p>
-				</div>
-				<div ng-repeat="(file_name, file) in deal.documents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<a ng-click="getDocument(deal.deal_name, file.file_name)"><p>{{file.file_name}}</p></a>
-				</div>
+			<div class="profile-company-deals-area"></div>
+				<div class="profile-company-deals-table">
+					<div class="row">
+						<h2>Deals</h2>
+					</div>
 
-				<div>
-					<input type="file" file-upload multiple/>
-				    <ul>
-				        <li ng-repeat="file in files">{{file.name}}</li>
-				    </ul>
-				</div>
-				<button ng-click="save(deal)" type="button" class="btn btn-primary" >Upload Files</button>
-			</div>
+					<div ng-repeat="(key, deal) in deals track by $index">
+						<div class="row" style="padding-top: 25px;">
+							<h3>{{deal.deal_name}} -  {{deal.date}}</h3>
+						</div>
+						<h4>Deal Files</h4>
+						<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="padding-bottom: 25px;">
+							<p>{{deal.description}}</p>
+						</div>
+						<div ng-repeat="(file_name, file) in deal.documents" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+							<a ng-click="getDocument(deal.deal_name, file.file_name)"><p>{{file.file_name}}</p></a>
+						</div>
 
-			<div class="row">
-				<h4>Add New Deal</h4>
-				<p>Deal name:</p><input type="text" class="form-control" ng-model="new_deal_name">
-			    <p>Deal date:</p><input type="text" class="form-control" ng-model="new_deal_date">
-			    <p>Deal description:</p><input type="text" class="form-control" ng-model="new_deal_description">
-				<button ng-click="addDeal()" type="button" class="btn btn-primary" >Add Deal</button>
+						<div>
+							<input type="file" file-upload multiple/>
+						    <ul>
+						        <li ng-repeat="file in files">{{file.name}}</li>
+						    </ul>
+						</div>
+						<button ng-click="save(deal)" type="button" class="btn btn-primary" >Upload Files</button>
+					</div>
+
+					<div class="row" style="padding-top:50px;">
+						<h3>Add New Deal</h3>
+						<p>Deal name:</p><input type="text" class="form-control" ng-model="new_deal_name">
+					    <p>Deal date:</p><input type="text" class="form-control" ng-model="new_deal_date">
+					    <p>Deal description:</p><input type="text" class="form-control" ng-model="new_deal_description">
+						<button ng-click="addDeal()" type="button" class="btn btn-primary" >Add Deal</button>
+					</div>
+				</div>
 			</div>
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 		</div>
-
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	</div>
+
 </div>
 <!-- END DEALS SECTION -->
 
 <!-- BEGIN INVESTMENTS SECTION -->
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	<h3 class="vcenter gotham-font grey-text">INVESTORS AND ADVISORS</h3>
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
-		<p>BOARD MEMBERS</p>
+<div class="row">
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
+		<h3 class="vcenter gotham-font grey-text">INVESTORS AND ADVISORS</h3>
 	</div>
 
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-		<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
-	</div>
-</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
+			<p>BOARD MEMBERS</p>
+		</div>
 
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<img src="images/horiz-divider-lg.png">
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
-		<p>INVESTORS</p>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+			<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+		</div>
 	</div>
 
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-		<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
-	</div>
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-	<img src="images/horiz-divider-lg.png">
-</div>
-
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
-		<p>EMPLOYEES</p>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<img src="images/horiz-divider-lg.png">
 	</div>
 
-	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-		<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
+			<p>INVESTORS</p>
+		</div>
+
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+			<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+		</div>
+	</div>
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<img src="images/horiz-divider-lg.png">
+	</div>
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center pagination-centered">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2 text-left">
+			<p>EMPLOYEES</p>
+		</div>
+
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+			<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+		</div>
 	</div>
 </div>
 

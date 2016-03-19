@@ -1,5 +1,5 @@
 angular
-    .module('so.auth.registration', ['ui.router', 'InvestorService', 'UserService'])
+    .module('so.auth.registration', ['ui.router'])
     .config(function($stateProvider) {
         $stateProvider
             .state('soAuthRegistration', {

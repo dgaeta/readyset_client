@@ -2,7 +2,7 @@ angular
     .module('so.profile')
     .controller('SignController', SignController);
 
-function SignController($scope, $cookies, UserService, $http) {
+function SignController($scope, $cookies, $http) {
 
 
 }
