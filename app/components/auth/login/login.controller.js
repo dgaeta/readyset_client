@@ -31,6 +31,8 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                     $cookies.put('token', value['data']['token']);
                     $cookies.put('user', JSON.stringify(value['data']['user']));
                     $rootScope.user = value['data']['user'];
+                    $rootScope.user_type = data['user']['user_type'];
+                    $cookies.put('user_type', data['user']['user_type']);
                     
                     if (data['user']['user_type'] == "company") {
                         $state.go('profile.company')

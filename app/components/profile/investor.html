@@ -1,4 +1,4 @@
-<div style="min-height:350px; background-color: #437592;" >
+<div style="min-height:400px; background-color: #437592;" >
 
 	<div style="padding-top: 50px;">
 		<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
@@ -140,7 +140,8 @@
 
 
 <!-- BEGIN JOBS SECTION -->
-<div class="row text-center vcenter" style="min-height:100px;">
+<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+<div class="row" style="min-height:100px;">
 	<h3 class="vcenter gotham-font grey-text">JOBS - {{jobs_count}}</h3>
 </div>
 
@@ -156,6 +157,7 @@
 				<div class="row"><p>CEO & Product Architect</p></div>
 			</div>
 		</div>
+
 		<div class="row">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" tyle="padding-top:10px; padding-bottom:10px;">
 				<img src="images/spacex.png" class="img-responsive" alt=""> 
@@ -165,16 +167,21 @@
 				<div class="row"><p>CEO & CTO</p></div>
 			</div>
 		</div>
-	
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-		  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
+		
+		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
+
+		<div class="row">
+			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+			  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
+		</div>
+	</div>
 </div>
 <!-- END JOBS SECTION -->
 
 
 <!-- BEGIN BOARDS SECTION -->
-<div class="row text-center vcenter" style="min-height:100px;">
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
+<div class="row" style="min-height:100px;">
 	<h3 class="vcenter gotham-font grey-text">BOARDS - {{boards_count}}</h3>
 </div>
 
@@ -208,15 +215,22 @@
 			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
 			  </tr>
 			</table>
+
+
+			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+				  	new_investors_count)" class="btn btn-primary">Add Board
+			</button>
+			
 		</div>
+	</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-		  	new_investors_count)" class="btn btn-primary">Add Board</button>
 </div>
+
 <!-- END JOBS SECTION -->
 
 
 <!-- BEGIN INVESTMENT SECTION -->
+<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
 <div class="row text-center vcenter" style="min-height:100px;">
 	<h3 class="vcenter gotham-font grey-text">INVESTMENTS - {{investments_count}}</h3>
 </div>
@@ -270,9 +284,11 @@
 			  </tr>
 			</table>
 		</div>
+		<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
+		  	new_investors_count)" class="btn btn-primary">Add Investment
+		</button>
+	</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-		  	new_investors_count)" class="btn btn-primary">Add Investment</button>
 </div>
 <!-- END JOBS SECTION -->
 

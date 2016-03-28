@@ -49,6 +49,19 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 
         }
 
+        $scope.stateProfile = function() {
+
+            var user_type = $cookies.get('user_type');
+            if (user_type == "company") {
+                $state.go('profile.company')
+            };
+
+            if (user_type == "investor") {
+                $state.go('profile.investor')
+            };
+
+        }
+
 	}
 ]);
 

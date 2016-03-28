@@ -90,6 +90,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 $cookies.put('num_boards', 0);
                 $cookies.put('num_investments', 0);
 
+                $rootScope.user_type = data['user']['user_type'];
                 $state.go('profile.investor');
             }
         }, 
@@ -156,6 +157,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 $rootScope.user = response['data']['user'];
                 console.log(response['data']['user'])
                 $cookies.put('deals', '{}');
+
+                $rootScope.user_type = data['user']['user_type'];
                 $state.go('profile.company');
             }
         }, 
