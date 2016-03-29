@@ -29,6 +29,15 @@
   color: white;
 }
 
+.footer-links {
+  padding-left: 25px;
+}
+
+.footer-copyright {
+  font-size: 10px;
+  color: gray;
+}
+
 .nav-profile-image {
   height:35px;
   margin-left: 10px;
