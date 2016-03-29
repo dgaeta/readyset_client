@@ -1,8 +1,7 @@
 {
-  "name": "socialocean",
+  "name": "ReadySet_client",
   "private": true,
   "version": "0.0.0",
-  "description": "Social Ocean - Mouth to Mouth branding",
   "main"         : "server.js",
   "repository": "https://github.com/dgaeta/socialocean/",
   "license": "MIT",
