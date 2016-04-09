@@ -47,7 +47,7 @@ function InvestorController($scope, $cookies, $http) {
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -75,7 +75,7 @@ function InvestorController($scope, $cookies, $http) {
 
 
     function getDevices() {
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/devices/list_devices";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -103,7 +103,7 @@ function InvestorController($scope, $cookies, $http) {
     }
 
     function getDevice(device_id) {
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/devices/get_root";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);

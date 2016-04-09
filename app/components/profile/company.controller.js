@@ -102,7 +102,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     }
 
     $scope.addDeal = function(){
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/deals/initialize";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -142,35 +142,10 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     }
 
-    // //the save method
-    // $scope.save = function(deal) {
-    //     console.log(deal);
-    //     $scope.api_domain =  "http://127.0.0.1:8040"
-    //     var url = $scope.api_domain + "/deals/upload_file";
 
-    //     var auth_string = String($scope.token) + ':' + String('unused');
-    //     var auth_cred = btoa(auth_string);
-
-    //     console.log(deal['deal_name']);
-    //     console.log("just before the $http");
-    //     Upload.upload({
-    //             url: url,
-    //             headers: {'Authorization': 'Basic ' + auth_cred },
-    //             data: {file: $scope.files[0], 'deal_name': deal['deal_name'], 
-    //                 'file_type': $scope.files[0].type
-    //             }
-    //         }).success(function(data, status, headers, config){
-    //             console.log(data);
-    //             $scope.deals[deal['deal_name']]['documents'] = data['documents'];
-    //             $scope.user = data['user'];
-    //             $cookies.put('deals', JSON.stringify($scope.deals));
-    //             $cookies.put('user', JSON.stringify($scope.user));
-    //             $scope.files = [];
-    //         });
-    // };
 
     $scope.getDocument = function(deal_name, file_name){
-        $scope.api_domain =  "http://127.0.0.1:8040";
+        $scope.api_domain =  "http://127.0.0.1:8080";
         var url = $scope.api_domain + "/deals/get_document";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -264,7 +239,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     //the save method
     $scope.save = function(deal) {
         console.log(deal);
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/deals/upload_file";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -289,7 +264,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     };
 
     $scope.getProfilePic = function() {
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/get_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -324,7 +299,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.uploadProfilePic = function(dataUrl) {
         // URL Construction with auth token
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/set_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -415,7 +390,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -443,7 +418,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
 
     function getDevices() {
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/devices/list_devices";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);

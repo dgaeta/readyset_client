@@ -9,7 +9,7 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
     $scope.password = '';
 
     $scope.success = '';
-    $scope.api_domain =  "http://127.0.0.1:8040"
+    $scope.api_domain =  "http://127.0.0.1:8080"
 
     $scope.login = function() {
         console.log($scope.email);

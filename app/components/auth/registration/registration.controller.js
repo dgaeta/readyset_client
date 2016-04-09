@@ -45,7 +45,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_investor = function() {
 
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
@@ -103,7 +103,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
 
     $scope.register_company = function() {
-        $scope.api_domain =  "http://127.0.0.1:8040"
+        $scope.api_domain =  "http://127.0.0.1:8080"
         var url = $scope.api_domain + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
