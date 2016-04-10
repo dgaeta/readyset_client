@@ -26,6 +26,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
     $scope.email = '';
     $scope.password = '';
 
+    $scope.api_domain = $cookies.get('api_domain');
+
 
 
 
@@ -45,8 +47,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_investor = function() {
 
-        $scope.api_domain =  "http://127.0.0.1:8080"
-        var url = $scope.api_domain + "/users/add";
+        $scope.url_prefix =   $scope.api_domain + ":8080";
+        var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
 
@@ -90,7 +92,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 $cookies.put('num_boards', 0);
                 $cookies.put('num_investments', 0);
 
-                $rootScope.user_type = data['user']['user_type'];
+                $rootScope.user_type = response['data']['user']['user_type'];
                 $state.go('profile.investor');
             }
         }, 
@@ -103,8 +105,9 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
 
     $scope.register_company = function() {
-        $scope.api_domain =  "http://127.0.0.1:8080"
-        var url = $scope.api_domain + "/users/add";
+
+        $scope.url_prefix =   $scope.api_domain + ":8080";
+        var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
 

@@ -9,15 +9,17 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
     $scope.password = '';
 
     $scope.success = '';
-    $scope.api_domain =  "http://127.0.0.1:8080"
+    //$scope.api_domain =  "http://127.0.0.1:8080";
+    $scope.api_domain = $cookies.get('api_domain');
 
     $scope.login = function() {
         console.log($scope.email);
         console.log($scope.password);
 
-        var url = $scope.api_domain + "/users/signin";
-        var auth_string = String($scope.email) + ':' + String($scope.password)
-        var auth_cred = btoa(auth_string)
+        $scope.url_prefix =   $scope.api_domain + ":8080";
+        var url = $scope.url_prefix + "/users/signin";
+        var auth_string = String($scope.email) + ':' + String($scope.password);
+        var auth_cred = btoa(auth_string);
 
         $http.get(url, {
             headers: {'Authorization': 'Basic ' + auth_cred }
@@ -35,11 +37,11 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                     $cookies.put('user_type', data['user']['user_type']);
                     
                     if (data['user']['user_type'] == "company") {
-                        $state.go('profile.company')
+                        $state.go('profile.company');
                     };
 
                     if (data['user']['user_type'] == "investor") {
-                        $state.go('profile.investor')
+                        $state.go('profile.investor');
                     };
 
                     console.log("no user_type param received from server");

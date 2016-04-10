@@ -4,6 +4,8 @@ angular
 
 function ProfileController($scope, $cookies, $state, $http) {
 
+    $scope.api_domain = $cookies.get('api_domain');
+
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
     $scope.email = $cookies.get('email');
@@ -37,22 +39,12 @@ function ProfileController($scope, $cookies, $state, $http) {
         }
     }
 
-    $scope.ClickedDevice = function(device_id) {
-    	$scope.clicked_id = device_id;
-     	console.log(device_id);
-     	$cookies.put('curr_device_id', device_id);
-        console.log("curr_device_id token set.");
-		$state.go('profile.device');
-        // getDevice(device_id)
-     	
-    }
-
 
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.api_domain =  "http://127.0.0.1:8080"
-        var url = $scope.api_domain + "/users/edit";
+        $scope.url_prefix =   $scope.api_domain + ":8080";
+        var url = $scope.url_prefix + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
 
@@ -75,64 +67,5 @@ function ProfileController($scope, $cookies, $state, $http) {
             
         });
     }
-
-
-
-    function getDevices() {
-    	$scope.api_domain =  "http://127.0.0.1:8080"
-    	var url = $scope.api_domain + "/devices/list_devices";
-        var auth_string = String($scope.token) + ':' + String('unused');
-        var auth_cred = btoa(auth_string);
-
-		$http({
-			url: url,
-			method: "GET",
-    		headers: {'Authorization': 'Basic ' + auth_cred }
-    	})
-    	.then(function(response) {
-        	console.log(response);
-
-        	if(response['data']['status'] == "success"){
-            	console.log(response);
-            	$cookies.put('devices', JSON.stringify(response['data']['devices']));
-            	$cookies.put('device_count', response['data']['device_count']);
-        	}
-        }, 
-        function(response) {
-        	// failure
-            console.log(response);
-        	
-        });
-		
-    }
-
-    function getDevice(device_id) {
-    	$scope.api_domain =  "http://127.0.0.1:8080"
-    	var url = $scope.api_domain + "/devices/get_root";
-        var auth_string = String($scope.token) + ':' + String('unused');
-        var auth_cred = btoa(auth_string);
-
-		$http({
-			url: url,
-			method: "POST",
-    		headers: {'Authorization': 'Basic ' + auth_cred },
-    		data: { 'device_id' : $scope.clicked_id }
-    	})
-    	.then(function(response) {
-        	console.log(response);
-
-        	if(response['data']['status'] == "success"){
-            	console.log(response);
-            	$state.go('profile.device');
-        	}
-        }, 
-        function(response) {
-        	// failure
-            console.log(response);
-        	
-        });
-		
-    }
-    
 
 }

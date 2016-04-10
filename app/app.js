@@ -28,6 +28,8 @@ so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 
 so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 	function($scope, $rootScope, $cookies, $state) {
+
+
         $state.go('home');
 
         $scope.tokenExists = function() {
