@@ -47,7 +47,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_investor = function() {
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
@@ -106,7 +106,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_company = function() {
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);

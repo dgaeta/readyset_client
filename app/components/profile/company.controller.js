@@ -99,7 +99,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.addDeal = function(){
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/deals/initialize";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -142,7 +142,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
 
     $scope.getDocument = function(deal_name, file_name){
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/deals/get_document";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -236,7 +236,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     //the save method
     $scope.save = function(deal) {
         console.log(deal);
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/deals/upload_file";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -261,7 +261,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     };
 
     $scope.getProfilePic = function() {
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/get_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -296,7 +296,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.uploadProfilePic = function(dataUrl) {
         // URL Construction with auth token
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/set_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -345,7 +345,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);

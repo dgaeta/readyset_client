@@ -29,6 +29,16 @@ so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 	function($scope, $rootScope, $cookies, $state) {
 
+        // USED FOR LOCAL DEVELOPMENT 
+        $cookies.put('api_domain', 'http://127.0.0.1:8040');
+
+        // USED FOR PRODUCTION
+        //$cookies.put('api_domain', 'http://104.154.73.130:8080');
+
+
+        $scope.cookies = $cookies;
+
+        $rootScope.cookies = $cookies;
 
         $state.go('home');
 

@@ -16,7 +16,7 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
         console.log($scope.email);
         console.log($scope.password);
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/signin";
         var auth_string = String($scope.email) + ':' + String($scope.password);
         var auth_cred = btoa(auth_string);

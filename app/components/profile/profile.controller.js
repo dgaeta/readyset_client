@@ -43,7 +43,7 @@ function ProfileController($scope, $cookies, $state, $http) {
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.url_prefix =   $scope.api_domain + ":8080";
+        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
