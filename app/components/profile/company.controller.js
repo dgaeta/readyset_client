@@ -11,6 +11,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.user_type = $cookies.get('user_type');
 	$scope.token = $cookies.get('token');
+    console.log($cookies.get('user'));
     $scope.user = JSON.parse($cookies.get('user'));
 
 

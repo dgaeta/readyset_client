@@ -158,11 +158,15 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
                 $rootScope.token = response['data']['token'];
                 $rootScope.user = response['data']['user'];
-                console.log(response['data']['user'])
+                console.log(response['data']['user']);
                 $cookies.put('deals', '{}');
 
-                $rootScope.user_type = data['user']['user_type'];
+                $cookies.put('user', JSON.stringify(response['data']['user']));
+
+                $rootScope.user_type = response['data']['user']['user_type'];
                 $state.go('profile.company');
+
+
             }
         }, 
         function(response) {
