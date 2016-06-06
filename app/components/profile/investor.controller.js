@@ -4,21 +4,21 @@ angular
 
 function InvestorController($scope, $cookies, $http) {
 
-    $scope.api_domain = $cookies.get('api_domain');
+    $scope.api_domain = sessionStorage.getItem('api_domain');
 
-    $scope.user_type = $cookies.get('user_type');
-	$scope.token = $cookies.get('token');
-    $scope.email = $cookies.get('email');
-    $scope.firstname = $cookies.get('firstname');
-    $scope.lastname = $cookies.get('lastname');
-    $scope.city = $cookies.get('city');
-    $scope.state = $cookies.get('state');
-    $scope.website = $cookies.get('website');
-    $scope.primary_role = $cookies.get('primary_role');
-    $scope.headline = $cookies.get('primary_role');
-    $scope.num_jobs = $cookies.get('num_jobs');
-    $scope.num_investments = $cookies.get('num_investments');
-    $scope.num_boards = $cookies.get('num_boards');
+    $scope.user_type = sessionStorage.getItem('user_type');
+	$scope.token = sessionStorage.getItem('token');
+    $scope.email = sessionStorage.getItem('email');
+    $scope.firstname = sessionStorage.getItem('firstname');
+    $scope.lastname = sessionStorage.getItem('lastname');
+    $scope.city = sessionStorage.getItem('city');
+    $scope.state = sessionStorage.getItem('state');
+    $scope.website = sessionStorage.getItem('website');
+    $scope.primary_role = sessionStorage.getItem('primary_role');
+    $scope.headline = sessionStorage.getItem('primary_role');
+    $scope.num_jobs = sessionStorage.getItem('num_jobs');
+    $scope.num_investments = sessionStorage.getItem('num_investments');
+    $scope.num_boards = sessionStorage.getItem('num_boards');
 
 
     $scope.editing = false;

@@ -1,67 +1,47 @@
 angular
     .module('so.profile')
-    .controller('CompanyController', CompanyController);
+    .controller('SignDealController', SignDealController);
 
 
 
 
-function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout, $location, $anchorScroll, $state, $stateParams) {
+function CompanyController($scope, Upload, $rootScope, $http, $timeout, $location, $state, $stateParams) {
 
-    
-    $scope.api_domain = sessionStorage.getItem('api_domain');
-    $scope.url_prefix =   $scope.api_domain;
-
-    $scope.user = JSON.parse(sessionStorage['user']);
-    $scope.user_type = sessionStorage.getItem('user_type');
-    $scope.token = sessionStorage.getItem('token');
-
-    $scope.headquarters_city = $scope.user['headquarters_city'];
-    $scope.headquarters_state = $scope.user['headquarters_state'];
-
-    $scope.company_name = $scope.user['company_name'];
-    $scope.company_description = $scope.user['company_description'];
-    $scope.website = $scope.user['website'];
-    $scope.founders = $scope.user['founders'];
-    $scope.industry = $scope.user['industry'];
-
-    $scope.facebook_link = $scope.user['facebook_link'];
-    $scope.linkedin_link = $scope.user['linkedin_link'];
-    $scope.instagram_link = $scope.user['instagram_link'];
-    $scope.twitter_link = $scope.user['twitter_link'];
-    
-    $scope.investors = JSON.parse($scope.user['investors']);
-    $scope.employees = JSON.parse($scope.user['employees']);
-    $scope.documents = JSON.parse($scope.user['documents']);
-    $scope.board_members = JSON.parse($scope.user['board_members']);
-    $scope.funding_rounds = JSON.parse($scope.user['funding_rounds']);
-
-    $scope.deals = JSON.parse($scope.user['deals']);
-
-
-    // Carousel section
+    // New 
     $scope.presentation_title = "";
-    $scope.myInterval = 5000;
-    $scope.noWrapSlides = false;
-
-    var currIndex = 0;
-    var slides = $scope.slides = [
-            {'image': 'images/About2.jpg',
-            'text': 'Nice image',
-            'id': currIndex++
-            },
-            {'image': 'images/About2.jpg',
-            'text': 'Nice image',
-            'id': currIndex++
-            }
-        ];
-
-
 
     $scope.scrollTo = function(id) {
       $location.hash(id);
       $anchorScroll();
    }
 
+    $scope.api_domain = sessionStorage.getItem('api_domain');
+
+    $scope.user_type = sessionStorage.getItem('user_type');
+	$scope.token = sessionStorage.getItem('token');
+    console.log(sessionStorage.getItem('user'));
+    $scope.user = JSON.parse(sessionStorage.getItem('user'));
+
+
+    $scope.company_name = sessionStorage.getItem('company_name');
+    $scope.founders = sessionStorage.getItem('founders');
+    $scope.industry = sessionStorage.getItem('industry');
+    $scope.board_members = [{'pic_url': 'images/InvestorSample.jpg', 'name': 'Marissa Meyer'},{'pic_url': 'images/InvestorSample.jpg', 'name': 'Marissa Meyer'}];
+    $scope.investors = sessionStorage.getItem('investors');
+    $scope.employees = sessionStorage.getItem('employees');
+    $scope.documents = sessionStorage.getItem('documents');
+    $scope.funding_rounds =[{'date': 'Jan. 2016', 'amount': '$100M / Series D', 'valuation': '', 
+        'lead_investor': 'OrbiMed Advisors', 'investors_count': 8}, 
+        {'date': 'Jan. 2016', 'amount': '$100M / Series D', 'Valuation': '', 
+        'lead_investor': 'OrbiMed Advisors', 'investors_count': 8},
+        {'date': 'Jan. 2016', 'amount': '$100M / Series D', 'Valuation': '', 
+        'lead_investor': 'OrbiMed Advisors', 'investors_count': 8},
+        {'date': 'Jan. 2016', 'amount': '$100M / Series D', 'Valuation': '', 
+        'lead_investor': 'OrbiMed Advisors', 'investors_count': 8}];
+
+    console.log($rootScope);
+    $scope.deals = sessionStorage.getItem('deals');
+    console.log(sessionStorage.getItem('deals'));
     
     if ($scope.deals == "" || $scope.deals == null){
         $scope.deals = {};
@@ -87,6 +67,25 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.new_lead_investor = "";
     $scope.new_investors_count = 0;
 
+    $scope.myInterval = 5000;
+    $scope.noWrapSlides = false;
+    var currIndex = 0;
+    var slides = $scope.slides = [
+            {'image': 'images/About2.jpg',
+            'text': 'Nice image',
+            'id': currIndex++
+            },
+            {'image': 'images/About2.jpg',
+            'text': 'Nice image',
+            'id': currIndex++
+            }
+        ];
+
+    //a simple model to bind to and send to the server
+    $scope.model = {
+        name: "",
+        comments: ""
+    };
     //an array of files selected
     $scope.files = [];
 
@@ -105,64 +104,14 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.editing_photo = false;
 
-
-
-
-    $scope.setChanges = function() {
-
-        var url = $scope.url_prefix + "/users/edit";
-        var auth_string = String($scope.token) + ':' + String('unused');
-        var auth_cred = btoa(auth_string);
-
-        $scope.user['user_type'] = 'company';
-        $scope.user['company_name'] = $scope.company_name;
-        $scope.user['company_description'] = $scope.company_description;
-        $scope.user['headquarters_city'] = $scope.headquarters_city;
-        $scope.user['headquarters_state'] = $scope.headquarters_state;
-        $scope.user['industry'] = $scope.industry;
-        $scope.user['website'] = $scope.website;
-        $scope.user['facebook_link'] = $scope.facebook_link;
-        $scope.user['instagram_link'] = $scope.instagram_link;
-        $scope.user['linkedin_link'] = $scope.linkedin_link;
-        $scope.user['twitter_link'] = $scope.twitter_link;
-        $scope.user['founders'] = $scope.founders;
-        sessionStorage.setItem('user', JSON.stringify($scope.user));
-
-        $http({
-            url: url,
-            method: "POST",
-            headers: {'Authorization': 'Basic ' + auth_cred },
-            data: { 'user': JSON.stringify($scope.user)} 
-        })
-        .then(function(response) {
-            console.log(response);
-
-            if(response['data']['status'] == "success"){
-                console.log(response);
-                $state.go('profile.company');
-            }
-        }, 
-        function(response) {
-            // failure
-            console.log(response);
-            
-        });
-    }
-
-
-
-
     $scope.editing_prof_pic = function() {
         $scope.editing_photo = true;
     }
 
 
-    $scope.signDeal = function(deal_name) {
-        sessionStorage.setItem('clickedDeal', deal_name);
-        $scope.deal_clicked = $scope.deals[deal_name];
-        $state.go('profile.company.sign_deal', deal_name);
+    $scope.signDeal = function(deal_id) {
+        $state.go('profile.company.sign_deal', deal_id)
     }
-
 
     $scope.addDeal = function(){
 
@@ -371,7 +320,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
         var auth_cred = btoa(auth_string);
         
         // Debug prints
-        //console.log(dataUrl);
+        console.log(dataUrl);
         var file_type_prefix = dataUrl.substring(0, dataUrl.indexOf(','))
         console.log(typeof(dataUrl));
         console.log("here");
@@ -379,7 +328,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
         Upload.upload({
                 url: url,
                 headers: {'Authorization': 'Basic ' + auth_cred },
-                data: {file: Upload.dataUrltoBlob(dataUrl), 
+                data: {file: Upload.dataUrltoBlob(dataUrl)
                 }
             }).success(function(data, status, headers, config){
                 $scope.user.prof_pic_data = dataUrl;
@@ -411,7 +360,33 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
 
 
-    
+    $scope.setChanges = function() {
+        $scope.editing = false;
+
+        $scope.url_prefix =   $scope.api_domain;
+        var url = $scope.url_prefix + "/users/edit";
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred },
+            data: { 'firstname': $scope.firstname, 'lastname': $scope.lastname, 'headline' : $scope.headline} 
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success"){
+                console.log(response);
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
+    }
 
 
 

@@ -1,0 +1,311 @@
+<div class="edit-company-top-bar row row-centered">
+	<div class="col-centered">
+		<div class="row">
+			<p >Editing {{company_name}} company information <button class="btn-airforce-blue" ng-click="setChanges()">SAVE CHANGES</button> <a ui-sref="profile.company"><button class="btn-airforce-blue pull-right">DISCARD CHANGES</button></a></p>
+		</div>
+	</div>
+</div>
+
+
+
+<div class="edit-company-navbar row row-centered">
+	<div class="col-centered">
+		<a class="edit-company-link" ng-click="scrollTo('edit-company-details')">Company Details</a>
+		<a class="edit-company-link" ng-click="scrollTo('edit-company-presentation')">Presentation</a>
+		<a class="edit-company-link" ng-click="scrollTo('edit-company-members')">Team Members</a>
+		<a class="edit-company-link" ng-click="scrollTo('edit-company-permissions')">Permissions</a>
+	</div>
+</div>
+
+
+
+<div class="edit-company-details" id="edit-company-details">
+	
+	<div class="row edit-company-profpic-row">
+		<div ng-hide="user.profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
+			<div class="row">
+				<div class="row row-centered">	
+					<div ng-click="editing_prof_pic()"><input class="col col-centered" type="file" id="fileInput" /></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div ng-show="editing_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+				<div ng-show="editing_photo"><p>Cropped Image:</p></div>
+				<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
+			</div>
+			<div class="row" style="padding-top:20px;">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				</div>
+				<button class="btn btn-default" ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
+			</div>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter">
+			<div class="row">
+				<p>Company Name</p>
+			</div>
+			<div class="row">
+				<input type="text" class="form-control" ng-model="company_name" style="margin-bottom:20px; width:100%;" placeholder="company_name">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Description</p>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<textarea class="span6" ng-model="company_description" rows="6" placeholder="Tell others about yourself" style="width: 100%; border-color: #CCCCCC;" required></textarea>
+			<!-- <input type="text" class="form-control" ng-model="company_description" style="margin-bottom:20px; width:100%; heigh: 100px;" placeholder="Tell others about yourself"> -->
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Headquarters address</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control float-left" ng-model="headquarters_city" style="margin-bottom:20px; width:100%;" placeholder="City">
+			<input type="text" class="form-control float-right" ng-model="headquarters_state" style="margin-bottom:20px; width:100%;" placeholder="State">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Industry</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="industry" style="margin-bottom:20px; width:100%;" placeholder="your company industry">
+		</div>
+	</div> 
+
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Website</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="website" style="margin-bottom:20px; width:100%;" placeholder="Website">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Facebook link</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="facebook_link" style="margin-bottom:20px; width:100%;" placeholder="Facebook link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Instagram</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="instagram_link" style="margin-bottom:20px; width:100%;" placeholder="Instagram link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Linkedin</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="linkedin_link" style="margin-bottom:20px; width:100%;" placeholder="Linkedin link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Twitter</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="twitter_link" style="margin-bottom:20px; width:100%;" placeholder="Twitter link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Founders</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="founders" style="margin-bottom:20px; width:100%;" placeholder="Founders">
+		</div>
+	</div> 
+</div>
+
+<div class="edit-company-presentation" id="edit-company-presentation">
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<h4>Presentation</h4>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Title</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="presentation_model" style="margin-bottom:20px; width:100%;" placeholder="Introduction to your company">
+		</div>
+	</div> 
+
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+			<p>Photos</p>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+					
+		    <div class="row">
+		    	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
+		      		<uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id">
+		        		<img ng-src="{{slide.image}}" style="margin:auto;">
+		        		<div class="carousel-caption">
+		          			<h4>Slide {{slide.id}}</h4>
+		          			<p>{{slide.text}}</p>
+		        		</div>
+		      		</uib-slide>
+		    	</uib-carousel>
+		  	</div>
+
+		  	<div class="row" style="padding-top: 20px;">
+		  		<button class="btn btn-grey-white">Upload more</button>
+		  	</div>
+
+		</div>
+	</div> 
+
+</div>
+
+<div class="edit-company-members" id="edit-company-members">
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<h4>Members</h4>
+		</div>
+		
+	</div>
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Board Members</p>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+				<img class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </img>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Investors</p>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+				<img class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </img>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Employees</p>
+		</div>
+
+		<div class="row">
+			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
+				<img class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </img>
+				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+			</div>
+		</div>
+	</div>
+
+	
+
+</div>
+
+
+<div class="edit-company-permissions" id="edit-company-permissions">
+	<div class="row">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<h4>Member Permissions</h4>
+		</div>
+		
+	</div>
+
+	<div class="row profile-company-jobs-card">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-9 col-md-9 col-sm-9 col-xs-9">
+			<table style="width:100%" frame="void">
+			  <tr>
+			  		<th></th>
+			  		<th>Investor Permissions</th>
+			  		<th>External Service Professionals</th>
+			  		<th>Team Members</th>
+			  </tr>
+			  <tr>
+			  		<th>Create events</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  <tr>
+			  		<th>Upload Documents</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  <tr>
+			  		<th>Sign Documents</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  <tr>
+			  		<th>Send & Create Reminders</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  <tr>
+			  		<th>Wire Money</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  <tr>
+			  		<th>View documents, presentations, financials</th>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+				    <td><input type="checkbox" value=""></td>
+			  </tr>
+			  
+			  
+			</table>
+		</div>
+	</div>
+	
+</div>

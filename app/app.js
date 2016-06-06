@@ -30,7 +30,7 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 	function($scope, $rootScope, $cookies, $state) {
 
         // USED FOR LOCAL DEVELOPMENT 
-        $cookies.put('api_domain', 'http://127.0.0.1:8040');
+        sessionStorage.setItem('api_domain', 'http://127.0.0.1:8040');
 
         // USED FOR PRODUCTION
         //$cookies.put('api_domain', 'http://104.154.73.130:8080');
@@ -43,7 +43,7 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
         $state.go('home');
 
         $scope.tokenExists = function() {
-            if ($cookies.get('token')){
+            if (sessionStorage.getItem('token')){
                 return true;
             }
             else {
@@ -55,7 +55,7 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
             console.log($rootScope.token);
             $rootScope.token = "";
             console.log($rootScope.token);
-            $cookies.put('token', '');
+            sessionStorage.setItem('token', '');
             $scope.token = "";
             $state.go('home');
 
@@ -63,7 +63,7 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 
         $scope.stateProfile = function() {
 
-            var user_type = $cookies.get('user_type');
+            var user_type = sessionStorage.getItem('user_type');
             if (user_type == "company") {
                 $state.go('profile.company')
             };
@@ -98,7 +98,7 @@ so.run(function($rootScope, $state) {
 
 
     $rootScope.$on('$routeChange', function(event, next, previous) {
-        $scope.token = $cookies.get('token');
+        $scope.token = sessionStorage.getItem('token');
         
     });
 

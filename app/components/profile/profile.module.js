@@ -18,6 +18,14 @@ angular
             controller: 'InvestorController'
         }
 
+        var investorEdit = {
+            name: 'profile.investor_edit',
+            url: '/investor_edit',
+            parent: profile,  //mandatory
+            templateUrl: 'components/profile/investor_edit.html',
+            controller: 'InvestorController'
+        }
+
         var company = { 
             name: 'profile.company', //mandatory. This counter-intuitive requirement addressed in issue #368
             url: '/company',
@@ -26,12 +34,20 @@ angular
             controller: 'CompanyController'
         }
 
-        var signPage = { 
-            name: 'profile.sign', //mandatory. This counter-intuitive requirement addressed in issue #368
-            url: '/:deal_id',
+        var companyEdit = { 
+            name: 'profile.company_edit', //mandatory. This counter-intuitive requirement addressed in issue #368
+            url: '/company_edit',
             parent: profile,  //mandatory
-            templateUrl: 'components/profile/sign.html',
-            controller: 'SignController'
+            templateUrl: 'components/profile/company_edit.html',
+            controller: 'CompanyController'
+        }
+
+        var dealSign = { 
+            name: 'profile.company.sign_deal', //mandatory. This counter-intuitive requirement addressed in issue #368
+            url: '/company/:deal_id',
+            parent: profile,  //mandatory
+            templateUrl: 'components/profile/sign_deal.html',
+            controller: 'CompanyController'
         }
 
         // var item = { 
@@ -45,7 +61,10 @@ angular
         $stateProvider
             .state(profile)
             .state(investor)
+            .state(investorEdit)
             .state(company)  
+            .state(companyEdit) 
+            .state(dealSign)
 
         // $stateProvider
         //     .state('soProfile', {

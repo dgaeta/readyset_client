@@ -1,0 +1,120 @@
+
+<div class="edit-investor-top-bar row row-centered">
+	<div class="col-centered">
+		<div class="row">
+			<p>Editing User Information <button class="btn-airforce-blue">Save Changes</button> <a ui-sref="profile.investor"><button class="btn-airforce-blue pull-right">Discard Changes</button></a></p>
+		</div>
+	</div>
+</div>
+
+<div class="edit-investor-body">
+	
+	<div class="row">
+		<div ng-hide="user.profile_pic" class="row col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img ng-hide="user.profile_pic" src="images/polygons.png" class="img-responsive img-circle" alt="Responsive image"> 
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<div class="row">
+				<p>Your name</p>
+			</div>
+			<div class="row">
+				<input type="text" class="form-control" ng-model="first_name" style="margin-bottom:20px; width:100%;" placeholder="First name">
+				<input type="text" class="form-control" ng-model="last_name" style="margin-bottom:20px; width:100%;" placeholder="Lame name">
+			</div>
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Description</p>
+		</div>
+
+		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+			<input type="text" class="form-control" ng-model="description" style="margin-bottom:20px; width:100%;" placeholder="Tell others about yourself">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Headquarters address</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="email" class="form-control" ng-model="city" style="margin-bottom:20px; width:100%;" placeholder="Your email">
+			<input type="email" class="form-control" ng-model="state" style="margin-bottom:20px; width:100%;" placeholder="Your email">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Primary role</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="primary_role" style="margin-bottom:20px; width:100%;" placeholder="Your job role">
+		</div>
+	</div> 
+
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Website</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="website" style="margin-bottom:20px; width:100%;" placeholder="Website">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Facebook link</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="facebook_link" style="margin-bottom:20px; width:100%;" placeholder="Facebook link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Instagram</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="instagram_link" style="margin-bottom:20px; width:100%;" placeholder="Instagram link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Linkedin</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="linkedin_link" style="margin-bottom:20px; width:100%;" placeholder="Linkedin link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Twitter</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="text" class="form-control" ng-model="twitter_link" style="margin-bottom:20px; width:100%;" placeholder="Twitter link">
+		</div>
+	</div> 
+
+	<div class="row">
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<p>Email</p>
+		</div>
+
+		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<input type="email" class="form-control" ng-model="email" style="margin-bottom:20px; width:100%;" placeholder="Your email">
+		</div>
+	</div> 
+
+</div>

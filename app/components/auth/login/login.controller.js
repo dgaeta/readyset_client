@@ -10,7 +10,7 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
 
     $scope.success = '';
     //$scope.api_domain =  "http://127.0.0.1:8080";
-    $scope.api_domain = $cookies.get('api_domain');
+    $scope.api_domain = sessionStorage.getItem('api_domain');
 
     $scope.login = function() {
         console.log($scope.email);
@@ -30,11 +30,11 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                 data = value['data'];
 
                 if(data['status'] == "success"){
-                    $cookies.put('token', value['data']['token']);
-                    $cookies.put('user', JSON.stringify(value['data']['user']));
+                    sessionStorage.setItem('token', value['data']['token']);
+                    sessionStorage.setItem('user', JSON.stringify(value['data']['user']));
                     $rootScope.user = value['data']['user'];
                     $rootScope.user_type = data['user']['user_type'];
-                    $cookies.put('user_type', data['user']['user_type']);
+                    sessionStorage.setItem('user_type', data['user']['user_type']);
                     
                     if (data['user']['user_type'] == "company") {
                         $state.go('profile.company');

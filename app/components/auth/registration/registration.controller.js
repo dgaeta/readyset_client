@@ -78,19 +78,19 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
             console.log(response);
 
             if(response['data']['status'] == "success" || response['data']['status'] == 200){
-                $cookies.put('user_type', 'investor');
-                $cookies.put('email', $scope.email);
-                $cookies.put('firstname', $scope.firstname);
-                $cookies.put('lastname', $scope.lastname);
-                $cookies.put('token', response['data']['token']);
-                $cookies.put('city', $scope.city);
-                $cookies.put('state', $scope.state);
-                $cookies.put('primary_role', $scope.primary_role);
-                $cookies.put('website', $scope.website);
-                $cookies.put('headline', $scope.headline);
-                $cookies.put('num_jobs', 0);
-                $cookies.put('num_boards', 0);
-                $cookies.put('num_investments', 0);
+                sessionStorage.setItem('user_type', 'investor');
+                sessionStorage.setItem('email', $scope.email);
+                sessionStorage.setItem('firstname', $scope.firstname);
+                sessionStorage.setItem('lastname', $scope.lastname);
+                sessionStorage.setItem('token', response['data']['token']);
+                sessionStorage.setItem('city', $scope.city);
+                sessionStorage.setItem('state', $scope.state);
+                sessionStorage.setItem('primary_role', $scope.primary_role);
+                sessionStorage.setItem('website', $scope.website);
+                sessionStorage.setItem('headline', $scope.headline);
+                sessionStorage.setItem('num_jobs', 0);
+                sessionStorage.setItem('num_boards', 0);
+                sessionStorage.setItem('num_investments', 0);
 
                 $rootScope.user_type = response['data']['user']['user_type'];
                 $state.go('profile.investor');
@@ -140,28 +140,28 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
             console.log(response);
 
             if(response['data']['status'] == "success" || response['data']['status'] == 200){
-                $cookies.put('user_type', 'company');
-                $cookies.put('email', $scope.email);
-                $cookies.put('headline', $scope.headline);
-                $cookies.put('token', response['data']['token']);
-                $cookies.put('city', $scope.city);
-                $cookies.put('state', $scope.state);
-                $cookies.put('website', $scope.website);
+                sessionStorage.setItem('user_type', 'company');
+                sessionStorage.setItem('email', $scope.email);
+                sessionStorage.setItem('headline', $scope.headline);
+                sessionStorage.setItem('token', response['data']['token']);
+                sessionStorage.setItem('city', $scope.city);
+                sessionStorage.setItem('state', $scope.state);
+                sessionStorage.setItem('website', $scope.website);
                 
-                $cookies.put('company_name', $scope.company_name);
-                $cookies.put('industry', $scope.industry);
-                $cookies.put('founders', $scope.founders);
-                $cookies.put('employess', '[]');
-                $cookies.put('investors', '[]');
-                $cookies.put('funding_rounds', '[]');
+                sessionStorage.setItem('company_name', $scope.company_name);
+                sessionStorage.setItem('industry', $scope.industry);
+                sessionStorage.setItem('founders', $scope.founders);
+                sessionStorage.setItem('employess', '[]');
+                sessionStorage.setItem('investors', '[]');
+                sessionStorage.setItem('funding_rounds', '[]');
 
 
                 $rootScope.token = response['data']['token'];
                 $rootScope.user = response['data']['user'];
                 console.log(response['data']['user']);
-                $cookies.put('deals', '{}');
+                sessionStorage.setItem('deals', '{}');
 
-                $cookies.put('user', JSON.stringify(response['data']['user']));
+                sessionStorage.setItem('user', JSON.stringify(response['data']['user']));
 
                 $rootScope.user_type = response['data']['user']['user_type'];
                 $state.go('profile.company');
