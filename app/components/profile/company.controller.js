@@ -8,8 +8,8 @@ angular
 function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout, $location, $anchorScroll, $state, $stateParams) {
 
     
-    $scope.api_domain = sessionStorage.getItem('api_domain');
-    $scope.url_prefix =   $scope.api_domain;
+    $scope.api_domain = "http://104.197.111.36";
+    $scope.url_prefix = "http://104.197.111.36:8040";
 
     $scope.user = JSON.parse(sessionStorage['user']);
     $scope.user_type = sessionStorage.getItem('user_type');

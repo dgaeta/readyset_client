@@ -4,7 +4,8 @@ angular
 
 function ProfileController($scope, $cookies, $state, $http) {
 
-    $scope.api_domain = $cookies.get('api_domain');
+    $scope.api_domain = "http://104.197.111.36";
+    $scope.url_prefix = "http://104.197.111.36:8040";
 
     $scope.user_type = sessionStorage.getItem('user_type');
 	$scope.token = sessionStorage.getItem('token');
@@ -43,7 +44,6 @@ function ProfileController($scope, $cookies, $state, $http) {
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);

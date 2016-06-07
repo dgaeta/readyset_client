@@ -4,7 +4,6 @@ angular
 
 function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state) {
 
-    console.log($rootScope);
     $scope.company = false;
     $scope.investor = false;
 
@@ -26,7 +25,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
     $scope.email = '';
     $scope.password = '';
 
-    $scope.api_domain = $cookies.get('api_domain');
+    $scope.api_domain = "http://104.197.111.36";
+    $scope.url_prefix = "http://104.197.111.36:8040";
 
 
 
@@ -37,9 +37,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
     }
 
     $scope.companyClicked = function() {
-        console.log($scope.company);
         $scope.investor = false;
-        console.log($scope.company);
         $scope.company = true;
 
     }
@@ -47,7 +45,6 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_investor = function() {
 
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
@@ -106,7 +103,6 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_company = function() {
 
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/add";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);

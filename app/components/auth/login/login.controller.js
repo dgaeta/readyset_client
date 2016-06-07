@@ -10,13 +10,13 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
 
     $scope.success = '';
     //$scope.api_domain =  "http://127.0.0.1:8080";
-    $scope.api_domain = sessionStorage.getItem('api_domain');
+    $scope.api_domain = "http://104.197.111.36";
+    $scope.url_prefix = "http://104.197.111.36:8040";
 
     $scope.login = function() {
         console.log($scope.email);
         console.log($scope.password);
 
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/signin";
         var auth_string = String($scope.email) + ':' + String($scope.password);
         var auth_cred = btoa(auth_string);

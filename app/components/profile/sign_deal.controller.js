@@ -10,12 +10,14 @@ function CompanyController($scope, Upload, $rootScope, $http, $timeout, $locatio
     // New 
     $scope.presentation_title = "";
 
+    $scope.api_domain = "http://104.197.111.36";
+    $scope.url_prefix = "http://104.197.111.36:8040";
+
     $scope.scrollTo = function(id) {
       $location.hash(id);
       $anchorScroll();
    }
 
-    $scope.api_domain = sessionStorage.getItem('api_domain');
 
     $scope.user_type = sessionStorage.getItem('user_type');
 	$scope.token = sessionStorage.getItem('token');
@@ -159,7 +161,6 @@ function CompanyController($scope, Upload, $rootScope, $http, $timeout, $locatio
 
 
     $scope.getDocument = function(deal_name, file_name){
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/deals/get_document";
 
         var auth_string = String($scope.token) + ':' + String('unused');
@@ -278,7 +279,6 @@ function CompanyController($scope, Upload, $rootScope, $http, $timeout, $locatio
     };
 
     $scope.getProfilePic = function() {
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/get_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -314,7 +314,6 @@ function CompanyController($scope, Upload, $rootScope, $http, $timeout, $locatio
 
     $scope.uploadProfilePic = function(dataUrl) {
         // URL Construction with auth token
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/set_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
@@ -363,7 +362,6 @@ function CompanyController($scope, Upload, $rootScope, $http, $timeout, $locatio
     $scope.setChanges = function() {
         $scope.editing = false;
 
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/edit";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
