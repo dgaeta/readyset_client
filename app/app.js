@@ -36,9 +36,18 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
         //$cookies.put('api_domain', 'http://104.154.73.130:8080');
 
 
-        $scope.cookies = $cookies;
+        $scope.user = sessionStorage.getItem('user');
+        if ($scope.user) {
+            $scope.user = JSON.parse($scope.user);
+            if ($scope.user.profile_pic == '') {
+                $scope.no_profile_pic = true;
+            };
+        } else {
+            $scope.no_profile_pic = true;
+        };
 
-        $rootScope.cookies = $cookies;
+
+
 
         $state.go('home');
 
@@ -52,11 +61,8 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
         }
 
         $scope.logout = function() {
-            console.log($rootScope.token);
-            $rootScope.token = "";
-            console.log($rootScope.token);
-            sessionStorage.setItem('token', '');
-            $scope.token = "";
+           
+            sessionStorage.clear()
             $state.go('home');
 
         }
@@ -72,6 +78,13 @@ so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
                 $state.go('profile.investor')
             };
 
+        }
+
+
+        $scope.viewNotifications = function() {
+
+            $state.go('profile.notifications', {notify: false})
+            
         }
 
 	}

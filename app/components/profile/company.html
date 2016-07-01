@@ -10,8 +10,11 @@
 		<div  class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
 			<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
 			<div class="row row-centered">
-				<div class="col-centered">
+				<div ng-hide="user.profile_pic" class="col-centered">
 					<img src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
+				</div>
+				<div ng-show="user.profile_pic" class="col-centered">
+					<img ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
 				</div>
 			</div>
 			<div class="row row-centered">
@@ -37,10 +40,10 @@
 		<!-- END PROFILE PICTURE -->
 
 		
-		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		<div class="company-splash-headline col-lg-8 col-md-8 col-sm-8 col-xs-8">
 			<div class="row">
 				<div class="white-text">
-					<h2 class="float-left">{{company_name | uppercase}}</h2>
+					<h2 class="float-left">{{user.company_name | uppercase}}</h2>
 					<div style="margin-top:20px; padding-right:100px;" class="float-right">
 						<a ui-sref="profile.company_edit">
 							<button type="button" class="btn btn-edit gotham-font" >
@@ -51,37 +54,13 @@
 				</div>
 			</div>
 			<div class="row">
-				<div class="white-text">
-					<p>{{company_description}} </p>
+				<div class="white-text col-lg-11 col-md-11 col-sm-11 col-xs-11">
+					<p>{{user.company_description}} </p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- START PROFILE PIC EDIT SECTION -->
-	<!-- <div class="row">
-		<div class="row">	
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-				<div ng-click="editing_prof_pic()"><input type="file" id="fileInput" /></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<div ng-show="editing_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-
-			<div ng-show="editing_photo"><p>Cropped Image:</p></div>
-			<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
-		</div>
-		<div class="row" style="padding-top:20px;">
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<button class="btn btn-default" ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
-		</div>
-	</div> -->
-	<!-- END PROFILE PIC EDIT SECTION -->
 
 </div>
 
@@ -99,7 +78,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{headquarters_city}}, {{headquarters_state}}</p>
+				<p class="gray-text text-center">{{user.headquarters_city}}, {{user.headquarters_state}}</p>
 			</div>
 		</div>	
 	</div>
@@ -121,7 +100,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{founders}}</p>
+				<p class="gray-text text-center">{{user.founders}}</p>
 			</div>
 		</div>	
 	</div>
@@ -142,7 +121,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{industry}}</p>
+				<p class="gray-text text-center">{{user.industry}}</p>
 			</div>
 		</div>	
 	</div>
@@ -165,7 +144,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{website}}</p>
+				<p class="gray-text text-center">{{user.website}}</p>
 			</div>
 		</div>	
 	</div>
@@ -180,7 +159,7 @@
 
 <!-- BEING INTRO SECTION -->
 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px; padding-top:30px;">
-	<h3 class="vcenter gotham-font grey-text">INTRODUCTION TO {{company_name | uppercase}}</h3>
+	<h3 class="vcenter gotham-font grey-text">{{company_struct.presentation_items.presentation_title | uppercase}}</h3>
 </div>
 
 <!-- CAROUSEL SECTION -->
@@ -189,11 +168,10 @@
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 	    <div style="height: 305px">
 	    	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
-	      		<uib-slide ng-repeat="slide in slides" active="slide.active" index="slide.id">
-	        		<img ng-src="{{slide.image}}" style="margin:auto;">
+	      		<uib-slide ng-repeat="(photo_storage_id, photo_struct) in company_struct.presentation_items.photos track by $index" active="photo_struct.active" index="photo_struct.index">
+	        		<img ng-src="{{photo_struct.url}}" style="margin:auto;">
 	        		<div class="carousel-caption">
-	          			<h4>Slide {{slide.id}}</h4>
-	          			<p>{{slide.text}}</p>
+	          			<p>{{photo_struct.caption}}</p>
 	        		</div>
 	      		</uib-slide>
 	    	</uib-carousel>
@@ -206,7 +184,7 @@
 <!-- FUNDING ROUNDS SECTION -->
 <div class="row profile-company-jobs">
 	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center vcenter" style="min-height:100px; padding-top:30px;">
-		<h3 class="vcenter gotham-font grey-text">FUNDING ROUNDS ({{funding_rounds.length}})</h3>
+		<h3 class="vcenter gotham-font grey-text">FUNDING ROUNDS ({{company_struct.funding_rounds.length}})</h3>
 	</div>
 	
 
@@ -222,7 +200,7 @@
 					    <th>LEAD INVESTOR</th>
 					    <th>INVESTORS</th>
 				  </tr>
-				  <tr ng-repeat="funding in funding_rounds track by $index">
+				  <tr ng-repeat="funding in company_struct.funding_rounds track by $index">
 					    <td>{{funding.date}}</td>
 					    <td>{{funding.amount}}</td>
 					    <td>{{funding.valuation}}</td>
@@ -268,26 +246,28 @@
 			<div class="profile-company-deals-area"></div>
 				<div class="profile-company-deals-table">
 
-					<div ng-repeat="(key, deal) in deals track by $index">
-						<div class="row" style="padding-top: 25px;">
-							<p> <span class="airforce-text">{{key}}</span> -  {{deal.date}}</p>
+					<div ng-repeat="(deal_name, deal_struct) in company_struct.deal_flow_management track by $index">
+						<div class="row" >
+							<p> <span class="airforce-text">{{deal_name}}</span> -  {{deal_struct.date}}</p>
 						</div>
-						<div class="row" style="padding-bottom: 25px;">
-							<p>{{deal.description}}</p>
+						<div class="row deal-description-row">
+							<p>{{deal_struct.description}}</p>
 						</div>
-						<div ng-repeat="(file_name, file) in deal.documents" class="row">
-							<a ng-click="getDocument(deal.deal_name, file.file_name)"><p>{{file.file_name}}</p></a>
+
+
+						<div ng-repeat="(doc_name, doc_struct) in deal_struct.document_structs" class="row deal-documents-row">
+							<a ng-click="getDocument(deal.name, doc_name)"><p class="airforce-link">{{doc_name}}</p></a>
 						</div>
 
 						<div class="row">
 							<input type="file" file-upload multiple/>
 						    <ul>
-						        <li ng-repeat="file in files">{{file.name}}</li>
+						        <li ng-repeat="file in files">{file.name}}</li>
 						    </ul>
 						</div>
 						<div class="row">
-							<button ng-click="save(deal)" type="button" class="btn btn-airforce-blue" >UPLOAD FILES</button>
-							<button ng-click="signDeal(deal.deal_name)" type="button" class="btn btn-dark-grey" >SIGN DEAL</button>
+							<button ng-click="uploadDealFile(deal)" type="button" class="btn btn-airforce-blue" >UPLOAD FILES</button>
+							<button ng-click="signDeal(deal_name)" type="button" class="btn btn-dark-grey" >SIGN DEAL</button>
 						</div>
 						
 					</div>
@@ -316,57 +296,78 @@
 		<h3 class="vcenter gotham-font grey-text">INVESTORS AND ADVISORS</h3>
 	</div>
 
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-		<div class="row text-center pagination-centered">
-			
-			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
-				<p>BOARD MEMBERS</p>
-			</div>
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<div class="row text-center pagination-centered">
+				
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
+					<p>BOARD MEMBERS</p>
+				</div>
 
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-				<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
-			</div>
-		</div>
-
-		<div class="row">
-			<img src="images/horiz-divider-lg.png" style="width: 100%;">
-		</div>
-
-		<div class="row text-center pagination-centered">
-			
-			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
-				<p>INVESTORS</p>
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-				<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in company_struct.members.board_members.accepted">
+					<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.user_photo_url}}"> </IMG>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+				</div>
 			</div>
 		</div>
-
-		<div class="row">
-			<img src="images/horiz-divider-lg.png" style="width: 100%;">
-		</div>
-
-		<div class="row text-center pagination-centered">
-			
-			<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
-				<p>EMPLOYEES</p>
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in board_members">
-				<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.pic_url}}"> </IMG>
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
-			</div>
-		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 	</div>
-	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ></div>
-		
+
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	<div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+		<img src="images/horiz-divider-lg.png" style="width: 100%;">
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<div class="row text-center pagination-centered">
+				
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
+					<p>INVESTORS</p>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in company_struct.members.investors.accepted">
+					<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.user_photo_url}}"> </IMG>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	</div>
+
+
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	<div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+		<img src="images/horiz-divider-lg.png" style="width: 100%;">
+	</div>
+	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 ">
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+		<div class="row col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<div class="row text-center pagination-centered">
+				
+				<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3 text-left">
+					<p>EMPLOYEES</p>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" ng-repeat="member in company_struct.members.employees.accepted">
+					<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.user_photo_url}}"> </IMG>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p>{{member.name}}</p></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+	</div>
+
 </div>
 <!-- END INVESTMENTERS AND ADVISORS SECTION -->
 

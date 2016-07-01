@@ -10,23 +10,8 @@
 			<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
 			<div class="row row-centered">
 				<div class="col-centered">
-					<img src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
+					<img ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
 				</div>
-			</div>
-			<div class="row row-centered">
-				<div class="col-centered company-social-links">
-					<img src="images/fbprofile.png" class="img-responsive social-icons">
-		            
-
-		            <img src="images/twitterprofil.png" class="img-responsive social-icons">
-
-
-		            <img src="images/instaprofile.png" class="img-responsive social-icons">
-
-
-		            <img src="images/rssprofile.png" class="img-responsive social-icons">
-
-		         </div>
 			</div>
 		</div>
 		<!-- <div ng-show="user.prof_pic_data" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
@@ -39,9 +24,9 @@
 		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 			<div class="row">
 				<div class="white-text">
-					<h2 class="float-left">{{first_name | uppercase}} {{last_name | uppercase}}</h2>
+					<h2 class="float-left">{{user.firstname | uppercase}} {{user.lastname | uppercase}}</h2>
 					<div style="margin-top:20px; padding-right:100px;" class="float-right">
-						<a ui-sref="profile.company_edit">
+						<a ui-sref="profile.investor_edit">
 							<button type="button" class="btn btn-edit gotham-font" >
 							EDIT <img src="images/edit.png" class="float-right edit-image">
 							</button>
@@ -51,7 +36,7 @@
 			</div>
 			<div class="row">
 				<div class="white-text">
-					<p>{{headline}} </p>
+					<p>{{user.description}} </p>
 				</div>
 			</div>
 		</div>
@@ -88,7 +73,7 @@
 
 <!-- Investor Demographics bar -->
 <!-- GREY BAR DEMOGRAPHICS SECTION -->
-<div class="company-demographics-section">
+<div class="row company-demographics-section">
 	
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
@@ -100,7 +85,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{headquarters_city}}, {{headquarters_state}}</p>
+				<p class="gray-text text-center">{{user.city}}, {{user.state}}</p>
 			</div>
 		</div>	
 	</div>
@@ -116,15 +101,15 @@
 		<div class="row row-centered">
 			<div class="col col-centered">
 				<img src="images/founders.png" alt="" class="float-left">
-				<h5 style="color: #2F3437" class="float-right">Founders:</h5>
+				<h5 style="color: #2F3437" class="float-right">Primary role:</h5>
 			</div>
 		</div>
 
 		<div class="row row-centered">
-			<div class="col col-centered">
-				<p class="gray-text text-center">{{founders}}</p>
+			<div class="col-centered company-social-links">
+				<p class="gray-text text-center">{{user.primary_role}}</p>
 			</div>
-		</div>	
+		</div>
 	</div>
 
 	<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1" style="min-height:125px;">
@@ -136,16 +121,26 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<img src="images/industry.png" alt="" class="float-left"> 
-				<h5 style="color: #2F3437" class="float-right">Industry:</h5>
+				<img src="images/founders.png" alt="" class="float-left">
+				<h5 style="color: #2F3437" class="float-right">Social media:</h5>
 			</div>
 		</div>
 
 		<div class="row row-centered">
-			<div class="col col-centered">
-				<p class="gray-text text-center">{{industry}}</p>
-			</div>
-		</div>	
+			<div class="col-centered company-social-links">
+				<img src="images/fbprofile.png" class="img-responsive social-icons">
+	            
+
+	            <img src="images/twitterprofil.png" class="img-responsive social-icons">
+
+
+	            <img src="images/instaprofile.png" class="img-responsive social-icons">
+
+
+	            <img src="images/rssprofile.png" class="img-responsive social-icons">
+
+	         </div>
+		</div>
 	</div>
 
 
@@ -166,7 +161,7 @@
 
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<p class="gray-text text-center">{{website}}</p>
+				<p class="gray-text text-center">{{user.website}}</p>
 			</div>
 		</div>	
 	</div>
@@ -181,11 +176,12 @@
 <!-- BEGIN WHITE SECTION -->
 
 <!-- BEGIN JOBS SECTION -->
-<div class="row row-centered" style="min-height:100px;">
-	<div class="col-centered">
+<div class="row row-centered">
+	<div class="col col-centered" style="min-height:100px;">
 		<h3 class="vcenter gotham-font grey-text">JOBS - {{jobs_count}}</h3>
 	</div>
-</div>
+</div>	
+
 
 <div class="row" style="padding-bottom:50px;">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>

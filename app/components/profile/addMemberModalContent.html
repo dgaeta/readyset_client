@@ -1,0 +1,33 @@
+
+
+<div class="modal-header">
+    <h3 class="modal-title">Add Member</h3>
+</div>
+
+<div class="row row-centered">
+	<div class="col-centered col-lg-5 col-md-5 col-sm-5 col-xs-5">
+		<uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+	</div>
+</div>
+
+
+<div class="row row-centered">
+	<div class="btn-group col-centered">
+	    <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'board_members'">Board Member</label>
+	    <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'investors'">Investor</label>
+	    <label class="btn btn-primary" ng-model="radioModel" uib-btn-radio="'employees'">Employee</label>
+	</div>
+</div>
+
+<form class=" modal-body" >
+	<input type="text" placeholder="your name" ng-model="inviter_name" class="form-control" style="margin-bottom:20px;"><br />
+    <input type="email" placeholder="contact's email address" ng-model="invite_email" class="form-control" style="margin-bottom:20px;"><br />
+</form>
+
+
+
+
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="cancel()">Cancel</button>
+</div>

@@ -1,0 +1,31 @@
+
+
+<div class="row row-centered notifications-section">
+	<div class="col col-centered">
+		<h1 class="notifications-h1">NOTIFICATIONS</h1>
+	</div>
+</div>
+
+<div class="notiications-repeated-section">
+	<div ng-repeat="note in notifications">
+		
+		<div class="row">
+			<div class="col-lg-offset-2 col-md-offset-2 col-sm-offset--2 col-xs-offset-2 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<p>{{note.created_date}}</p>
+			</div>
+
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
+				<p>{{note.message}}</p>
+			</div>
+		</div>
+
+		<div class="row" ng-show="note.action_required && ! note.seen">
+			<div class="col-lg-offset-5 col-md-offset-5 col-sm-offset-5 col-xs-offset-5">
+				<button class="btn btn-default" ng-click="updateNotification(note, accept)">ACCEPT</button>
+				<button class="btn btn-default" ng-click="updateNotification(note, decline)">DECLINE</button>
+			</div>
+		</div>
+
+		{{note}}
+	</div>
+</div>

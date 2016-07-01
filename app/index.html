@@ -62,7 +62,11 @@
         <li><a  style="color: #919CA2;" ui-sref="soWorks">How it works</a></li>
         <li><a  style="color: #919CA2;" ng-hide="tokenExists()" ui-sref="soAuthLogin">Log In</a></li>
         <!-- <li><a  ng-hide="tokenExists()" ui-sref="soAuthRegistration">SIGN UP</a></li> -->
-        <li><img src="/images/polygons.png" class="nav-profile-image img-responsive img-circle" ng-show="tokenExists()" ng-click="stateProfile()"></li>
+
+        <li><a ng-show="tokenExists()" ng-click="viewNotifications()">notifications</a></li>
+
+        <li><img ng-show="tokenExists() && no_profile_pic" src="/images/polygons.png" class="nav-profile-image img-responsive img-circle" ng-click="stateProfile()"></li>
+        <li><img ng-show="tokenExists() &&  user.profile_pic" ng-src="{{user.profile_pic}}" class="nav-profile-image img-responsive img-circle" ng-click="stateProfile()"></li>
 
         <li><button type="button" class="btn btn-primary btn-sm outline" ng-hide="tokenExists()" style="margin-top:13px;" ui-sref="soAuthRegistration"><p style="margin-bottom:0px;">Sign Up</p></button></li>
     
@@ -118,13 +122,10 @@
   <script src="lib/Blob.js"></script>
   <script src="lib/FileSaver.min.js"></script>
   <script src="lib/download.js"></script>
- 
 
-  <!-- Firebase + AngularFire -->
-  <!-- Firebase -->
-  <!-- <script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
-  // AngularFire
-  // <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script> -->
+  <script src="//angular-ui.github.io/bootstrap/ui-bootstrap-tpls-1.1.2.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.js"></script>
+ 
 
   <script src="app.js"></script>
 
@@ -139,6 +140,8 @@
   <script src="components/profile/profile.controller.js"></script>
   <script src="components/profile/company.controller.js"></script>
   <script src="components/profile/investor.controller.js"></script>
+  <script src="components/profile/sign_deal.controller.js"></script>
+  <script src="components/profile/notifications.controller.js"></script>
 
   <!-- Auth -->
   <script src="components/auth/auth.module.js"></script>

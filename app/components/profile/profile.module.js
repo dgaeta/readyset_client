@@ -47,16 +47,16 @@ angular
             url: '/company/:deal_id',
             parent: profile,  //mandatory
             templateUrl: 'components/profile/sign_deal.html',
-            controller: 'CompanyController'
+            controller: 'SignDealController'
         }
 
-        // var item = { 
-        //     name: 'profile.device', //mandatory. This counter-intuitive requirement addressed in issue #368
-        //     url: '/device',
-        //     parent: profile,  //mandatory
-        //     templateUrl: 'components/profile/device.html',
-        //     controller: 'DeviceController'
-        // }
+       var notifications = { 
+            name: 'profile.notifications', //mandatory. This counter-intuitive requirement addressed in issue #368
+            url: '/notifications',
+            parent: profile,  //mandatory
+            templateUrl: 'components/profile/notifications.html',
+            controller: 'NotificationsController'
+        }
 
         $stateProvider
             .state(profile)
@@ -65,6 +65,7 @@ angular
             .state(company)  
             .state(companyEdit) 
             .state(dealSign)
+            .state(notifications)
 
         // $stateProvider
         //     .state('soProfile', {

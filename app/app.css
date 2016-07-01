@@ -9,29 +9,75 @@ html, body {
   height: 100%;
 }
 
+.no-gutter {
+  padding-right:0;
+  padding-left:0;
+}
+
+.sign-cell  {
+    padding-right:0;
+    padding-left:0;
+    border-width: thin;
+    border-style: solid;
+    border-color:#EDEDED;
+    margin-bottom: 15px;
+}
+
 p.thick {
   font-weight: bold;
 }
 
-th {
-  padding-top: 10px;
-  padding-bottom: 10px;
+.edit-member-permissions-th {
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-td {
+.centered-td {
     text-align: center; /* center checkbox horizontally */
     vertical-align: middle; /* center checkbox vertically */
 }
 
-a {
+.edit-permissions-top-th {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-bottom: 20px;
+}
+
+/*a {
   text-decoration: none;
   color: #9B9B9B;
   padding-left: 10px;
   padding-right: 10px;
-}
+}*/
+
 
 a:active {
   color: black;
+}
+
+.airforce-link {
+  color: #557785;
+  text-decoration: underline;
+  text-decoration-color: #557785;
+}
+
+.member-permissions-th {
+  
+}
+
+.deal-description-row {
+  border-bottom: #E5E5E5;
+  border-bottom-style: solid;
+  border-bottom-width: thin;
+  padding-bottom: 20px;
+}
+
+.deal-documents-row {
+  padding-top: 25px;
+}
+
+.company-splash-headline {
+  padding-left: 50px;
 }
 
 .edit-company-link a{
@@ -52,6 +98,17 @@ a:active {
   padding-left: 20px
 }
 
+.btn-addnew-member {
+  background-color: #EDEDED;
+  border-width: 2px;
+  border-color: #E2E2E2;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  padding-left: 40px;
+  padding-right: 40px;
+  color: #6E7273;
+}
+
 .btn-edit{
   background-color: #DCD9E4;
   color: #676968;
@@ -65,6 +122,23 @@ a:active {
 .edit-image{
   padding-top: 5px;
   padding-left: 5px;
+}
+
+
+.notifications-section {
+  min-height:150px;
+  padding-top:35px;
+  padding-left: 50px;
+  background-color: #EDEDED;
+}
+
+.notifications-h1 {
+  padding-top: 40px;
+  margin-bottom: 40px;
+}
+
+.notiications-repeated-section {
+  padding-top: 45px;
 }
 
 .company-demographics-section {
@@ -92,14 +166,24 @@ a:active {
   float:right;
 }
 
+.sign-deal-banner {
+  padding-top: 150px;
+  padding-bottom: 100px;
+  background-color: #437592;
+  color: white;
+}
+
+.sign-docs-description{
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 .sign-deal-body {
-  padding-left: 100px;
-  padding-bottom: 50px;
   padding-top: 40px;
 }
 
 .sign-docs-header {
-  padding-top: 
+  padding-left: 45px;
 }
 
 .sign-document-item {
@@ -110,7 +194,20 @@ a:active {
 
 }
 
+.next-button-row {
+  padding-right: 30px;
+  padding-bottom: 50px;
+}
+
+.sign-row {
+  padding-top: 15px;
+  padding-bottom: 5px;
+  background-color: #F6F6F6;
+}
+
 .checkmark-section {
+  padding-top: 20px;
+  padding-left: 20px;
   background-color: #EDEDED;
 }
 
@@ -160,8 +257,23 @@ a:active {
   padding-bottom: 50px;
 }
 
+.edit-boardmembers-row {
+  padding-top: 10px;
+  padding-bottom: 45px;
+}
+
+.edit-investors-row {
+  padding-bottom: 40px;
+}
+
+.edit-employees-row {
+  padding-top: 10px;
+}
+
 .edit-company-members {
   background-color: #EDEDED;
+  padding-top: 60px;
+  padding-bottom: 60px;
 }
 
 .edit-company-permissions {

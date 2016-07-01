@@ -1,86 +1,85 @@
-<div class="sign-deal-banner">
-	<div id="mycarousel" class="carousel slide" data-ride="carousel">
-	    <div class="carousel-inner">
-	        <div class="item active">
-	        <img src="images/HowBack.jpg" alt="" class="img-responsive">
-	           <div class="carousel-caption">
-	           		<h3>FINANCING ROUND FOR JAWBONE</h3>
-	           		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore magna aligqua.</p> 
-	           </div>
-	        </div>
-	    </div>
-	</div>
+<div class="row row-centered sign-deal-banner">
+   <div class="col-centered ">
+   		<div class="text-center">
+	   		<h1>FINANCING ROUND FOR JAWBONE</h1>
+	   		
+	   		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut et dolore magna aligqua.</p> 
+   		</div>
+   </div>
 </div>
 
-<div class="sign-deal-body">
-	<div class="sign-docs-header">
-		<div class="row">
-			<h3>INVESTMENT DOCUMENTATION</h3>
+<div class="row sign-deal-body col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-12 col-md-12 col-sm-12 col-xs-12">
+	
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="sign-docs-header">
+			<div class="row">
+				<h3>INVESTMENT DOCUMENTATION</h3>
+			</div>
+			<div class="row no-gutter col-lg-10 col-md-10 col-sm-10 col-xs-10">
+				<p>To invest in this project you must confirm receipt and indicate agreement with the following documents:</p>
+			</div>
 		</div>
-		<div class="row">
-			<p>To invest in this project you must confirm receipt and indicate agreement with the following documents:</p>
+
+		<div ng-repeat="(doc_name, doc_struct) in clicked_deal_struct.document_structs track by $index" class="sign-cell col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+				
+				<div class="checkmark-section col-lg-1 col-md-1 col-sm-1 col-xs-3">
+					<img ng-src="images/CheckInactive.png">
+				</div>
+				<div class="sign-row col-lg-11 col-md-11 col-sm-11 col-xs-9">
+					<p>I have received and agree to the {{doc_name}}</p>
+				</div>
+			
 		</div>
 	</div>
 
-	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 checkmark-section sign-row">
-			
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+
+	<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+		<div class="sign-docs-header">
+			<div>
+				<div class="row">
+					<h3>INVESTMENT ACKNOWLEDGEMENTS</h3>
+				</div>
+				<div class="row">
+					<p>To invest in this project you must confirm receipt and indicate agreement with the following:</p>
+				</div>
+			</div>
+		</div>
+
+		<div class="sign-cell col-lg-10 col-md-10 col-sm-10 col-xs-10">
+			<div class="checkmark-section col-lg-1 col-md-1 col-sm-1 col-xs-3">
 				<img ng-src="images/CheckInactive.png">
 			</div>
-			
-			
-			<div class="sign-doc col-lg-7 col-md-7 col-sm-7 col-xs-7">
-				<p>I have received and agree to the {{doc.name}}
-			</div>
-		
-	</div>
-
-
-
-	<div class="sign-docs-header">
-		<div>
-			<div class="row">
-				<h3>INVESTMENT ACKNOWLEDGEMENTS</h3>
-			</div>
-			<div class="row">
-				<p>To invest in this project you must confirm receipt and indicate agreement with the following:</p>
+			<div class="sign-row col-lg-11 col-md-11 col-sm-11 col-xs-9">
+				<p>I have sufficient knowledge and experience in financial and business matters so as to be capable of evaluating the merits and risks associated with investing in this offering.</p>
 			</div>
 		</div>
 
-		<div class="row" class="sign-row">
-			<div  class="row sign-document-item">
-				<p style="float: left;"><img ng-src="images/CheckInactive.png"></p>
-				<p>I have sufficient knowledge and experience in financial and business matters so as to be capable of evaluating the merits and risks associated with investing in this offering. 
+		<div class="sign-cell col-lg-10 col-md-10 col-sm-10 col-xs-10  ">
+			<div class="checkmark-section col-lg-1 col-md-1 col-sm-1 col-xs-3">
+				<img ng-src="images/CheckInactive.png">
 			</div>
-			
+			<div class="sign-row col-lg-11 col-md-11 col-sm-11 col-xs-9">
+				<p>I understand the nature of an investment in this offering and the risks associated with such an investment.</p>
+			</div>
 		</div>
 
-		<div class="row" class="sign-row">
-			<div  class="row sign-document-item">
-				<p style="float: left;"><img ng-src="images/CheckInactive.png"></p>
-				<p>I have sufficient knowledge and experience in financial and business matters so as to be capable of evaluating the merits and risks associated with investing in this offering. 
+		<div class="sign-cell col-lg-10 col-md-10 col-sm-10 col-xs-10 ">
+			<div class="checkmark-section col-lg-1 col-md-1 col-sm-1 col-xs-3">
+				<img ng-src="images/CheckInactive.png">
 			</div>
-			
-		</div>
-
-		<div class="row" class="sign-row">
-			<div  class="row sign-document-item">
-				<p style="float: left;"><img ng-src="images/CheckInactive.png"></p>
-				<p>I understand the nature of an investment in this offering and the risks associated with such an investment.
+			<div class="sign-row col-lg-11 col-md-11 col-sm-11 col-xs-9">
+				<p>I acknoledge that I have the right, will be afforded an opportunity, and am encouraged to investigate this offering and review relevant records, agreements, and documents pertaining to this offerring and its business and to ask questions, and receive answers, of a qualified representative of this offering regarding this investment and the operations and method of doin business of this offering.</p>
 			</div>
-			
-		</div>
-
-		<div class="row" class="sign-row">
-			<div  class="row sign-document-item">
-				<p style="float: left;"><img ng-src="images/CheckInactive.png"></p>
-				<p>I acknoledge that I have the right, will be afforded an opportunity, and am encouraged to investigate this offering and review relevant records, agreements, and documents pertaining to this offerring and its business and to ask questions, and receive answers, of a qualified representative of this offering regarding this investment and the operations and method of doin business of this offering. 
-			</div>
-			
 		</div>
 	</div>
+</div>	
 
-	<div class="pull-right">
-		<button class="btn-grey">NEXT STEP</button>	
+<div class="row next-button-row">
+	<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
+
+		<div class="pull-right">
+			<button class="btn-grey">NEXT STEP</button>	
+		</div>
+
 	</div>
-</div>
+</div>	

@@ -9,9 +9,10 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
     $scope.password = '';
 
     $scope.success = '';
-    //$scope.api_domain =  "http://127.0.0.1:8080";
-    $scope.api_domain = "http://104.197.111.36";
-    $scope.url_prefix = "http://104.197.111.36:8040";
+   
+    // $scope.api_domain = "http://104.197.111.36";
+    // $scope.url_prefix = "http://104.197.111.36:8040";
+    $scope.url_prefix = "http://localhost:8040";
 
     $scope.login = function() {
         console.log($scope.email);
@@ -32,15 +33,16 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                 if(data['status'] == "success"){
                     sessionStorage.setItem('token', value['data']['token']);
                     sessionStorage.setItem('user', JSON.stringify(value['data']['user']));
-                    $rootScope.user = value['data']['user'];
-                    $rootScope.user_type = data['user']['user_type'];
                     sessionStorage.setItem('user_type', data['user']['user_type']);
+
                     
                     if (data['user']['user_type'] == "company") {
+                        sessionStorage.setItem('company_struct', JSON.stringify(data['company_struct']));
                         $state.go('profile.company');
                     };
 
                     if (data['user']['user_type'] == "investor") {
+                         sessionStorage.setItem('investor_struct', JSON.stringify(data['investor_struct']));
                         $state.go('profile.investor');
                     };
 

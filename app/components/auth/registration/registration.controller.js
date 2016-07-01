@@ -25,8 +25,9 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
     $scope.email = '';
     $scope.password = '';
 
-    $scope.api_domain = "http://104.197.111.36";
-    $scope.url_prefix = "http://104.197.111.36:8040";
+    // $scope.api_domain = "http://104.197.111.36";
+    // $scope.url_prefix = "http://104.197.111.36:8040";
+    $scope.url_prefix = "http://localhost:8040";
 
 
 
@@ -45,7 +46,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_investor = function() {
 
-        var url = $scope.url_prefix + "/users/add";
+        var url = $scope.url_prefix + "/users/add_investor";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
 
@@ -59,16 +60,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
                 'lastname' : $scope.lastname,
                 'city': $scope.city,
                 'state': $scope.state,
-                'primary_role': $scope.primary_role,
-                'website': $scope.website,
-                'headline': $scope.headline,
                 'email': $scope.email,
-                'password': $scope.password,
-                'num_jobs': 0,
-                'num_investments': 0,
-                'num_boards':0,
-                'profile_pic': '',
-                'additional_photos': '[]'
+                'password': $scope.password
              }
         })
         .then(function(response) {
@@ -77,19 +70,10 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
             if(response['data']['status'] == "success" || response['data']['status'] == 200){
                 sessionStorage.setItem('user_type', 'investor');
                 sessionStorage.setItem('email', $scope.email);
-                sessionStorage.setItem('firstname', $scope.firstname);
-                sessionStorage.setItem('lastname', $scope.lastname);
+                sessionStorage.setItem('user', JSON.stringify(response['data']['user']));
+                sessionStorage.setItem('investor_struct', JSON.stringify(response['data']['investor_struct']));
                 sessionStorage.setItem('token', response['data']['token']);
-                sessionStorage.setItem('city', $scope.city);
-                sessionStorage.setItem('state', $scope.state);
-                sessionStorage.setItem('primary_role', $scope.primary_role);
-                sessionStorage.setItem('website', $scope.website);
-                sessionStorage.setItem('headline', $scope.headline);
-                sessionStorage.setItem('num_jobs', 0);
-                sessionStorage.setItem('num_boards', 0);
-                sessionStorage.setItem('num_investments', 0);
-
-                $rootScope.user_type = response['data']['user']['user_type'];
+        
                 $state.go('profile.investor');
             }
         }, 
@@ -103,7 +87,7 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
     $scope.register_company = function() {
 
-        var url = $scope.url_prefix + "/users/add";
+        var url = $scope.url_prefix + "/users/add_company";
         //var auth_string = String($scope.token) + ':' + String('unused');
         //var auth_cred = btoa(auth_string);
 
@@ -113,53 +97,31 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
             //headers: {'Authorization': 'Basic ' + auth_cred },
             data: { 
                 'user_type': 'company',
-                'city': $scope.city,
-                'state': $scope.state,
-                'website': $scope.website,
-                'headline': $scope.headline,
+                'headquarters_city': $scope.city,
+                'headquarters_state': $scope.state,
+                'company_description': $scope.headline,
                 'email': $scope.email,
                 'password': $scope.password,
                 'company_name': $scope.company_name,
-                'founders': $scope.founders,
-                'industry': $scope.industry,
-                'deals': '{}',
-                'board_members': '[]',
-                'investors': '[]',
-                'employees': '[]',
-                'documents': '[]',
-                'funding_rounds': '[]',
-                'profile_pic': '',
-                'additional_photos': '[]'
+                'website': '',
+                'founders': '',
+                'industry': '',
+                'profile_pic': ''
              }
         })
         .then(function(response) {
             console.log(response);
 
             if(response['data']['status'] == "success" || response['data']['status'] == 200){
-                sessionStorage.setItem('user_type', 'company');
-                sessionStorage.setItem('email', $scope.email);
-                sessionStorage.setItem('headline', $scope.headline);
-                sessionStorage.setItem('token', response['data']['token']);
-                sessionStorage.setItem('city', $scope.city);
-                sessionStorage.setItem('state', $scope.state);
-                sessionStorage.setItem('website', $scope.website);
-                
-                sessionStorage.setItem('company_name', $scope.company_name);
-                sessionStorage.setItem('industry', $scope.industry);
-                sessionStorage.setItem('founders', $scope.founders);
-                sessionStorage.setItem('employess', '[]');
-                sessionStorage.setItem('investors', '[]');
-                sessionStorage.setItem('funding_rounds', '[]');
-
-
-                $rootScope.token = response['data']['token'];
-                $rootScope.user = response['data']['user'];
                 console.log(response['data']['user']);
-                sessionStorage.setItem('deals', '{}');
-
-                sessionStorage.setItem('user', JSON.stringify(response['data']['user']));
-
+                $rootScope.token = response['data']['token'];
                 $rootScope.user_type = response['data']['user']['user_type'];
+
+                sessionStorage.setItem('token', response['data']['token']);
+                sessionStorage.setItem('user_type', 'company');
+                sessionStorage.setItem('user', JSON.stringify(response['data']['user']));
+                sessionStorage.setItem('company_struct', JSON.stringify(response['data']['company_struct']));
+
                 $state.go('profile.company');
 
 

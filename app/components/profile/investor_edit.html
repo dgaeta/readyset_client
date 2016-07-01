@@ -1,120 +1,152 @@
-
-<div class="edit-investor-top-bar row row-centered">
+<div class="edit-company-top-bar row row-centered">
 	<div class="col-centered">
 		<div class="row">
-			<p>Editing User Information <button class="btn-airforce-blue">Save Changes</button> <a ui-sref="profile.investor"><button class="btn-airforce-blue pull-right">Discard Changes</button></a></p>
+			<p >Editing information <button class="btn-airforce-blue" ng-click="setChanges()">SAVE CHANGES</button> <a ui-sref="profile.investor"><button class="btn-airforce-blue pull-right">DISCARD CHANGES</button></a></p>
 		</div>
 	</div>
 </div>
 
-<div class="edit-investor-body">
+
+
+
+
+<div class="edit-company-details" id="edit-company-details">
 	
-	<div class="row">
-		<div ng-hide="user.profile_pic" class="row col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<img ng-hide="user.profile_pic" src="images/polygons.png" class="img-responsive img-circle" alt="Responsive image"> 
+	<div class="row edit-company-profpic-row">
+		<!-- This is show if user does not have profile_pic set -->
+		<div ng-hide="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
+			<img ng-show="user.profile_pic" ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
+		</div>
+		<div class="row col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter">
+			<div class="row">
+				<p>Your Name</p>
+			</div>
+			<div class="row">
+				<input type="text" class="form-control" ng-model="user.name" style="margin-bottom:20px; width:100%;" placeholder="first and last name">
+			</div>
+		</div>
+		<div class="row">
+			<div class="row">
+				<div class="row row-centered">	
+					<div ng-click="editing_prof_pic()"><input class="col col-centered" type="file" id="fileInput" /></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div ng-show="editing_profile_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+				<div ng-show="editing_profile_photo"><p>Cropped Image:</p></div>
+				<div ng-show="editing_profile_photo"><img ng-src="{{myCroppedImage}}" /></div>
+			</div>
+			<div class="row" style="padding-top:20px;">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				</div>
+				<button class="btn btn-default" ng-show="editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
+			</div>
 		</div>
 
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<div class="row">
-				<p>Your name</p>
-			</div>
-			<div class="row">
-				<input type="text" class="form-control" ng-model="first_name" style="margin-bottom:20px; width:100%;" placeholder="First name">
-				<input type="text" class="form-control" ng-model="last_name" style="margin-bottom:20px; width:100%;" placeholder="Lame name">
-			</div>
+		<div ng-show="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img ng-src="{{profile_pic}}" class="img-responsive" alt="Responsive image"> 
 		</div>
+
+
 	</div>
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Description</p>
 		</div>
 
 		<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-			<input type="text" class="form-control" ng-model="description" style="margin-bottom:20px; width:100%;" placeholder="Tell others about yourself">
+			<textarea class="span6" ng-model="user.description" rows="6" placeholder="Tell others about yourself" style="width: 100%; border-color: #CCCCCC;" required></textarea>
+			<!-- <input type="text" class="form-control" ng-model="company_description" style="margin-bottom:20px; width:100%; heigh: 100px;" placeholder="Tell others about yourself"> -->
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Headquarters address</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="email" class="form-control" ng-model="city" style="margin-bottom:20px; width:100%;" placeholder="Your email">
-			<input type="email" class="form-control" ng-model="state" style="margin-bottom:20px; width:100%;" placeholder="Your email">
+			<input type="text" class="form-control float-left" ng-model="user.headquarters_city" style="margin-bottom:20px; width:100%;" placeholder="City">
+			<input type="text" class="form-control float-right" ng-model="user.headquarters_state" style="margin-bottom:20px; width:100%;" placeholder="State">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<p>Primary role</p>
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
+			<p>Primary Role</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="primary_role" style="margin-bottom:20px; width:100%;" placeholder="Your job role">
+			<input type="text" class="form-control" ng-model="user.primary_role" style="margin-bottom:20px; width:100%;" placeholder="CEO Tesla">
 		</div>
 	</div> 
 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Website</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="website" style="margin-bottom:20px; width:100%;" placeholder="Website">
+			<input type="text" class="form-control" ng-model="user.website" style="margin-bottom:20px; width:100%;" placeholder="example.com">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Facebook link</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="facebook_link" style="margin-bottom:20px; width:100%;" placeholder="Facebook link">
+			<input type="text" class="form-control" ng-model="user.facebook_link" style="margin-bottom:20px; width:100%;" placeholder="Facebook link">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Instagram</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="instagram_link" style="margin-bottom:20px; width:100%;" placeholder="Instagram link">
+			<input type="text" class="form-control" ng-model="user.instagram_link" style="margin-bottom:20px; width:100%;" placeholder="Instagram link">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Linkedin</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="linkedin_link" style="margin-bottom:20px; width:100%;" placeholder="Linkedin link">
+			<input type="text" class="form-control" ng-model="user.linkedin_link" style="margin-bottom:20px; width:100%;" placeholder="Linkedin link">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Twitter</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control" ng-model="twitter_link" style="margin-bottom:20px; width:100%;" placeholder="Twitter link">
+			<input type="text" class="form-control" ng-model="user.twitter_link" style="margin-bottom:20px; width:100%;" placeholder="Twitter link">
 		</div>
 	</div> 
 
 	<div class="row">
-		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<p>Email</p>
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="email" class="form-control" ng-model="email" style="margin-bottom:20px; width:100%;" placeholder="Your email">
+			<input type="text" class="form-control" ng-model="user.secondary_email" style="margin-bottom:20px; width:100%;" placeholder="email">
 		</div>
 	</div> 
-
 </div>
