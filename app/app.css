@@ -58,14 +58,7 @@ html, body {
   padding-left:0;
 }
 
-.sign-cell  {
-    padding-right:0;
-    padding-left:0;
-    border-width: thin;
-    border-style: solid;
-    border-color:#EDEDED;
-    margin-bottom: 15px;
-}
+
 
 p.thick {
   font-weight: bold;
@@ -221,6 +214,16 @@ a:active {
   color: white;
 }
 
+.sign-cell  {
+  padding-right:0;
+  padding-left:0;
+  border-width: thin;
+  border-style: solid;
+  border-color:#EDEDED;
+  margin-bottom: 15px;
+  background-color: #EDEDED;
+}
+
 .sign-docs-description{
   padding-left: 0px;
   padding-right: 0px;
@@ -231,7 +234,7 @@ a:active {
 }
 
 .sign-docs-header {
-  padding-left: 45px;
+  padding-left: 30px;
 }
 
 .sign-document-item {
@@ -249,12 +252,12 @@ a:active {
 
 .sign-row {
   padding-top: 15px;
-  padding-bottom: 5px;
+  padding-bottom: 15px;
   background-color: #F6F6F6;
 }
 
 .checkmark-section {
-  padding-top: 20px;
+  padding-top: 15px;
   padding-left: 20px;
   background-color: #EDEDED;
 }
@@ -412,6 +415,13 @@ a:active {
   padding-left: 15px;
   padding-right: 15px;
   color: white;
+}
+
+.btn-airforce-text {
+  background-color: #DADBDD;
+  padding-left: 20px;
+  padding-right: 20px;
+  color: #538BAE;
 }
 
 b {
