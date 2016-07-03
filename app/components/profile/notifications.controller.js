@@ -23,6 +23,28 @@ function NotificationsController($scope, $http, $timeout, $location, $state, $st
     if ($scope.notifications) {$scope.notifications = JSON.parse($scope.notifications)};
 
     
+    $scope.stringToDate = function(string) {
+        var array = string.split("-");
+
+        var numToMonthLookup = {"01": "January", "02": "February", "03": "March", 
+            "04": "April", "05": "May", "06": "June", "07": "July",
+            "08": "August", "09": "September", "10": "October", "11": "November",
+            "12": "December",};
+
+        var newDateString = array[2] + "  " + numToMonthLookup[array[1]];
+
+        return newDateString;
+    }
+
+    $scope.emailToProfilePicUrl = function(email) {
+        var url_prefix = "https://storage.googleapis.com/readyset-files/profile_pic%20";
+        var email_split = email.split("@");
+        var url_suffix = email_split[0] + "%40" + email_split[1];
+
+        return url_prefix + url_suffix;
+    }
+
+
     $scope.getNotifications = function() {
 
         var url = $scope.url_prefix + "/users/get_notifications";

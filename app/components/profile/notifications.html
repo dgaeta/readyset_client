@@ -7,15 +7,18 @@
 </div>
 
 <div class="notiications-repeated-section">
-	<div ng-repeat="note in notifications">
+	<div ng-repeat="note in notifications" class="notification-row">
 		
 		<div class="row">
-			<div class="col-lg-offset-2 col-md-offset-2 col-sm-offset--2 col-xs-offset-2 col-lg-3 col-md-3 col-sm-3 col-xs-3">
-				<p>{{note.created_date}}</p>
+			<div class="col-lg-offset-2 col-md-offset-2 col-sm-offset--2 col-xs-offset-2 col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:5px;">
+				<p>{{stringToDate(note.created_date)}}</p>
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
-				<p>{{note.message}}</p>
+			<div class="pull-left">
+				<img ng-src="{{emailToProfilePicUrl(note.company_email)}}" class="img-responsive profile-image img-circle">
+			</div>
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-6" style="padding-top:5px;">
+				<p><b>{{note.created_by_name}}</b> {{note.message}} <b>{{note.company_name}}</b></p>
 			</div>
 		</div>
 
@@ -25,7 +28,5 @@
 				<button class="btn btn-default" ng-click="updateNotification(note, decline)">DECLINE</button>
 			</div>
 		</div>
-
-		{{note}}
 	</div>
 </div>

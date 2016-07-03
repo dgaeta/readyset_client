@@ -5,6 +5,10 @@ html, body {
   height: 100%;
 }
 
+.profile-image {
+  width: 40px;
+}
+
 .ngbody {
   height: 100%;
 }
@@ -130,6 +134,10 @@ a:active {
   padding-top:35px;
   padding-left: 50px;
   background-color: #EDEDED;
+}
+
+.notification-row {
+  padding-bottom: 25px;
 }
 
 .notifications-h1 {
@@ -364,6 +372,11 @@ a:active {
   padding-left: 15px;
   padding-right: 15px;
   color: white;
+}
+
+b {
+  color: #538BAE;
+  font-weight: bold;
 }
 
 .airforce-text {
