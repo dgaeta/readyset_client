@@ -5,9 +5,49 @@ html, body {
   height: 100%;
 }
 
+
+.pin-img {
+  padding-top: 8px;
+  padding-right: 8px;
+}
+
 .profile-image {
   width: 40px;
 }
+
+.investor-splash-textinfo {
+  padding-left: 40px;
+}
+
+.edit-investor-name {
+
+}
+
+.investor-jobs-headline {
+  min-height:100px;
+  padding-top: 20px;
+}
+
+.investor-jobs-body {
+  padding-bottom: 30px;
+}
+
+.investor-boards-headline {
+  padding-bottom: 20px;
+}
+
+.investor-boards-body {
+  padding-bottom: 30px;
+}
+
+.investor-investments-headline {
+  padding-bottom: 20px;
+}
+
+.investor-investments-body {
+  padding-bottom: 30px;
+}
+
 
 .ngbody {
   height: 100%;

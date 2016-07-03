@@ -6,11 +6,11 @@
 		</div>
 
 		<!-- DEFAULT PROFILE PICTURE OR USER PHOTO -->
-		<div  class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+		<div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
 			<div class="row row-centered">
 				<div class="col-centered">
-					<img ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
+					<img ng-src="{{user.profile_pic}}" class="img-responsive img-circle" alt="Responsive image"> 
 				</div>
 			</div>
 		</div>
@@ -21,7 +21,7 @@
 		<!-- END PROFILE PICTURE -->
 
 		
-		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
+		<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8 investor-splash-textinfo">
 			<div class="row">
 				<div class="white-text">
 					<h2 class="float-left">{{user.firstname | uppercase}} {{user.lastname | uppercase}}</h2>
@@ -78,7 +78,7 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<img src="images/pin.png" alt="" class="vcenter float-left">  
+				<img src="images/pin.png" alt="" class="vcenter float-left pin-img">  
 				<h5 style="color: #2F3437; float:right;" class="vcenter float-right">Headquarters:</h5>
 			</div>
 		</div>
@@ -100,7 +100,7 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<img src="images/founders.png" alt="" class="float-left">
+				<img src="images/founders.png" alt="" class="float-left pin-img">
 				<h5 style="color: #2F3437" class="float-right">Primary role:</h5>
 			</div>
 		</div>
@@ -121,7 +121,7 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<img src="images/founders.png" alt="" class="float-left">
+				<img src="images/founders.png" alt="" class="float-left pin-img">
 				<h5 style="color: #2F3437" class="float-right">Social media:</h5>
 			</div>
 		</div>
@@ -154,7 +154,7 @@
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="text-left">
 		<div class="row row-centered">
 			<div class="col col-centered">
-				<img src="images/site.png" alt="" class="float-left"> 
+				<img src="images/site.png" alt="" class="float-left pin-img"> 
 				<h5 style="color: #2F3437" class="float-right">Website:</h5>
 			</div>
 		</div>
@@ -177,13 +177,13 @@
 
 <!-- BEGIN JOBS SECTION -->
 <div class="row row-centered">
-	<div class="col col-centered" style="min-height:100px;">
+	<div class="col col-centered investor-jobs-headline" style="">
 		<h3 class="vcenter gotham-font grey-text">JOBS - {{jobs_count}}</h3>
 	</div>
 </div>	
 
 
-<div class="row" style="padding-bottom:50px;">
+<div class="row investor-jobs-body">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="jobs-gray-section col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
 		<div class="row">
@@ -191,7 +191,7 @@
 				<img src="images/tesla.png" class="img-responsive"> 
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="padding-top:10px; padding-bottom:10px;">
-				<div class="row"><p>Tesla Motors</p></div>
+				<div class="row"><p><b>Tesla Motors</b></p></div>
 				<div class="row"><p>CEO & Product Architect</p></div>
 			</div>
 		</div>
@@ -201,7 +201,7 @@
 				<img src="images/spacex.png" class="img-responsive" alt=""> 
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-				<div class="row"><p>SpaceX</p></div>
+				<div class="row"><p><b>SpaceX</b></p></div>
 				<div class="row"><p>CEO & CTO</p></div>
 			</div>
 		</div>
@@ -219,11 +219,11 @@
 
 <!-- BEGIN BOARDS SECTION -->
 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
-<div class="row" style="min-height:100px;">
-	<h3 class="vcenter gotham-font grey-text">BOARDS - {{boards_count}}</h3>
+<div class="row">
+	<h3 class="vcenter gotham-font grey-text investor-boards-headline">BOARDS - {{boards_count}}</h3>
 </div>
 
-<div class="row" style="padding-bottom:50px;">
+<div class="row investor-boards-body">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
 		<div class="row boards-grey-section" style="margin-top:20px;">
@@ -233,19 +233,19 @@
 				    <td>{{funding.amount}}</td>
 			  </tr>
 			  <tr>
-			    <td><p>Medialets</p></td>
+			    <td><p><b>Medialets</b></p></td>
 			    <td><p>Investor</p></td>
 			  </tr>
 			  <tr>
-			    <td><p>InDinero</p></td>
+			    <td><p><b>InDinero</b></p></td>
 			    <td><p>Investor</p></td>
 			  </tr>
 			  <tr>
-			    <td><p>Dropbox</p></td>
+			    <td><p><b>Dropbox</b></p></td>
 			    <td><p>Investor</p></td>
 			  </tr>
 			  <tr>
-			    <td><p>Bina Technologies</p></td>
+			    <td><p><b>Bina Technologies</b></p></td>
 			    <td><p>Investor</p></td>
 			  </tr>
 			  <tr>
@@ -269,11 +269,11 @@
 
 <!-- BEGIN INVESTMENT SECTION -->
 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
-<div class="row text-center vcenter" style="min-height:100px;">
-	<h3 class="vcenter gotham-font grey-text">INVESTMENTS - {{investments_count}}</h3>
+<div class="row text-center vcenter">
+	<h3 class="vcenter gotham-font grey-text investor-investments-headline">INVESTMENTS - {{investments_count}}</h3>
 </div>
 
-<div class="row" style="padding-bottom:50px;">
+<div class="row investor-investments-body" >
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
 		<div class="row investments-grey-section" style="margin-top:20px;">
@@ -292,26 +292,26 @@
 			  </tr>
 			  <tr>
 			    <td><p>Jan. 2016</p></td>
-			    <td><p>Memebox Corportation</p></td>
-			    <td><p>$100M / Series D</p></td>
+			    <td><p><b>Memebox Corportation</b></p></td>
+			    <td><p>$100M / <b>Series D</b></p></td>
 			    <td><p>Personal Investment</p></td>
 			  </tr>
 			  <tr>
 			    <td><p>Jan. 2016</p></td>
-			    <td><p>Memebox Corportation</p></td>
-			    <td><p>$100M / Series D</p></td>
+			    <td><p><b>Memebox Corportation</b></p></td>
+			    <td><p>$100M / <b>Series D</b></p></td>
 			    <td><p>Personal Investment</p></td>
 			  </tr>
 			  <tr>
 			    <td><p>Jan. 2016</p></td>
-			    <td><p>Memebox Corportation</p></td>
-			    <td><p>$100M / Series D</p></td>
+			    <td><p><b>Memebox Corportation</b></p></td>
+			    <td><p>$100M / <b>Series D</b></p></td>
 			    <td><p>Personal Investment</p></td>
 			  </tr>
 			  <tr>
 			    <td><p>Jan. 2016</p></td>
-			    <td><p>Memebox Corportation</p></td>
-			    <td><p>$100M / Series D</p></td>
+			    <td><p><b>Memebox Corportation</b></p></td>
+			    <td><p>$100M / <b>Series D</b></p></td>
 			    <td><p>Personal Investment</p></td>
 			  </tr>
 			  <tr>

@@ -14,22 +14,16 @@
 	
 	<div class="row edit-company-profpic-row">
 		<!-- This is show if user does not have profile_pic set -->
-		<div ng-hide="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
-			<img ng-show="user.profile_pic" ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
-		</div>
-		<div class="row col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter">
+		<div ng-hide="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2">
 			<div class="row">
-				<p>Your Name</p>
-			</div>
+				<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive img-circle" alt="Responsive image"> 
+				<img ng-show="user.profile_pic" ng-src="{{user.profile_pic}}" class="img-responsive img-circle" alt="Responsive image">
+			</div> 
 			<div class="row">
-				<input type="text" class="form-control" ng-model="user.name" style="margin-bottom:20px; width:100%;" placeholder="first and last name">
-			</div>
-		</div>
-		<div class="row">
-			<div class="row">
+				<div class="row">
 				<div class="row row-centered">	
-					<div ng-click="editing_prof_pic()"><input class="col col-centered" type="file" id="fileInput" /></div>
+					<p ng-click="clickFileInput();" style="padding-top:15px;">Change photo</p>
+					<div><input class="col col-centered" type="file" id="fileInput" / style="display:none;"></div>
 				</div>
 			</div>
 			<div class="row">
@@ -48,11 +42,25 @@
 				</div>
 				<button class="btn btn-default" ng-show="editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
 			</div>
+			</div>
+
 		</div>
 
-		<div ng-show="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<img ng-src="{{profile_pic}}" class="img-responsive" alt="Responsive image"> 
+		<div class="row col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter edit-investor-name">
+			<div class="row">
+				<p>Your Name</p>
+			</div>
+			<div class="row">
+				<input type="text" class="form-control" ng-model="user.firstname" style="margin-bottom:20px; width:100%;" placeholder="first and last name">
+			</div>
 		</div>
+		<div class="row">
+			
+		</div>
+
+		<!-- <div ng-show="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
+			<img ng-src="{{profile_pic}}" class="img-responsive" alt="Responsive image"> 
+		</div> -->
 
 
 	</div>
@@ -74,8 +82,8 @@
 		</div>
 
 		<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<input type="text" class="form-control float-left" ng-model="user.headquarters_city" style="margin-bottom:20px; width:100%;" placeholder="City">
-			<input type="text" class="form-control float-right" ng-model="user.headquarters_state" style="margin-bottom:20px; width:100%;" placeholder="State">
+			<input type="text" class="form-control float-left" ng-model="user.city" style="margin-bottom:20px; width:100%;" placeholder="City">
+			<input type="text" class="form-control float-right" ng-model="user.state" style="margin-bottom:20px; width:100%;" placeholder="State">
 		</div>
 	</div> 
 
