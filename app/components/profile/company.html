@@ -163,10 +163,10 @@
 </div>
 
 <!-- CAROUSEL SECTION -->
-<div class="text-center row">
+<div class="carousel-section text-center row">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
-	    <div style="height: 305px">
+	    <div ng-show="carousel_photos_count > 0" style="height: 305px">
 	    	<uib-carousel interval="myInterval" no-wrap="noWrapSlides">
 	      		<uib-slide ng-repeat="(photo_storage_id, photo_struct) in company_struct.presentation_items.photos track by $index" active="photo_struct.active" index="photo_struct.index">
 	        		<img ng-src="{{photo_struct.url}}" style="margin:auto;">

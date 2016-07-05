@@ -20,15 +20,28 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.company_struct = JSON.parse(sessionStorage['company_struct']);
     var i = 0;
     var keys = Object.keys($scope.company_struct['presentation_items']['photos']);
+    $scope.carousel_photos_count = keys.length;
     for (var i = 0; i < Object.keys($scope.company_struct['presentation_items']['photos']).length; i++) {
         $scope.company_struct['presentation_items']['photos'][keys[i]]['index'] = i;
     };
 
-    $scope.board_member_count = Object.keys($scope.company_struct.members.board_members.accepted).length;
-    $scope.investor_count = Object.keys($scope.company_struct.members.investors.accepted).length;
-    $scope.employees_count = Object.keys($scope.company_struct.members.employees.accepted).length;
+    if ($scope.company_struct.members.board_members.accepted) {
+        $scope.board_member_count = Object.keys($scope.company_struct.members.board_members.accepted).length;
+    } else {
+         $scope.board_member_count = 0;
+    };
+    if ($scope.company_struct.members.investors.accepted) {
+        $scope.investor_count = Object.keys($scope.company_struct.members.board_members.accepted).length;
+    } else {
+         $scope.investor_count = 0;
+    };
+    if ($scope.company_struct.members.employees.accepted) {
+        $scope.employees_count = Object.keys($scope.company_struct.members.board_members.accepted).length;
+    } else {
+         $scope.employees_count = 0;
+    };
 
-    
+
 
     // Used for editing and new items
     $scope.editing_profile_photo = false;
@@ -66,8 +79,8 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.clickFileInputProfPic = function() {
         console.log("jdkfj");
         if ($scope.myCroppedImage != "") {
-            $scope.editing_carousel_photo = true;
-        document.getElementById('fileInput').click();
+            $scope.editing_profile_photo = true;
+            document.getElementById('fileInput').click();
         }
         
 
@@ -75,10 +88,10 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.clickFileInputCarouselPic = function() {
         console.log("jdkfj");
-        if ($scope.myCroppedImage != "") {
-            $scope.editing_profile_photo = true;
+
+        $scope.editing_carousel_photo = true;
         document.getElementById('carouselInput').click();
-        }
+   
         
 
     }

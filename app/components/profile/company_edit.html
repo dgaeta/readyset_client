@@ -202,28 +202,19 @@
 		  	
   		<div class="row" style="padding-top: 20px;">
 			<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
-				<div ng-click="editing_prof_pic()">
+				<div class="row" style="padding-top:20px;">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+					</div>
+					<button class="btn btn-default" ng-show="myImage && editing_carousel_photo" ng-click="uploadCarouselImage(myImage); editing_carousel_photo=false;">Submit</button> 
+				</div>
+			
+				<div>
 					<button ng-click="clickFileInputCarouselPic();" class="btn-rounded btn-default  col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">Upload more</button>
 					<div><input class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" type="file" id="carouselInput" style="display:none;"></div>
 				</div>
 			</div>
 
-			<div class="row">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-				<div ng-show="myImage && editing_carousel_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:30px;">
-				    <img-crop image="myImage && editing_carousel_photo" result-image="myCroppedImage"></img-crop>
-				</div>
-
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-
-				<div ng-show="myImage && editing_carousel_photo"><p>Cropped Image:</p></div>
-				<div ng-show="myImage && editing_carousel_photo"><img ng-src="{{myCroppedImage}}" /></div>
-			</div>
-			<div class="row" style="padding-top:20px;">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-				</div>
-				<button class="btn btn-default" ng-show="editinmyImage && editing_carousel_photog_carousel_photo" ng-click="uploadCarouselImage(myCroppedImage); editing_carousel_photo=false;">Submit</button> 
-			</div>
+			
 		</div>
   
 
