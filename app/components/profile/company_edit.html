@@ -191,6 +191,7 @@
 	      		<div ng-repeat="(photo_storage_id, photo_struct) in company_struct.presentation_items.photos track by $index">
 	      			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 		        		<img ng-src="{{photo_struct.url}}" class="img-responsive">
+		        		<span ng-click="deleteCarouselImage(photo_storage_id)" class="glyphicon glyphicon-remove top-left-position text-danger" aria-hidden="true"></span>
 	          		</div>
 	      		</div>
 	  		</div>

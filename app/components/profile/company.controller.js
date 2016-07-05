@@ -439,6 +439,39 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
         });       
     }
 
+    $scope.deleteCarouselImage = function(unique_id) {
+        var url = $scope.url_prefix + "/users/delete_carousel_image";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+        console.log(unique_id);
+
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred},
+            data: {'unique_id': unique_id},
+            config: {'responseType':'arraybuffer'} 
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['status'] == 200){
+                console.log("hello");
+
+                $scope.company_struct['presentation_items'] = response['data']['company_struct_presentation_items'];
+                sessionStorage.setItem('company_struct', JSON.stringify($scope.company_struct));
+            
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            
+        });
+    }
+
 
     function convertDataURLToImageData(dataURL, callback) {
         if (dataURL !== undefined && dataURL !== null) {
@@ -464,7 +497,6 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
 
     $scope.getProfilePic = function() {
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/users/get_profile_pic";
         var auth_string = String($scope.token) + ':' + String('unused');
         var auth_cred = btoa(auth_string);
