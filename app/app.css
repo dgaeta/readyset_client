@@ -919,3 +919,13 @@ display: none;
 .btn {
     border-radius: 0px;
 }
+
+.btn-rounded {
+  background-color: #A9A9A9;
+  border: none;
+  color: white;
+  font-weight: 700;
+  border-radius: 4px;
+  padding: 15px 30px 15px 30px;
+  margin-left: 30px;
+}

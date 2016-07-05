@@ -51,16 +51,9 @@ function SignDealController($scope, $http, $timeout, $location, $state, $statePa
         console.log($scope.investmentAcknowlLookup.doc_num);
     }
 
-    $scope.nextStepsClicked = function() {
-        var allChecked = false;
 
-        for (var i = 0; i < $scope.signedLookup.length; i++) {
-            if
-        };
-    }
 
     $scope.getDocument = function(deal_name, file_name){
-        $scope.url_prefix =   $scope.api_domain;
         var url = $scope.url_prefix + "/deals/get_document";
 
         var auth_string = String($scope.token) + ':' + String('unused');

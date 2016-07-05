@@ -31,9 +31,15 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     
 
     // Used for editing and new items
+    $scope.editing_profile_photo = false;
     $scope.editing = false;
-    $scope.myImage='';
-    $scope.myCroppedImage='';
+    $scope.myImage=false;
+    $scope.myCroppedImage=false;
+
+    $scope.editing_carousel_photo = false;
+    $scope.myCarouselImage=false;
+    $scope.myCarouselCroppedImage=false;
+    
     // For adding a new funding round
     $scope.new_date = "";
     $scope.new_amount = "";
@@ -52,12 +58,30 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.new_deal_date = '';
     $scope.new_deal_description = '';
 
-    $scope.editing_profile_photo = false;
-    $scope.editing_photo = false;
-
 
     $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
+
+
+    $scope.clickFileInputProfPic = function() {
+        console.log("jdkfj");
+        if ($scope.myCroppedImage != "") {
+            $scope.editing_carousel_photo = true;
+        document.getElementById('fileInput').click();
+        }
+        
+
+    }
+
+    $scope.clickFileInputCarouselPic = function() {
+        console.log("jdkfj");
+        if ($scope.myCroppedImage != "") {
+            $scope.editing_profile_photo = true;
+        document.getElementById('carouselInput').click();
+        }
+        
+
+    }
 
 
     $scope.open = function (size) {
@@ -121,6 +145,7 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
             headers: {'Authorization': 'Basic ' + auth_cred },
             data: {file: Upload.dataUrltoBlob(dataUrl), 'file_type': file_type_prefix }
         }).success(function(data, status, headers, config){
+            $scope.editing_profile_photo = false;
             console.log("in here now ")
             console.log(status);
             console.log(data);

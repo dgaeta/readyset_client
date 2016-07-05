@@ -25,8 +25,32 @@
 		<div ng-hide="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
 			<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive" alt="Responsive image"> 
 			<img ng-show="user.profile_pic" ng-src="{{user.profile_pic}}" class="img-responsive" alt="Responsive image"> 
+			<div class="row">
+			<div class="row">
+				<div class="row row-centered">	
+					<p ng-click="clickFileInputProfPic();" style="padding-top:15px;">Change photo</p>
+					<div><input class="col col-centered" type="file" id="fileInput" style="display:none;"></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+				<div ng-show="myImage" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				    <img-crop image="myImage && editing_profile_photo" result-image="myCroppedImage"></img-crop>
+				</div>
+
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+
+				<div ng-show="myImage && editing_profile_photo"><p>Cropped Image:</p></div>
+				<div ng-show="myImage && editing_profile_photo"><img ng-src="{{myCroppedImage}}" /></div>
+			</div>
+			<div class="row" style="padding-top:20px;">
+				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+				</div>
+				<button class="btn btn-default" ng-show="myImage && editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
+			</div>
 		</div>
-		<div class="row col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter">
+		</div>
+		<div class="row col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3 vcenter">
 			<div class="row">
 				<p>Company Name</p>
 			</div>
@@ -34,29 +58,7 @@
 				<input type="text" class="form-control" ng-model="user.company_name" style="margin-bottom:20px; width:100%;" placeholder="company_name">
 			</div>
 		</div>
-		<div class="row">
-			<div class="row">
-				<div class="row row-centered">	
-					<div ng-click="editing_prof_pic()"><input class="col col-centered" type="file" id="fileInput" /></div>
-				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-				<div ng-show="editing_profile_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
-				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-				</div>
-
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-
-				<div ng-show="editing_profile_photo"><p>Cropped Image:</p></div>
-				<div ng-show="editing_profile_photo"><img ng-src="{{myCroppedImage}}" /></div>
-			</div>
-			<div class="row" style="padding-top:20px;">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
-				</div>
-				<button class="btn btn-default" ng-show="editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
-			</div>
-		</div>
+		
 
 		<div ng-show="profile_pic" class="row col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-3 col-md-3 col-sm-3 col-xs-3">
 			<img ng-src="{{profile_pic}}" class="img-responsive" alt="Responsive image"> 
@@ -179,46 +181,47 @@
 
 
 	<div class="row">
-		<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
-			<p>Photos</p>
-		</div>
+		<div class="row">
+			<div class="col-lg-offset-1 col-md-offset-1 col-sm-offset-1 col-xs-offset-1 col-lg-2 col-md-2 col-sm-2 col-xs-2 ">
+				<p>Photos</p>
+			</div>
 
 		
-					
-
-    	<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
-      		<div ng-repeat="(photo_storage_id, photo_struct) in company_struct.presentation_items.photos track by $index">
-      			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-	        		<img ng-src="{{photo_struct.url}}" class="img-responsive">
-          		</div>
-      		</div>
-  		</div>
+	    	<div class="col-lg-9 col-md-9 col-sm-9 col-xs-9">
+	      		<div ng-repeat="(photo_storage_id, photo_struct) in company_struct.presentation_items.photos track by $index">
+	      			<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+		        		<img ng-src="{{photo_struct.url}}" class="img-responsive">
+	          		</div>
+	      		</div>
+	  		</div>
+	  	</div>
 
 
 
 		  	
-  		<div class="row">
-			<div class="row">
+  		<div class="row" style="padding-top: 20px;">
+			<div class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">
 				<div ng-click="editing_prof_pic()">
-					<input class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" type="file" id="carouselInput" />
+					<button ng-click="clickFileInputCarouselPic();" class="btn-rounded btn-default  col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3">Upload more</button>
+					<div><input class="col-lg-offset-3 col-md-offset-3 col-sm-offset-3 col-xs-offset-3" type="file" id="carouselInput" style="display:none;"></div>
 				</div>
 			</div>
 
 			<div class="row">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-				<div ng-show="editing_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:30px;">
-				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+				<div ng-show="myImage && editing_carousel_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3" style="padding-left:30px;">
+				    <img-crop image="myImage && editing_carousel_photo" result-image="myCroppedImage"></img-crop>
 				</div>
 
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 
-				<div ng-show="editing_photo"><p>Cropped Image:</p></div>
-				<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
+				<div ng-show="myImage && editing_carousel_photo"><p>Cropped Image:</p></div>
+				<div ng-show="myImage && editing_carousel_photo"><img ng-src="{{myCroppedImage}}" /></div>
 			</div>
 			<div class="row" style="padding-top:20px;">
 				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
 				</div>
-				<button class="btn btn-default" ng-show="editing_photo" ng-click="uploadCarouselImage(myCroppedImage); editing_photo=false;">Submit</button> 
+				<button class="btn btn-default" ng-show="editinmyImage && editing_carousel_photog_carousel_photo" ng-click="uploadCarouselImage(myCroppedImage); editing_carousel_photo=false;">Submit</button> 
 			</div>
 		</div>
   
@@ -246,7 +249,7 @@
 				<div ng-repeat="member in company_struct.members.board_members.accepted">
 					<img ng-src="{{member.user_photo_url}}" class="img-responsive col-lg-2 col-md-2 col-sm-2 col-xs-2">
 				</div>
-				<button class="btn btn-addnew-member" ng-click="open()">ADD NEW</button>
+				<button class="btn btn-addnew-member " ng-click="open()">ADD NEW</button>
 			</div>
 			
 		</div>
