@@ -19,6 +19,11 @@ function NotificationsController($scope, $http, $timeout, $location, $state, $st
     $scope.user = JSON.parse(sessionStorage['user']);
     $scope.user_type = sessionStorage.getItem('user_type');
     $scope.notifications = sessionStorage.getItem('notifications');
+    if ($scope.notifications) {
+        $scope.notif_count = $scope.notifications.length;
+    } else {
+        $scope.notif_count = 0;
+    };
 
     if ($scope.notifications) {$scope.notifications = JSON.parse($scope.notifications)};
 
