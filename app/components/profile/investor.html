@@ -7,17 +7,14 @@
 
 		<!-- DEFAULT PROFILE PICTURE OR USER PHOTO -->
 		<div  class="col-lg-2 col-md-2 col-sm-2 col-xs-2">
-			<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
+
 			<div class="row row-centered">
 				<div class="col-centered">
 					<img ng-src="{{user.profile_pic}}" class="img-responsive img-circle" alt="Responsive image"> 
 				</div>
 			</div>
 		</div>
-		<!-- <div ng-show="user.prof_pic_data" class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			<img ng-show="user.prof_pic_data" ng-src="{{user.prof_pic_data}}" class="img-responsive" alt="Responsive image"> 
-		</div> -->
-		<!-- <img data-ng-src="{{user.prof_pic_prefix}},{{user.prof_pic_data}}" data-err-src="images/polygons.png" class="img-responsive" alt="Responsive image"> -->
+
 		<!-- END PROFILE PICTURE -->
 
 		
@@ -42,31 +39,7 @@
 		</div>
 	</div>
 
-	<!-- START PROFILE PIC EDIT SECTION -->
-	<!-- <div class="row">
-		<div class="row">	
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
-				<div ng-click="editing_prof_pic()"><input type="file" id="fileInput" /></div>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<div ng-show="editing_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
-			    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-			</div>
-
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-
-			<div ng-show="editing_photo"><p>Cropped Image:</p></div>
-			<div ng-show="editing_photo"><img ng-src="{{myCroppedImage}}" /></div>
-		</div>
-		<div class="row" style="padding-top:20px;">
-			<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-			<button class="btn btn-default" ng-show="editing_photo" ng-click="uploadProfilePic(myCroppedImage); editing_photo=false;">Submit</button> 
-		</div>
-	</div> -->
-	<!-- END PROFILE PIC EDIT SECTION -->
-
+	
 </div>
 
 
@@ -178,7 +151,7 @@
 <!-- BEGIN JOBS SECTION -->
 <div class="row row-centered">
 	<div class="col col-centered investor-jobs-headline" style="">
-		<h3 class="vcenter gotham-font grey-text">JOBS - {{jobs_count}}</h3>
+		<h3 class="text-center gotham-font grey-text">JOBS - {{jobs_count}}</h3>
 	</div>
 </div>	
 
@@ -186,32 +159,56 @@
 <div class="row investor-jobs-body">
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 	<div class="jobs-gray-section col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
-		<div class="row">
+		<div class="row" ng-repeat=" job in investor_struct.jobs">
 			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" style="padding-top:10px; padding-bottom:10px;">
-				<img src="images/tesla.png" class="img-responsive"> 
+				<img ng-src="{{job.company_pic_url}}" class="img-responsive"> 
 			</div>
 			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10" style="padding-top:10px; padding-bottom:10px;">
-				<div class="row"><p><b>Tesla Motors</b></p></div>
-				<div class="row"><p>CEO & Product Architect</p></div>
+				<div class="row"><p><b>{{job.company_name}}</b></p></div>
+				<div class="row"><p>{{job.company_role}}</p></div>
+			</div>
+		</div>
+
+		<div>
+			<table style="width:100%" frame="void" >
+				<tr>
+			    	<td><input type="text" class="form-control" placeholder="Company name" ng-model="new_job_company"></td>
+			    	<td><input type="text" class="form-control" placeholder="Job role" ng-model="new_job_role"></td>
+			    	<td>
+			    		<!-- BEING FILE INPUT AREA -->
+						<div class="row">
+							<div class="col-lg-12 col-md-12 col-sm-12 text-center">	
+								<p ng-click="clickFileInputCompanyPic();" ng-hide="new_job_company_pic_image" class="text-center" style="padding-top:15px;">Add Company Photo</p>
+								<p ng-click="new_job_company_pic_image = null;" ng-show="new_job_company_pic_image" class="text-center" style="padding-top:15px;">Remove Image</p>
+								<div><input class="col col-centered" type="file" id="companyImageInput" style="display:none;" /></div>
+							</div>
+						</div>
+						<!-- END FILE INPUT SECTION -->
+			    	</td>
+			  	</tr>
+			</table>
+		</div>
+
+		<div class="row">
+			<div class="col" style="padding-left:20px; padding-top:5px;">
+				<button ng-click="clicked_add_job = true; addJob();" class="btn btn-primary">Add Job</button>
+			  </div>
+		</div>
+
+		<div class="row row-centered" ng-show="clicked_add_job">
+			<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-8">
+				<uib-progressbar class="progress-striped active" value="dynamic" type="success"><i>Adding job...</i></uib-progressbar>
 			</div>
 		</div>
 
 		<div class="row">
-			<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2" tyle="padding-top:10px; padding-bottom:10px;">
-				<img src="images/spacex.png" class="img-responsive" alt=""> 
-			</div>
-			<div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-				<div class="row"><p><b>SpaceX</b></p></div>
-				<div class="row"><p>CEO & CTO</p></div>
+			<div class="row row-centered">
+				<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<uib-alert ng-repeat="alert in alerts_addJob" type="{{alert.type}}" close="closeAlertJobs($index)">{{alert.msg}}</uib-alert>
+				</div>
 			</div>
 		</div>
-		
-		<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>
 
-		<div class="row">
-			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-			  	new_investors_count)" class="btn btn-primary">Add Funding Round</button>
-		</div>
 	</div>
 </div>
 <!-- END JOBS SECTION -->
@@ -220,7 +217,7 @@
 <!-- BEGIN BOARDS SECTION -->
 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
 <div class="row">
-	<h3 class="vcenter gotham-font grey-text investor-boards-headline">BOARDS - {{boards_count}}</h3>
+	<h3 class="text-center gotham-font grey-text investor-boards-headline">BOARDS - {{boards_count}}</h3>
 </div>
 
 <div class="row investor-boards-body">
@@ -228,36 +225,37 @@
 	<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8" style="background-color: #F2F2F2;">	
 		<div class="row boards-grey-section" style="margin-top:20px;">
 			<table style="width:100%" frame="void" >
-			  <tr ng-repeat="funding in funding_rounds track by $index">
-				    <td>{{funding.date}}</td>
-				    <td>{{funding.amount}}</td>
+			  <tr ng-repeat="board in investor_struct.boards track by $index">
+			  		{{board}}
+				    <td>{{board.company_name}}</td>
+				    <td>{{board.company_role}}</td>
 			  </tr>
 			  <tr>
-			    <td><p><b>Medialets</b></p></td>
-			    <td><p>Investor</p></td>
-			  </tr>
-			  <tr>
-			    <td><p><b>InDinero</b></p></td>
-			    <td><p>Investor</p></td>
-			  </tr>
-			  <tr>
-			    <td><p><b>Dropbox</b></p></td>
-			    <td><p>Investor</p></td>
-			  </tr>
-			  <tr>
-			    <td><p><b>Bina Technologies</b></p></td>
-			    <td><p>Investor</p></td>
-			  </tr>
-			  <tr>
-			    <td><input type="text" class="form-control" ng-model="new_date"></td>
-			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+			    <td><input type="text" class="form-control" placeholder="Company name" ng-model="new_board_company"></td>
+			    <td><input type="text" class="form-control" placeholder="Role on board" ng-model="new_board_role"></td>
 			  </tr>
 			</table>
 
+			<div class="row">
+				<div class="col" style="padding-left:20px; padding-top:5px;">
+					<button ng-click="clicked_add_board = true; addBoard();" class="btn btn-primary">Add Board
+					</button>
+				</div>
+			</div>
 
-			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-				  	new_investors_count)" class="btn btn-primary">Add Board
-			</button>
+			<div class="row row-centered" ng-show="clicked_add_board">
+				<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-8">
+					<uib-progressbar class="progress-striped active" value="dynamic" type="success"><i>Adding board...</i></uib-progressbar>
+				</div>
+			</div>
+
+			<div class="row">
+			<div class="row row-centered">
+				<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<uib-alert ng-repeat="alert in alerts_addBoard" type="{{alert.type}}" close="closeAlertBoards($index)">{{alert.msg}}</uib-alert>
+				</div>
+			</div>
+		</div>
 			
 		</div>
 	</div>
@@ -270,7 +268,7 @@
 <!-- BEGIN INVESTMENT SECTION -->
 <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5"></div>
 <div class="row text-center vcenter">
-	<h3 class="vcenter gotham-font grey-text investor-investments-headline">INVESTMENTS - {{investments_count}}</h3>
+	<h3 class="text-center gotham-font grey-text investor-investments-headline">INVESTMENTS - {{investments_count}}</h3>
 </div>
 
 <div class="row investor-investments-body" >
@@ -284,47 +282,41 @@
 				    <th>ROUND</th>
 				    <th>DETAILS</th>
 		  		</tr>
-			  <tr ng-repeat="funding in funding_rounds track by $index">
+			  <tr ng-repeat="funding in investor_struct.investments track by $index">
 				    <td>{{funding.date}}</td>
 				    <td>{{funding.amount}}</td>
-				    <td>{{funding.date}}</td>
-				    <td>{{funding.amount}}</td>
+				    <td>{{funding.round}}</td>
+				    <td>{{funding.details}}</td>
 			  </tr>
 			  <tr>
-			    <td><p>Jan. 2016</p></td>
-			    <td><p><b>Memebox Corportation</b></p></td>
-			    <td><p>$100M / <b>Series D</b></p></td>
-			    <td><p>Personal Investment</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Jan. 2016</p></td>
-			    <td><p><b>Memebox Corportation</b></p></td>
-			    <td><p>$100M / <b>Series D</b></p></td>
-			    <td><p>Personal Investment</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Jan. 2016</p></td>
-			    <td><p><b>Memebox Corportation</b></p></td>
-			    <td><p>$100M / <b>Series D</b></p></td>
-			    <td><p>Personal Investment</p></td>
-			  </tr>
-			  <tr>
-			    <td><p>Jan. 2016</p></td>
-			    <td><p><b>Memebox Corportation</b></p></td>
-			    <td><p>$100M / <b>Series D</b></p></td>
-			    <td><p>Personal Investment</p></td>
-			  </tr>
-			  <tr>
-			    <td><input type="text" class="form-control" ng-model="new_date"></td>
-			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
-			    <td><input type="text" class="form-control" ng-model="new_date"></td>
-			    <td><input type="text" class="form-control" ng-model="new_amount"></td>
+			    <td><input type="text" class="form-control" placeholder="date" ng-model="new_investment_date"></td>
+			    <td><input type="text" class="form-control" placeholder="company invested in" ng-model="new_investment_company"></td>
+			    <td><input type="text" class="form-control" placeholder="amount / round type" ng-model="new_investment_round"></td>
+			    <td><input type="text" class="form-control" placeholder="details" ng-model="new_investment_details"></td>
 			  </tr>
 			</table>
 		
-			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-			  	new_investors_count)" class="btn btn-primary">Add Investment
-			</button>
+			<div class="row">
+				<div class="col" style="padding-left:20px; padding-top:5px;">
+					<button ng-click="clicked_add_investment= true; addInvestment();" class="btn btn-primary">Add Investment
+					</button>
+				</div>
+			</div>
+
+			<div class="row row-centered" ng-show="clicked_add_investment">
+				<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-8">
+					<uib-progressbar class="progress-striped active" value="dynamic" type="success"><i>Adding investment...</i></uib-progressbar>
+				</div>
+			</div>
+
+			<div class="row">
+			<div class="row row-centered">
+				<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					<uib-alert ng-repeat="alert in alerts_addInvestment" type="{{alert.type}}" close="closeAlertInvestments($index)">{{alert.msg}}</uib-alert>
+				</div>
+			</div>
+		</div>
+
 		</div>
 	</div>
 	<div class="col-lg-2 col-md-2 col-sm-2 col-xs-2"></div>

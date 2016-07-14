@@ -54,7 +54,7 @@ html, body {
 }
 
 .investor-investments-body {
-  padding-bottom: 30px;
+  padding-bottom: 80px;
 }
 
 
@@ -368,6 +368,7 @@ a:active {
 }
 
 .jobs-gray-section {
+  padding-left: 15px;
   padding-top: 10px;
   padding-bottom: 10px;
 }

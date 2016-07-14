@@ -19,30 +19,32 @@
 				<img ng-hide="user.profile_pic" src="images/Profilepic.png" class="img-responsive img-circle" alt="Responsive image"> 
 				<img ng-show="user.profile_pic" ng-src="{{user.profile_pic}}" class="img-responsive img-circle" alt="Responsive image">
 			</div> 
+			<!-- BEING FILE INPUT AREA -->
 			<div class="row">
 				<div class="row">
-				<div class="row row-centered">	
-					<p ng-click="clickFileInput();" style="padding-top:15px;">Change photo</p>
-					<div><input class="col col-centered" type="file" id="fileInput" style="display:none;" /></div>
+					<div class="row row-centered">	
+						<p ng-click="clickFileInput();" style="padding-top:15px;">Change photo</p>
+						<div><input class="col col-centered" type="file" id="fileInput" style="display:none;" /></div>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
-				<div ng-show="editing_profile_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
-				    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
-				</div>
+				<div class="row">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					<div ng-show="editing_profile_photo" class="cropArea col-lg-3 col-md-3 col-sm-3 col-xs-3">
+					    <img-crop image="myImage" result-image="myCroppedImage"></img-crop>
+					</div>
 
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
 
-				<div ng-show="editing_profile_photo"><p>Cropped Image:</p></div>
-				<div ng-show="editing_profile_photo"><img ng-src="{{myCroppedImage}}" /></div>
-			</div>
-			<div class="row" style="padding-top:20px;">
-				<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+					<div ng-show="editing_profile_photo"><p>Cropped Image:</p></div>
+					<div ng-show="editing_profile_photo"><img ng-src="{{myCroppedImage}}" /></div>
 				</div>
-				<button class="btn btn-default" ng-show="editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
+				<div class="row" style="padding-top:20px;">
+					<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1">
+					</div>
+					<button class="btn btn-default" ng-show="editing_profile_photo" ng-click="uploadProfilePic(myCroppedImage); editing_profile_photo=false;">Submit</button> 
+				</div>
 			</div>
-			</div>
+			<!-- END FILE INPUT SECTION -->
 
 		</div>
 

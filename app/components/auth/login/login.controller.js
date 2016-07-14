@@ -5,18 +5,49 @@ angular
 
 function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, AuthService, $cookieStore)  {
 
-    $scope.email = '';
-    $scope.password = '';
+    $scope.url_prefix = "http://localhost:8040";
+
+    $scope.email = "";
+    $scope.password = "";
+
+    $scope.submit_pressed = false;
+    $scope.no_email_entered;
 
     $scope.success = '';
-   
-    // $scope.api_domain = "http://104.197.111.36";
-    // $scope.url_prefix = "http://104.197.111.36:8040";
-    $scope.url_prefix = "http://localhost:8040";
+    $scope.err = null;
+    $scope.errObject = null;
+    $scope.alerts = [];
+
+    
+    $scope.addAlert = function() {
+        $scope.alerts.push({msg: 'Another alert!'});
+    };
+
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.login = function() {
         console.log($scope.email);
         console.log($scope.password);
+
+        if ($scope.email == "" && $scope.password == "") {
+            $scope.alerts.push({type: 'danger', msg: 'Opps, can you enter your email and password?'});
+            $scope.submit_pressed = false;
+            return;
+        };
+
+        if ($scope.email == "") {
+            $scope.alerts.push({type: 'danger', msg: 'Opps, can you enter your email?'});
+            $scope.submit_pressed = false;
+            return;
+        };
+
+        if ($scope.password == "") {
+            $scope.alerts.push({type: 'danger', msg: 'Opps, can you enter your password?'});
+            $scope.submit_pressed = false;
+            return;
+        };
 
         var url = $scope.url_prefix + "/users/signin";
         var auth_string = String($scope.email) + ':' + String($scope.password);
@@ -54,6 +85,8 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
                 }
             }, 
             function(value) {
+                $scope.submit_pressed = false;
+                $scope.alerts.push({type: 'danger', msg: "Opps, your email and password don't match our records."}); 
                 console.log(value);
             }
         );

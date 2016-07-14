@@ -5,8 +5,6 @@ var so = angular.module('so', [
     'ui.bootstrap',
     'so.home',
     'so.auth',
-    'so.stay',
-    'so.invest',
     'so.about',
     'so.works',
     'so.signup',
@@ -24,6 +22,15 @@ so.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
     //Enable cross domain calls
     $httpProvider.defaults.useXDomain = true;
     
+});
+
+so.directive('rsSetHeight', function($window){
+  return{
+    link: function(scope, element, attrs){
+        element.css('min-height', $window.innerHeight + 'px');
+        //element.height($window.innerHeight/3);
+    }
+  }
 });
 
 so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",

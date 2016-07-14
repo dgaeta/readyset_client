@@ -82,8 +82,6 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
             $scope.editing_profile_photo = true;
             document.getElementById('fileInput').click();
         }
-        
-
     }
 
     $scope.clickFileInputCarouselPic = function() {
