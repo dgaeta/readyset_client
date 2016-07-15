@@ -207,14 +207,21 @@
 					    <td id="blue-text">{{funding.lead_investor}}</td>
 					    <td>{{funding.investors_count}}</td>
 				  </tr>
-				  <!-- <tr>
-				    <td><input type="text" class="form-control" ng-model="new_date"></td>
-				    <td><input type="text" class="form-control" ng-model="new_amount"></td>
-				    <td><input type="text" class="form-control" ng-model="new_valuation"></td>
-				    <td><input type="text" class="form-control" ng-model="new_lead_investor"></td>
-				    <td><input type="text" class="form-control" ng-model="new_investors_count"></td>
-				  </tr> -->
+				  <tr>
+				    <td><input type="text" class="form-control" placeholder="Sept 2016" ng-model="new_fd_date"></td>
+				    <td><input type="text" class="form-control" placeholder="100k" ng-model="new_fd_amount"></td>
+				    <td><input type="text" class="form-control" placeholder="1M" ng-model="new_fd_valuation"></td>
+				    <td><input type="text" class="form-control" placeholder="John Doe" ng-model="new_fd_lead_investor"></td>
+				    <td><input type="text" class="form-control" placeholder="3" ng-model="new_fd_investors_count"></td>
+				  </tr>
 				</table>
+
+				<div class="row row-centered" ng-show="clicked_add_funding_round">
+					<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-8">
+						<uib-progressbar class="progress-striped active" value="dynamic" type="success"><i>Adding funding round...</i></uib-progressbar>
+					</div>
+				</div>
+
 			</div>
 		</div>
 		<div class="col-lg-1 col-md-1 col-sm-1 col-xs-1"></div>
@@ -222,10 +229,18 @@
 
 	<div class="row row-centered">
 		<div class="col-centered">
-			<button ng-click="addFundingRound(new_data, new_amount, new_valuation, new_lead_intestor, 
-			  	new_investors_count)" class="btn btn-airforce-blue">START NEW</button>
+			<button ng-click="clicked_add_funding_round = true;addFundingRound()" class="btn btn-airforce-blue">START NEW</button>
 		</div>
 	</div>
+
+	<div class="row">
+		<div class="row row-centered">
+			<div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-3">
+				<uib-alert ng-repeat="alert in alerts_addFundingRound" type="{{alert.type}}" close="closeAlertFundingRound($index)">{{alert.msg}}</uib-alert>
+			</div>
+		</div>
+	</div>
+
 </div>
 <!-- END FUNDING ROUNDS SECTION SECTION -->
 

@@ -54,11 +54,14 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
     $scope.myCarouselCroppedImage=false;
     
     // For adding a new funding round
-    $scope.new_date = "";
-    $scope.new_amount = "";
-    $scope.new_valuation = "";
-    $scope.new_lead_investor = "";
-    $scope.new_investors_count = 0;
+    $scope.clicked_add_funding_round = false;
+    $scope.alerts_addFundingRound = [];
+    $scope.new_fd_date = "";
+    $scope.new_fd_amount = "";
+    $scope.new_fd_valuation = "";
+    $scope.new_fd_lead_investor = "";
+    $scope.new_fd_investors_count = 0;
+
     // Carousel section
     $scope.presentation_title = "";
     $scope.myInterval = 5000;
@@ -74,6 +77,13 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
     $scope.items = ['item1', 'item2', 'item3'];
     $scope.animationsEnabled = true;
+
+
+
+    $scope.closeAlertFundingRound = function(index) {
+        console.log("in here");
+        $scope.alerts_addFundingRound.splice(index, 1);
+    };
 
 
     $scope.clickFileInputProfPic = function() {
@@ -536,13 +546,55 @@ function CompanyController($scope, Upload, $rootScope, $cookies, $http, $timeout
 
 
     $scope.addFundingRound = function() {
-        $scope.funding_rounds.push({'date': $scope.new_date, 'amount': $scope.new_amount, 'valuation': $scope.new_valuation, 
-        'lead_investor': $scope.new_lead_investor, 'investors_count': $scope.new_investors_count});
-        $scope.new_date = '';
-        $scope.new_amount = '';
-        $scope.new_valuation = '';
-        $scope.new_lead_investor = '';
-        $scope.new_investora_count = '';
+        if ($scope.new_fd_date == "" || $scope.new_fd_amount == "" || $scope.new_fd_valuation == "" ||
+            $scope.new_fd_lead_investor == "" || $scope.new_fd_investors_count == "") {
+
+            $scope.alerts_addFundingRound.push({type: 'danger', msg: 'Opps, please fill out all fields above to add.'});
+            $scope.clicked_add_funding_round = false;
+            return;
+        };
+
+        var url = $scope.url_prefix + "/users/company_add_funding_round";
+
+        var auth_string = String($scope.token) + ':' + String('unused');
+        var auth_cred = btoa(auth_string);
+
+
+        $http({
+            url: url,
+            method: "POST",
+            headers: {'Authorization': 'Basic ' + auth_cred},
+            data: {'new_fd_date': $scope.new_fd_date, 'new_fd_amount': $scope.new_fd_amount, 
+                'new_fd_valuation': $scope.new_fd_valuation, 'new_fd_lead_investor': $scope.new_fd_lead_investor,
+                'new_fd_investors_count': $scope.new_fd_investors_count
+            } 
+
+        })
+        .then(function(response) {
+            console.log(response);
+
+            if(response['data']['status'] == "success"){
+                console.log(response['data']['status']);
+                $scope.clicked_add_funding_round = false;
+
+                $scope.new_fd_date = "";
+                $scope.new_fd_amount = "";
+                $scope.new_fd_valuation = "";
+                $scope.new_fd_lead_investor = "";
+                $scope.new_fd_investors_count = "";
+
+                $scope.company_struct['funding_rounds'] = response['data']['funding_rounds'];
+                sessionStorage.setItem('company_struct', JSON.stringify($scope.company_struct));
+                
+            }
+        }, 
+        function(response) {
+            // failure
+            console.log(response);
+            $scope.alerts_addFundingRound.push({type: 'danger', msg: 'Opps, there was a problem adding the round.'});
+            $scope.clicked_add_funding_round = false;
+            
+        });
     }
 
 }
