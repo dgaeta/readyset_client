@@ -53,6 +53,8 @@ function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, Auth
         var auth_string = String($scope.email) + ':' + String($scope.password);
         var auth_cred = btoa(auth_string);
 
+        console.log(url);
+
         $http.get(url, {
             headers: {'Authorization': 'Basic ' + auth_cred }
         }).then(
