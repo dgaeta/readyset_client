@@ -4,7 +4,7 @@ angular
 
 function InvestorController($scope, $cookies, $http, $state, Upload) {
 
-    $scope.url_prefix = "http://104.198.195.243/api";
+    $scope.url_prefix = "http://104.197.71.151";
     //$scope.url_prefix = "http://localhost:8040";
 
     $scope.token = sessionStorage.getItem('token');
