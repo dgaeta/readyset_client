@@ -36,12 +36,7 @@ so.directive('rsSetHeight', function($window){
 so.controller("soCtrl", ["$scope", "$rootScope", "$cookies", "$state",
 	function($scope, $rootScope, $cookies, $state) {
 
-        // USED FOR LOCAL DEVELOPMENT 
-        sessionStorage.setItem('api_domain', 'http://127.0.0.1:8040');
-
-        // USED FOR PRODUCTION
-        //$cookies.put('api_domain', 'http://104.154.73.130:8080');
-
+        
 
         $scope.user = sessionStorage.getItem('user');
         if ($scope.user) {
