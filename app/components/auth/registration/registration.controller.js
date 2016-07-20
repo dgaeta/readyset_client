@@ -4,7 +4,7 @@ angular
 
 function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $state) {
 
-    $scope.url_prefix = "104.198.195.243/api";
+    $scope.url_prefix = "http://104.198.195.243/api";
     //$scope.url_prefix = "http://localhost:8040";
 
     $scope.company = false;
