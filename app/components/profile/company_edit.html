@@ -256,9 +256,14 @@
 				<p>Investors - {{investor_count}}</p>
 			</div>
 
-			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-				
-				<button class="btn btn-addnew-member" ng-click="open()">ADD NEW</button>
+			<div class="no-gutter col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<div class="no-gutter col-lg-2 col-md-3 col-sm-3 col-xs-6" ng-repeat="member in company_struct.members.investors.accepted">
+					<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.user_photo_url}}"> </IMG>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="text-center">{{member.name}}</p></div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+					 <button class="btn btn-addnew-member" ng-click="open()">ADD NEW</button>
+				</div>
 			</div>
 			
 		</div>
@@ -271,9 +276,14 @@
 				<p>Employees - {{employees_count}}</p>
 			</div>
 
-			<div class="col-lg-11 col-md-11 col-sm-11 col-xs-11">
-				
-				<button class="btn btn-addnew-member" ng-click="open()">ADD NEW</button>
+			<div class="no-gutter col-lg-11 col-md-11 col-sm-11 col-xs-11">
+				<div class="no-gutter col-lg-2 col-md-3 col-sm-3 col-xs-6" ng-repeat="member in company_struct.members.employees.accepted">
+					<IMG class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-src="{{member.user_photo_url}}"> </IMG>
+					<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12"><p class="text-center">{{member.name}}</p></div>
+				</div>
+				<div class="col-lg-2 col-md-3 col-sm-3 col-xs-6">
+					 <button class="btn btn-addnew-member" ng-click="open()">ADD NEW</button>
+				</div>
 			</div>
 			
 		</div>
