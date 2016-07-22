@@ -58,12 +58,12 @@
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div collapse="navCollapsed" class="collapse nav-collapse navbar-collapse navbar-responsive-collapse " ng-class="{'in': !navCollapsed}" id="bs-example-navbar-collapse-1" ng-click="navCollapsed=true">
       <ul class="nav navbar-nav pull-right">
-        <li><a  style="color: #919CA2;"  ui-sref="soAbout">About Us</a></li>
-        <li><a  style="color: #919CA2;" ui-sref="soWorks">How it works</a></li>
-        <li><a  style="color: #919CA2;" ng-hide="tokenExists()" ui-sref="soAuthLogin">Log In</a></li>
+        <li><a  style="color: #919CA2; font-family: gotham_lightregular;"  ui-sref="soAbout">About Us</a></li>
+        <li><a  style="color: #919CA2; font-family: gotham_lightregular;" ui-sref="soWorks">How it works</a></li>
+        <li><a  style="color: #919CA2; font-family: gotham_lightregular;" ng-hide="tokenExists()" ui-sref="soAuthLogin">Log In</a></li>
         <!-- <li><a  ng-hide="tokenExists()" ui-sref="soAuthRegistration">SIGN UP</a></li> -->
 
-        <li><a ng-show="tokenExists()" ng-click="viewNotifications()">notifications</a></li>
+        <li><a ng-show="tokenExists()" ng-click="viewNotifications()" style="font-family: gotham_lightregular;">notifications</a></li>
 
         <li><img ng-show="tokenExists() && no_profile_pic" src="/images/polygons.png" class="nav-profile-image img-responsive img-circle" ng-click="stateProfile()"></li>
         <li><img ng-show="tokenExists() &&  user.profile_pic" ng-src="{{user.profile_pic}}" class="nav-profile-image img-responsive img-circle" ng-click="stateProfile()"></li>

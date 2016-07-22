@@ -144,6 +144,23 @@ a:active {
   padding-left: 20px
 }
 
+.members-row {
+  overflow: hidden;
+  position: relative;
+}
+.add-new-div {
+  height: 100%;
+
+}
+
+.add-new-text {
+  height: 100%;
+  position: absolute;
+  border-style: solid;
+  border-width: 2px;
+  border-color: #E2E2E2;
+}
+
 .btn-addnew-member {
   height: 100%;
   background-color: #EDEDED;
