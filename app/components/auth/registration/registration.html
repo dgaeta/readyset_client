@@ -24,8 +24,7 @@
       </div>
     </div>
 
-
-
+    
     <!-- START SECTION FOR COMPANY SIGNUP -->
     <div class="row" ng-show="company">
       <div  style="padding-top:80px;">
@@ -71,11 +70,10 @@
 
       
           <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-            <button ng-click="register_company()" class="btn btn-grey pull-right" type="submit">
+            <button ng-click="submit_pressed = true; register_company()" class="btn btn-grey pull-right" type="submit">
               <p style="margin-bottom:0px;">SIGN UP NOW</p>
             </button>
           </div>
-
 
     </div>
     <!-- END SECTION FOR COMPANY SIGN UP -->
@@ -122,11 +120,27 @@
       </div>  
 
      <div class="col-lg-10 col-md-10 col-sm-10 col-xs-10">
-        <button ng-click="register_investor()" class="btn btn-grey pull-right" type="submit">
+        <button ng-click="submit_pressed = true; register_investor()" class="btn btn-grey pull-right" type="submit">
           <p style="margin-bottom:0px;">SIGN UP NOW</p>
         </button>
       </div>
     </div>
+
+    <!-- PROGRESS BAR -->
+    <div class="row row-centered" ng-show="submit_pressed">
+      <div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-8">
+        <uib-progressbar class="progress-striped active" value="dynamic" type="success"><i>Registering you...</i></uib-progressbar>
+      </div>
+    </div>
+
+     <!-- ALERTS AREA -->
+      <div class="row">
+        <div class="row row-centered">
+          <div class="col-centered col-lg-3 col-md-3 col-sm-3 col-xs-3">
+            <uib-alert ng-repeat="alert in alerts" type="{{alert.type}}" close="closeAlert($index)">{{alert.msg}}</uib-alert>
+          </div>
+        </div>
+      </div>
 
   </div>
 

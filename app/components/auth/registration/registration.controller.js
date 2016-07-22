@@ -11,27 +11,28 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
     $scope.investor = false;
 
     // For investor
-    $scope.firstname = '';
-    $scope.lastname = '';
-    $scope.primary_role = '';
-    $scope.headline = '';
+    $scope.firstname = "";
+    $scope.lastname = "";
+    $scope.primary_role = "";
+    $scope.headline = "";
 
     // For Company 
-    $scope.company_name = '';
-    $scope.founders = '';
-    $scope.industry = '';
+    $scope.company_name = "";
+    $scope.founders = "";
+    $scope.industry = "";
 
     // Shared
-    $scope.city = '';
-    $scope.state = '';
-    $scope.website = '';
-    $scope.email = '';
-    $scope.password = '';
+    $scope.city = "";
+    $scope.state = "";
+    $scope.website = "";
+    $scope.email = "";
+    $scope.password = "";
 
-    
-
-
-
+    $submit_pressed = false;
+    $scope.alerts = [];
+    $scope.closeAlert = function(index) {
+        $scope.alerts.splice(index, 1);
+    };
 
     $scope.investorClicked = function() {
         $scope.investor = true;
@@ -46,6 +47,14 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
 
 
     $scope.register_investor = function() {
+        if ($scope.email == "" || $scope.password == "" || $scope.firstname == "" || $scope.lastname == ""
+            || $scope.city == "" || $scope.state == "") {
+            console.log("in here");
+            $scope.alerts.push({type: 'danger', msg: 'Opps, please fill out all fields.'});
+            $scope.submit_pressed = false;
+            return;
+        };
+        console.log("passed base check");
 
         var url = $scope.url_prefix + "/users/add_investor";
         //var auth_string = String($scope.token) + ':' + String('unused');
@@ -81,12 +90,20 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
         function(response) {
             // failure
             console.log(response);
+            $scope.alerts.push({type: 'danger', msg: 'Opps, there was a problem registering you.'});
+            $scope.submit_pressed = false;
             
         });
     }
 
 
     $scope.register_company = function() {
+        if ($scope.email == "" || $scope.password == "" || $scope.headline == "" || $scope.company_name == ""
+            || $scope.city == "" || $scope.state == "") {
+            $scope.alerts.push({type: 'danger', msg: 'Opps, please fill out all fields.'});
+            $scope.submit_pressed = false;
+            return;
+        };
 
         var url = $scope.url_prefix + "/users/add_company";
         //var auth_string = String($scope.token) + ':' + String('unused');
@@ -131,6 +148,8 @@ function SoAuthRegistrationController($scope, $rootScope, $http, $cookies, $stat
         function(response) {
             // failure
             console.log(response);
+            $scope.alerts.push({type: 'danger', msg: 'Opps, there was a problem registering you.'});
+            $scope.submit_pressed = false;
             
         });
     }
