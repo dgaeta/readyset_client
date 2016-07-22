@@ -7,7 +7,7 @@ angular
 
 function NotificationsController($scope, $http, $timeout, $location, $state, $stateParams) {
 
-    $scope.url_prefix = "http://104.197.71.151";
+    $scope.url_prefix = "http://104.154.30.209";
     //$scope.url_prefix = "http://localhost:8040";
 
     $scope.token = sessionStorage.getItem('token');

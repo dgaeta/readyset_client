@@ -4,8 +4,8 @@ angular
 
 function ProfileController($scope, $cookies, $state, $http) {
 
-    $scope.url_prefix = "http://104.197.71.151";
-    //$scope.url_prefix = "http://localhost:8040";
+    //$scope.url_prefix = "http://104.197.71.151";
+    $scope.url_prefix = "http://localhost:8040";
 
     $scope.user_type = sessionStorage.getItem('user_type');
 	$scope.token = sessionStorage.getItem('token');

@@ -145,6 +145,7 @@ a:active {
 }
 
 .btn-addnew-member {
+  height: 100%;
   background-color: #EDEDED;
   border-width: 2px;
   border-color: #E2E2E2;

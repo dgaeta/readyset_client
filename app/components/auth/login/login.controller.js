@@ -5,7 +5,8 @@ angular
 
 function SoAuthLoginController($scope, $rootScope, $http, $cookies, $state, AuthService, $cookieStore)  {
 
-    $scope.url_prefix = "http://104.197.71.151";
+    //$scope.url_prefix = "http://104.197.71.151";
+    $scope.url_prefix = "http://localhost:8040";
 
     $scope.email = "";
     $scope.password = "";
